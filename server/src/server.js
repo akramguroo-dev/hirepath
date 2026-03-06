@@ -1,7 +1,15 @@
+// Core
 const express = require('express');
 require('dotenv').config();
+
+// Config
 const connectDB = require('./config/db');
+
+// Routes
 const authRoutes = require('./routes/auth');
+const jobRoutes = require('./routes/job');
+
+// Middleware
 const authMiddleware = require('./middleware/authMiddleware');
 
 const app = express();
@@ -9,6 +17,7 @@ const app = express();
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
+app.use('/api/jobs', jobRoutes);
 
 app.get('/api/protected', authMiddleware, (req, res) => {
   res.json({ message: 'Protected route accessed', user: req.user });

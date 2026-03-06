@@ -1,2 +1,2 @@
-GET http://localhost:5000/api/protected
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OWE5Mjc1ZTM2YWNlYzQ3N2NjNTZmYTEiLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTc3MjcwNzUzNCwiZXhwIjoxNzczMzEyMzM0fQ.-ruSIjL9qU7nNj1Gi215-AuBLe1xAYtcsmKZW6XFeSk
+GET http://localhost:5000/api/jobs
+Content-Type: application/json
