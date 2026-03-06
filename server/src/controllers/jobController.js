@@ -16,8 +16,13 @@ const createJob = async (req, res) => {
   };
 };
 
-const getAllJobs = (req, res) => {
-  res.json({ message: 'This is getAllJobs controller running'});
+const getAllJobs = async (req, res) => {
+  try {
+    const jobs = await Job.find().populate('posted_by', 'name email');
+    res.json({ jobs });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  };
 };
 
 const getJobById = (req, res) => {

@@ -1,12 +1,1 @@
-POST http://localhost:5000/api/jobs
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OWFhNjU0Y2YyZWIzNjA1MWE3MTI1ZTQiLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTc3Mjc3NDc4MCwiZXhwIjoxNzczMzc5NTgwfQ.xyW68pqE5T4Fxz-tV0U9TuEkX3CLRpiwH_sqy6QtlLI
-Content-Type: application/json
-
-{
-  "title": "Backend Developer Intern",
-  "company": "Tech Corp",
-  "description": "Node.js internship",
-  "location": "Remote",
-  "type": "internship",
-  "duration": "3 months"
-}
+GET http://localhost:5000/api/jobs
