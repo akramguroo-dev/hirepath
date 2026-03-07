@@ -8,6 +8,7 @@ const connectDB = require('./config/db');
 // Routes
 const authRoutes = require('./routes/auth');
 const jobRoutes = require('./routes/job');
+const applicationRoutes = require('./routes/application');
 
 // Middleware
 const authMiddleware = require('./middleware/authMiddleware');
@@ -18,6 +19,7 @@ app.use(express.json());
 
 app.use('/api/auth', authRoutes);
 app.use('/api/jobs', jobRoutes);
+app.use('/api/applications', applicationRoutes);
 
 app.get('/api/protected', authMiddleware, (req, res) => {
   res.json({ message: 'Protected route accessed', user: req.user });
