@@ -25,8 +25,19 @@ const getAllJobs = async (req, res) => {
   };
 };
 
-const getJobById = (req, res) => {
-  res.json({ message: 'This is getJobById controller running'});
+const getJobById = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const job = await Job.findById(id).populate('posted_by', 'name email');
+
+    if (!job) {
+      return res.status(404).json({ error: 'Job not found' });
+    }
+    
+    res.json({ job });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  };
 };
 
 module.exports = {
