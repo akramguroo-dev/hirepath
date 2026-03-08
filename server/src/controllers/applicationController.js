@@ -63,8 +63,35 @@ const getJobApplications = async (req, res) => {
   }
 };
 
+const updateApplicationStatus = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const app = await Application.findById(id);
+    if (!app) {
+      return res.status(404).json({ error: "Application not found" });
+    }
+
+    const job = await Job.findById(app.job_id);
+    if (job.posted_by.toString() !== req.user._id.toString()) {
+      return res.status(403).json({ error: "Not authorized to update this application" });
+    }
+    
+    const { status } = req.body;
+    const updatedApp = await Application.findByIdAndUpdate(
+      id,
+      { status },
+      { new: true, runValidators: true },
+    );
+
+    res.status(201).json({ updatedApp });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
 module.exports = {
   applyToJob,
   getMyApplications,
   getJobApplications,
+  updateApplicationStatus,
 };

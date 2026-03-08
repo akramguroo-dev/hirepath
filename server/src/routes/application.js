@@ -14,4 +14,5 @@ router.get(
   applicationController.getJobApplications,
 );
 
+router.patch('/:id/status', authMiddleware, applicationController.updateApplicationStatus);
 module.exports = router;

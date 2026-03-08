@@ -1,7 +1,7 @@
-GET http://localhost:5000/api/applications/job/69aa95c25369f01d8783a9f0
+PATCH http://localhost:5000/api/applications/69abf6e9bd50d8ea0bb0db58/status
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OWFiZmU4OTQ4YTE1MTdiMzczN2M3MzEiLCJyb2xlIjoiZW1wbG95ZXIiLCJpYXQiOjE3NzI5NTAyOTgsImV4cCI6MTc3MzU1NTA5OH0.HhoTqJSgGysKopukMOYU4Ce_r2pgcrmdM309Jazl4q8
 Content-Type: application/json
 
-
-
-
+{
+  "status": "accepted"
+}
