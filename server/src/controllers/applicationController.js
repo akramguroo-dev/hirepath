@@ -34,7 +34,13 @@ const applyToJob = async (req, res) => {
 };
 
 const getMyApplications = async (req, res) => {
-  res.json({ message: 'getMyApplications controller working' });
+  try {
+    const myApplications = await Application.find({ student_id: req.user._id }).populate('job_id', 'title company description location type duration');
+    
+    res.json({ myApplications });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  };
 };
 
 const getJobApplications = async (req, res) => {
