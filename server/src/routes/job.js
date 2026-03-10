@@ -1,13 +1,14 @@
-const express = require('express');
-const jobController = require('../controllers/jobController');
-const authMiddleware = require('../middleware/authMiddleware');
+const express = require("express");
+const jobController = require("../controllers/jobController");
+const authMiddleware = require("../middleware/authMiddleware");
 
 const router = express.Router();
 
-router.post('/', authMiddleware, jobController.createJob);
+router.post("/", authMiddleware, jobController.createJob);
 
-router.get('/', jobController.getAllJobs);
+router.get("/", jobController.getAllJobs);
 
-router.get('/:id', jobController.getJobById);
+router.get("/:id", jobController.getJobById);
 
+router.delete("/:id", authMiddleware, jobController.deleteJobById);
 module.exports = router;
