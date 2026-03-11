@@ -17,7 +17,11 @@ const userSchema = new Schema({
   role: {
     type: String,
     enum: ['student', 'employer', 'admin'],
-    default: 'student'
+    default: 'student',
+  },
+  is_verified: {
+    type: Boolean,
+    default: false,
   },
 }, { timestamps: true });
 

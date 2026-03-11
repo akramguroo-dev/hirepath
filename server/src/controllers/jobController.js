@@ -9,8 +9,12 @@ const createJob = async (req, res) => {
       return res.status(403).json({ error: 'Only employers can post jobs' });
     }
 
+    if (!employer.is_verified) {
+      return res.status(403).json({ error: 'Only verified employers can post jobs' });
+     
+    }
+
     const job = await Job.create({ ...jobData, posted_by: employer._id });
-    
     res.status(201).json({ job });
   } catch (err) {
     res.status(500).json({ error: err.message });

@@ -12,7 +12,7 @@ const authMiddleware = async (req, res, next) => {
 
   try {
     const { userId } = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = await User.findOne({ _id: userId }).select('_id role email');
+    req.user = await User.findOne({ _id: userId }).select('_id role email is_verified');
     next();
   } catch (err) {
     res.status(401).json({ error: 'Request is not authorized' });
