@@ -1,5 +1,10 @@
-DELETE http://localhost:5000/api/jobs/69aff89e3342cff273fdb2ed
+PATCH http://localhost:5000/api/jobs/69b1222b89f5c7bc04e4121f
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OWFiZmU4OTQ4YTE1MTdiMzczN2M3MzEiLCJyb2xlIjoiZW1wbG95ZXIiLCJpYXQiOjE3NzMwNDcxNTEsImV4cCI6MTc3MzY1MTk1MX0.Tu_j9wqjdAbEI9vg7ktjBgKqp-aaMT2AYj9sKtGwFpc
 Content-Type: application/json
+
+{
+  "salary": "35000",
+  "status": "open"
+}
 
 

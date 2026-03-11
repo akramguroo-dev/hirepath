@@ -11,4 +11,6 @@ router.get("/", jobController.getAllJobs);
 router.get("/:id", jobController.getJobById);
 
 router.delete("/:id", authMiddleware, jobController.deleteJobById);
+
+router.patch("/:id", authMiddleware, jobController.updateJobById);
 module.exports = router;

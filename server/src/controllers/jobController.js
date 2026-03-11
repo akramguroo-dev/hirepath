@@ -60,9 +60,30 @@ const deleteJobById = async (req, res) => {
   };
 };
 
+const updateJobById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const job = await Job.findById(id);
+    if (!job) {
+      return res.status(404).json({ error: 'Job not found' });
+    }
+
+    if (job.posted_by.toString() !== req.user._id.toString()) {
+      return res.status(403).json({ error: 'Not authorized to update this job' });
+    }
+
+    const updates = req.body;
+    const updatedJob = await Job.findByIdAndUpdate(id, updates, { new: true, runValidators: true },)
+
+    res.json({ updatedJob });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  };
+};
 module.exports = {
   createJob,
   getAllJobs,
   getJobById,
   deleteJobById,
+  updateJobById,
 }
