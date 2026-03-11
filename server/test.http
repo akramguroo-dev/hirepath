@@ -1,10 +1,3 @@
-PATCH http://localhost:5000/api/jobs/69b1222b89f5c7bc04e4121f
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OWFiZmU4OTQ4YTE1MTdiMzczN2M3MzEiLCJyb2xlIjoiZW1wbG95ZXIiLCJpYXQiOjE3NzMwNDcxNTEsImV4cCI6MTc3MzY1MTk1MX0.Tu_j9wqjdAbEI9vg7ktjBgKqp-aaMT2AYj9sKtGwFpc
+GET http://localhost:5000/api/jobs?type=internship&location=Remote
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OWE5Mjc1ZTM2YWNlYzQ3N2NjNTZmYTEiLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTc3MzIyMDIyNCwiZXhwIjoxNzczODI1MDI0fQ.hMbkHTSUbqZhxUTgQMBmOfYFxoZH4D-EUXbnR9StvS4
 Content-Type: application/json
-
-{
-  "salary": "35000",
-  "status": "open"
-}
-
-

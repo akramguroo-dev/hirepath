@@ -19,7 +19,14 @@ const createJob = async (req, res) => {
 
 const getAllJobs = async (req, res) => {
   try {
-    const jobs = await Job.find().populate('posted_by', 'name email');
+    const { type, location, status } = req.query;
+    const filter = {};
+
+    if (type) filter.type = type;
+    if (location) filter.location = location;
+    if (status) filter.status = status;
+
+    const jobs = await Job.find(filter).populate('posted_by', 'name email');
     res.json({ jobs });
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -80,6 +87,7 @@ const updateJobById = async (req, res) => {
     res.status(500).json({ error: err.message });
   };
 };
+
 module.exports = {
   createJob,
   getAllJobs,
