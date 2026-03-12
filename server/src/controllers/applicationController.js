@@ -76,14 +76,14 @@ const updateApplicationStatus = async (req, res) => {
       return res.status(403).json({ error: "Not authorized to update this application" });
     }
     
-    const { status } = req.body;
+    const { status, employer_feedback, rating } = req.body;
     const updatedApp = await Application.findByIdAndUpdate(
       id,
-      { status },
+      { status, employer_feedback, rating },
       { new: true, runValidators: true },
     );
 
-    res.status(201).json({ updatedApp });
+    res.status(200).json({ updatedApp });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

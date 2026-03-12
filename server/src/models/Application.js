@@ -23,6 +23,14 @@ const applicationModel = new Schema({
   cover_letter: {
     type: String,
   },
+  employer_feedback: {
+    type: String,
+  },
+  rating: {
+    type: Number,
+    min: 1,
+    max: 5,
+  }
 }, { timestamps: true });
 
 module.exports = mongoose.model('Application', applicationModel);
