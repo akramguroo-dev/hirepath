@@ -1,5 +1,6 @@
 // Core
 const express = require('express');
+const cors = require('cors');
 require('dotenv').config();
 
 // Config
@@ -16,6 +17,7 @@ const authMiddleware = require('./middleware/authMiddleware');
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 
 app.use('/api/auth', authRoutes);
 app.use('/api/jobs', jobRoutes);
