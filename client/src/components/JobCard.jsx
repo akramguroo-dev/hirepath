@@ -1,4 +1,6 @@
-export default function JobCard({ title, company, location, salary, duration }) {
+import { useNavigate } from "react-router-dom";
+export default function JobCard({ id, title, company, location, salary, duration }) {
+  const navigate = useNavigate();
   const Path = ({ type }) => {
     const paths = {
       hiring: <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14M22 4L12 14.01l-3-3" />,
@@ -48,8 +50,11 @@ export default function JobCard({ title, company, location, salary, duration }) 
       </div>
       <div className="mt-auto pt-4 border-t border-gray-50 flex justify-between items-center text-[10px] font-bold uppercase tracking-wider text-gray-400">
         <span className="bg-gray-50 px-2 py-1 rounded border border-gray-100">Internship</span>
-        <button className="text-[#00A5EC] text-sm font-bold hover:underline lowercase first-letter:uppercase tracking-normal transition-colors">
-          View details ›
+        <button 
+          onClick={() => navigate(`/jobs/${id || 1}`)}
+          className="text-[#00A5EC] text-sm font-bold hover:underline lowercase first-letter:uppercase tracking-normal transition-colors"
+        >
+        View details ›
         </button>
       </div>
     </div>
