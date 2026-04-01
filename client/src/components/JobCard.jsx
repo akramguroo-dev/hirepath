@@ -51,7 +51,7 @@ export default function JobCard({ id, title, company, location, salary, duration
       <div className="mt-auto pt-4 border-t border-gray-50 flex justify-between items-center text-[10px] font-bold uppercase tracking-wider text-gray-400">
         <span className="bg-gray-50 px-2 py-1 rounded border border-gray-100">Internship</span>
         <button 
-          onClick={() => navigate(`/jobs/${id || 1}`)}
+          onClick={() => navigate(`/jobs/${id}`)}
           className="text-[#00A5EC] text-sm font-bold hover:underline lowercase first-letter:uppercase tracking-normal transition-colors"
         >
         View details ›
