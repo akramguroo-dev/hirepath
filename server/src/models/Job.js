@@ -29,6 +29,20 @@ const jobSchema = new Schema({
   duration: {
     type: String,
   },
+  startDate: {
+    type: String,
+  },
+  applyBy: {
+    type: String,
+  },
+  applicants: {
+    type: Number,
+    default: 0,
+  },
+  skills: {
+    type: [String],
+    default: [],
+  },
   posted_by: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
