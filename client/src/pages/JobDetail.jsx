@@ -4,6 +4,7 @@ import API from "../api/axios";
 
 export default function JobDetail() {
   const [job, setJob] = useState({});
+  const [message, setMessage] = useState("");
 
   const navigate = useNavigate();
 
@@ -18,6 +19,20 @@ export default function JobDetail() {
       .then((response) => setJob(response.data.job))
       .catch((error) => console.error(error));
   }, [id]);
+
+  const handleApply = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await API.post(
+        "/applications/",
+        { job_id: id },
+        { headers: { Authorization: `Bearer ${token}` } },
+      );
+      setMessage("Application submitted successfully!");
+    } catch (error) {
+      setMessage(error.response.data.error);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
@@ -100,9 +115,22 @@ export default function JobDetail() {
             </div>
           </div>
           <div className="flex justify-center sm:justify-start border-t border-gray-100 pt-8">
-            <button className="bg-[#00A5EC] text-white px-12 py-4 rounded-xl font-black hover:bg-[#0084c0] transition-all shadow-xl shadow-blue-100 uppercase tracking-wide">
-              Apply Now
-            </button>
+            <div className="flex flex-col gap-4">
+              <button
+                onClick={handleApply}
+                disabled={message === "Application submitted successfully!"}
+                className="bg-[#00A5EC] text-white px-12 py-4 rounded-xl font-black hover:bg-[#0084c0] transition-all shadow-xl shadow-blue-100 uppercase tracking-wide cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                Apply Now
+              </button>
+              {message && (
+                <p
+                  className={`text-sm font-semibold ${message === "Application submitted successfully!" ? "text-green-600" : "text-red-500"}`}
+                >
+                  {message}
+                </p>
+              )}
+            </div>
           </div>
         </div>
       </div>
