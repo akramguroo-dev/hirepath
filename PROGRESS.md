@@ -41,7 +41,10 @@
 - [ ] Deployment (Netlify + Render)
 
 ## Current Task
-Task 7 complete. Next: Student Dashboard review + Connect Profile to backend API.
+Backend: getMe route done ✅
+Next: Connect Profile.jsx to /api/auth/me endpoint
+Dayan: building feature/employer-dashboard
+Umar: building feature/student-dashboard
 
 ## Notes
 - MongoDB Atlas cluster: nodetuts.amqi2r8.mongodb.net

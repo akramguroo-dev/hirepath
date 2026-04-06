@@ -46,7 +46,17 @@ const login = async (req, res) => {
   };
 };
 
+const getMe = async (req, res) => {
+  try {
+    const user = await User.findById(req.user._id).select('-password -is_verified -_id -__v');
+    res.json({ user });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  };
+}; 
+
 module.exports = {
   register,
   login,
+  getMe,
 };
