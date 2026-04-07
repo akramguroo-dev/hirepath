@@ -16,6 +16,7 @@
 - [x] Application system
 - [x] Employer verification
 - [x] Feedback/rating
+- [x] Expand User schema for profile data
 
 ### Frontend
 - [x] Routing setup
@@ -29,11 +30,10 @@
 - [x] Student Profile page (hardcoded)
 
 ## In Progress
+- [ ] Connect Profile page to backend (Akram)
+- [ ] Employer Dashboard (Dayan - feature/employer-dashboard)
 - [ ] Student Dashboard (Umar - feature/student-dashboard)
-
 ## Pending Features
-- [ ] Connect Profile page to backend
-- [ ] Employer Dashboard
 - [ ] Admin panel
 - [ ] Real-time chat (Socket.io)
 - [ ] College/faculty dashboard
@@ -41,11 +41,9 @@
 - [ ] Deployment (Netlify + Render)
 
 ## Current Task
-Backend: getMe route done ✅
-Next: Connect Profile.jsx to /api/auth/me endpoint
+Akram: Integrate dynamic data into Profile.jsx
 Dayan: building feature/employer-dashboard
 Umar: building feature/student-dashboard
-
 ## Notes
 - MongoDB Atlas cluster: nodetuts.amqi2r8.mongodb.net
 - Frontend runs on: localhost:5173
