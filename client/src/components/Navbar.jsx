@@ -34,8 +34,13 @@ export default function Navbar() {
         >
           Profile 
         </Link>
+        <Link
+          to="/employer-dashboard"
+          className="flex items-center gap-1 text-[#484848] font-bold hover:bg-blue-50 transition p-5 border-l border-gray-50"
+        >
+          Employer
+        </Link>
       </div>
-
       <div className="flex gap-4">
         <Link
           to="/login"
