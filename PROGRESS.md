@@ -28,11 +28,12 @@
 - [x] Job Detail page (fetching from backend)
 - [x] Apply Now button (connected to API)
 - [x] Student Profile page (hardcoded)
+- [x] Employer Dashboard UI (Hardcoded)
 
 ## In Progress
 - [ ] Connect Profile page to backend (Akram)
-- [ ] Employer Dashboard (Dayan - feature/employer-dashboard)
-- [ ] Student Dashboard (Umar - feature/student-dashboard)
+- [ ] Student Dashboard UI (Umar - feature/student-dashboard)
+- [ ] Post a Job Form UI (Dayan - feature/post-job-ui)
 ## Pending Features
 - [ ] Admin panel
 - [ ] Real-time chat (Socket.io)
@@ -42,8 +43,8 @@
 
 ## Current Task
 Akram: Integrate dynamic data into Profile.jsx
-Dayan: building feature/employer-dashboard
-Umar: building feature/student-dashboard
+Dayan: Building feature/post-job-ui
+Umar: Building feature/student-dashboard
 ## Notes
 - MongoDB Atlas cluster: nodetuts.amqi2r8.mongodb.net
 - Frontend runs on: localhost:5173
