@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { User, GraduationCap, Briefcase, FileText, Code, Trophy, Layout, Edit3 } from 'lucide-react';
+import API from '../api/axios';
+
 export default function Profile() {
   const [activeTab, setActiveTab] = useState('Education');
-  const user = {
-    name: "Dayan Shah",
-    college: "University of Kashmir",
-    location: "Srinagar, J&K",
-    education: { degree: "B.Tech in Computer Science", school: "University of Kashmir", year: "2022 - 2026" }
-  };
+  const [userData, setUserData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const navigate = useNavigate();
+
   const menuItems = [
     { name: "Personal Details", icon: <User size={18} /> },
     { name: "Education", icon: <GraduationCap size={18} /> },
@@ -17,27 +19,61 @@ export default function Profile() {
     { name: "Skills", icon: <Code size={18} /> },
     { name: "Accomplishments", icon: <Trophy size={18} /> },
   ];
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate('/login');
+      return;
+    }
+
+    API.get("/auth/me", { headers: { Authorization: `Bearer ${token}`} })
+      .then((response) => {
+        setUserData(response.data.user);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error(error);
+        localStorage.removeItem("token");
+        navigate('/login');
+      });
+
+      if (isLoading) {
+        return <div className="min-h-screen flex items-center justify-center bg-[#F8F9FA]">Loading Profile...</div>;
+      }
+  }, [navigate]);
+
+  // Fallbacks for data the API doesn't return yet
+  const profileData = {
+    name: userData?.name || "Unknown User",
+    email: userData?.email || "",
+    role: userData?.role || "Student",
+    college: userData?.college || "College not added",
+    location: userData?.location || "Location not added",
+    education: userData?.education || { degree: "Degree not added", school: "", year: "" }
+  };
+
   return (
     <div className="min-h-screen bg-[#F8F9FA] py-10 px-4 md:px-12 font-sans text-[#444444]">
       <div className="max-w-6xl mx-auto">
         <div className="bg-white border border-gray-200 rounded-xl shadow-sm p-8 flex flex-col md:flex-row justify-between items-center mb-8">
           <div className="flex items-center gap-6">
             <div className="w-20 h-20 bg-[#F0F9FF] text-[#00A5EC] rounded-full flex items-center justify-center text-3xl font-bold border border-blue-100">
-              {user.name[0]}
+              {profileData.name.charAt(0)}
             </div>
             <div className="text-left">
-              <h1 className="text-3xl font-bold text-gray-800">{user.name}</h1>
-              <p className="text-gray-500 font-medium">{user.college}</p>
-              <p className="text-gray-400 text-sm mt-1 flex items-center gap-1">📍 {user.location}</p>
+              <h1 className="text-3xl font-bold text-gray-800">{profileData.name}</h1>
+              <p className="text-gray-500 font-medium">{profileData.email}</p>
+              <p className="text-gray-400 text-sm mt-1 flex items-center gap-1">📍 {profileData.location}</p>
             </div>
           </div>
           <div className="w-full md:w-80 mt-6 md:mt-0">
             <div className="flex justify-between text-xs font-bold text-gray-500 mb-2 uppercase tracking-wide">
               <span>Profile Completeness</span>
-              <span className="text-[#00A5EC]">85%</span>
+              <span className="text-[#00A5EC]">30%</span>
             </div>
             <div className="w-full bg-gray-100 h-2 rounded-full overflow-hidden">
-              <div className="bg-[#3b82f6] h-full w-[85%]"></div>
+              <div className="bg-[#3b82f6] h-full w-[30%]"></div>
             </div>
           </div>
         </div>
@@ -75,9 +111,9 @@ export default function Profile() {
               <hr className="border-gray-100 mb-10" />
               {activeTab === "Education" && (
                 <div className="border-l-4 border-[#00A5EC] pl-6 py-2 mb-16">
-                  <h4 className="font-bold text-xl text-gray-800">{user.education.degree}</h4>
-                  <p className="text-[#00A5EC] font-bold mt-1 text-lg">{user.education.school}</p>
-                  <p className="text-gray-400 text-sm mt-1">{user.education.year}</p>
+                  <h4 className="font-bold text-xl text-gray-800">{profileData.education.degree}</h4>
+                  <p className="text-[#00A5EC] font-bold mt-1 text-lg">{profileData.education.school}</p>
+                  <p className="text-gray-400 text-sm mt-1">{profileData.education.year}</p>
                 </div>
               )}
               <div className="mt-20">
