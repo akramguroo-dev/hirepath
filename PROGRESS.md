@@ -29,9 +29,10 @@
 - [x] Apply Now button (connected to API)
 - [x] Student Profile page (hardcoded)
 - [x] Employer Dashboard UI (Hardcoded)
+- [x] Connect Profile page to backend
 
 ## In Progress
-- [ ] Connect Profile page to backend (Akram)
+- [ ] Connect Employer Dashboard to API (Akram)
 - [ ] Student Dashboard UI (Umar - feature/student-dashboard)
 - [ ] Post a Job Form UI (Dayan - feature/post-job-ui)
 ## Pending Features
@@ -42,7 +43,7 @@
 - [ ] Deployment (Netlify + Render)
 
 ## Current Task
-Akram: Integrate dynamic data into Profile.jsx
+Akram: Connect Employer Dashboard to API
 Dayan: Building feature/post-job-ui
 Umar: Building feature/student-dashboard
 ## Notes
