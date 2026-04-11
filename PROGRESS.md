@@ -30,9 +30,10 @@
 - [x] Student Profile page (hardcoded)
 - [x] Employer Dashboard UI (Hardcoded)
 - [x] Connect Profile page to backend
+- [x] Connect Employer Dashboard to API
 
 ## In Progress
-- [ ] Connect Employer Dashboard to API (Akram)
+- [ ] Build Job Application API (Akram)
 - [ ] Student Dashboard UI (Umar - feature/student-dashboard)
 - [ ] Post a Job Form UI (Dayan - feature/post-job-ui)
 ## Pending Features
@@ -43,7 +44,7 @@
 - [ ] Deployment (Netlify + Render)
 
 ## Current Task
-Akram: Connect Employer Dashboard to API
+Akram: Building Job Application API endpoint
 Dayan: Building feature/post-job-ui
 Umar: Building feature/student-dashboard
 ## Notes
