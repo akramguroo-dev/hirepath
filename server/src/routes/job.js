@@ -8,6 +8,8 @@ router.post("/", authMiddleware, jobController.createJob);
 
 router.get("/", jobController.getAllJobs);
 
+router.get("/employer", authMiddleware, jobController.getEmployerJobs);
+
 router.get("/:id", jobController.getJobById);
 
 router.delete("/:id", authMiddleware, jobController.deleteJobById);

@@ -92,10 +92,20 @@ const updateJobById = async (req, res) => {
   };
 };
 
+const getEmployerJobs = async (req, res) => {
+  try {
+    const jobs = await Job.find({ posted_by: req.user._id });
+    res.json({ jobs });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
 module.exports = {
   createJob,
   getAllJobs,
   getJobById,
   deleteJobById,
   updateJobById,
+  getEmployerJobs,
 }
