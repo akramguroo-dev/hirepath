@@ -50,7 +50,7 @@ export default function EmployerDashboard() {
           <div>
             <h1 className="text-2xl md:text-3xl font-bold text-[#212121]">
               Welcome, Company HR 👋
-            </h1>
+            </h1> 
             <p className="text-gray-500 mt-1">
               Here is what's happening with your job postings today.
             </p>

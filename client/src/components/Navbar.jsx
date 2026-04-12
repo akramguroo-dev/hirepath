@@ -32,7 +32,7 @@ export default function Navbar() {
           to="/profile"
           className="flex items-center gap-1 text-[#484848] font-medium hover:bg-blue-50 hover:text-[#008BDC] transition p-5"
         >
-          Profile 
+          Profile  
         </Link>
         <Link
           to="/employer-dashboard"
