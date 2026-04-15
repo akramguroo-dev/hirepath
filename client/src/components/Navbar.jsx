@@ -40,12 +40,6 @@ export default function Navbar() {
         >
           Employer
         </Link>
-        <Link
-  to="/employer/jobs/1/applicants"
-  className="flex items-center gap-1 text-[#484848] font-bold hover:bg-blue-50  transition p-5 border-l border-gray-50"
->
-  Applicants
-</Link>
       </div>
       <div className="flex gap-4">
         <Link
