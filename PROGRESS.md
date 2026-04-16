@@ -32,12 +32,14 @@
 - [x] Apply Now button (connected to API)
 - [x] Student Profile page (connected to API - shows name only, edit profile pending)
 - [x] Employer Dashboard (connected to API - shows active jobs)
-- [x] Post Job form UI (Dayan - merged, Post Job link removed from Navbar)
+- [x] Post Job form UI (Dayan)
+- [x] Connect Post Job form to backend API (Akram)
+- [x] Employer — view applicants per job UI (Dayan)
 
 ## In Progress
-- [ ] Edit Profile page/functionality (Akram - backend + frontend)
+- [ ] Protected routes (Akram)
 - [ ] Student Dashboard UI (Umar - feature/student-dashboard)
-- [ ] Connect Post Job form to backend API (Akram)
+- [ ] Edit Profile page/functionality (Akram - after protected routes)
 
 ## Pending Features
 
@@ -59,16 +61,13 @@
 - [ ] CORS configuration (restrict to frontend URL in production)
 
 ### Frontend
-- [ ] Connect Post Job form to API
-- [ ] Edit Profile page
 - [ ] Navbar auth state (show/hide links based on login)
-- [ ] Protected routes (redirect to login if not logged in)
+- [ ] Edit Profile page
 - [ ] Search/filter jobs UI
 - [ ] Job filters UI (by type, location, salary)
 - [ ] Pagination UI on Jobs page
-- [ ] Application status page (student)
-- [ ] Employer — view applicants per job
-- [ ] Employer — accept/reject applicants
+- [ ] Application status page — student view (Dayan - feature/application-status)
+- [ ] Employer — accept/reject applicants UI + API (Akram)
 - [ ] Feedback form (employer to student)
 - [ ] Student — view feedback received
 - [ ] Admin Panel page
@@ -102,8 +101,8 @@
 - [ ] Write README.md
 
 ## Current Task
-- Akram: Connect Post Job form to backend API
-- Dayan: Next task pending
+- Akram: Protected routes
+- Dayan: Application Status Page UI (feature/application-status)
 - Umar: Student Dashboard UI (feature/student-dashboard)
 
 ## Notes
