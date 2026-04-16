@@ -10,6 +10,7 @@ import JobDetail from "./pages/JobDetail";
 import Profile from "./pages/Profile";
 import EmployerDashboard from "./pages/EmployerDashboard";
 import EmployerApplicants from "./pages/EmployerApplicants";
+import PostJob from "./pages/PostJob";
 function App() {
   return (
     <>
@@ -17,12 +18,13 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/jobs" element={<Jobs/>} />
-        <Route path="/jobs/:id" element={<JobDetail/>}/>
+        <Route path="/jobs/:id" element={<JobDetail />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/employer-dashboard" element={<EmployerDashboard />}/>
+        <Route path="/employer-dashboard" element={<EmployerDashboard />} />
         <Route path="/employer/jobs/:id/applicants" element={<EmployerApplicants />} />
+        <Route path="/post-job" element={<PostJob />} />
       </Routes>
       <Footer />
     </>

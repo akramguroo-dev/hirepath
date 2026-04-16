@@ -50,12 +50,15 @@ export default function EmployerDashboard() {
           <div>
             <h1 className="text-2xl md:text-3xl font-bold text-[#212121]">
               Welcome, Company HR 👋
-            </h1> 
+            </h1>
             <p className="text-gray-500 mt-1">
               Here is what's happening with your job postings today.
             </p>
           </div>
-          <button className="flex items-center justify-center gap-2 bg-[#008BDC] hover:bg-[#0077ba] text-white px-6 py-3 rounded font-semibold transition-all shadow-sm active:scale-95 text-sm md:text-base">
+          <button
+            onClick={() => navigate("/post-job")}
+            className="flex items-center justify-center gap-2 bg-[#008BDC] hover:bg-[#0077ba] text-white px-6 py-3 rounded font-semibold transition-all shadow-sm active:scale-95 text-sm md:text-base"
+          >
             <Plus size={18} strokeWidth={3} />
             Post a New Job
           </button>

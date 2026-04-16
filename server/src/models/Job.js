@@ -24,7 +24,7 @@ const jobSchema = new Schema({
     required: true,
   },
   salary: {
-    type: Number,
+    type: String,
   },
   duration: {
     type: String,
