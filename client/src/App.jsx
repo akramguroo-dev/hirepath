@@ -11,6 +11,7 @@ import Profile from "./pages/Profile";
 import EmployerDashboard from "./pages/EmployerDashboard";
 import EmployerApplicants from "./pages/EmployerApplicants";
 import PostJob from "./pages/PostJob";
+import ApplicationStatus from "./pages/ApplicationStatus";
 import ProtectedRoute from "./components/ProtectedRoute";
 function App() {
   return (
