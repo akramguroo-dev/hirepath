@@ -13,6 +13,7 @@ import EmployerApplicants from "./pages/EmployerApplicants";
 import PostJob from "./pages/PostJob";
 import ApplicationStatus from "./pages/ApplicationStatus";
 import ProtectedRoute from "./components/ProtectedRoute";
+import FeedbackReceived from "./pages/FeedbackReceived";
 function App() {
   return (
     <>
@@ -49,8 +50,8 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route
           path="/employer/jobs/:id/applicants"
-          element={<EmployerApplicants />}
-        />
+          element={<EmployerApplicants />}/>
+         <Route path="/my-feedback" element={<FeedbackReceived />} />
       </Routes>
       <Footer />
     </>
