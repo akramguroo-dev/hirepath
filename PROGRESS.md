@@ -35,9 +35,10 @@
 - [x] Post Job form UI (Dayan)
 - [x] Connect Post Job form to backend API (Akram)
 - [x] Employer — view applicants per job UI (Dayan)
+- [x] Protected routes (Akram)
 
 ## In Progress
-- [ ] Protected routes (Akram)
+- [ ] Navbar auth state (Akram)
 - [ ] Student Dashboard UI (Umar - feature/student-dashboard)
 - [ ] Edit Profile page/functionality (Akram - after protected routes)
 
@@ -61,7 +62,6 @@
 - [ ] CORS configuration (restrict to frontend URL in production)
 
 ### Frontend
-- [ ] Navbar auth state (show/hide links based on login)
 - [ ] Edit Profile page
 - [ ] Search/filter jobs UI
 - [ ] Job filters UI (by type, location, salary)
@@ -101,7 +101,7 @@
 - [ ] Write README.md
 
 ## Current Task
-- Akram: Protected routes
+- Akram: Navbar auth state
 - Dayan: Application Status Page UI (feature/application-status)
 - Umar: Student Dashboard UI (feature/student-dashboard)
 
