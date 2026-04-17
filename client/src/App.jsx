@@ -11,6 +11,7 @@ import Profile from "./pages/Profile";
 import EmployerDashboard from "./pages/EmployerDashboard";
 import EmployerApplicants from "./pages/EmployerApplicants";
 import PostJob from "./pages/PostJob";
+import ApplicationStatus from "./pages/ApplicationStatus";
 function App() {
   return (
     <>
@@ -25,6 +26,7 @@ function App() {
         <Route path="/employer-dashboard" element={<EmployerDashboard />} />
         <Route path="/employer/jobs/:id/applicants" element={<EmployerApplicants />} />
         <Route path="/post-job" element={<PostJob />} />
+        <Route path="/my-applications" element={<ApplicationStatus/>}/>
       </Routes>
       <Footer />
     </>
