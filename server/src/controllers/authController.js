@@ -40,7 +40,7 @@ const login = async (req, res) => {
       { expiresIn: '7d' }
     );
 
-    res.json({ token, message: 'Login successful' });
+    res.json({ token, role: user.role, message: 'Login successful' });
   } catch (err) {
     res.status(500).json({ error: err.message });
   };

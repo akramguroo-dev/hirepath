@@ -36,11 +36,12 @@
 - [x] Connect Post Job form to backend API (Akram)
 - [x] Employer — view applicants per job UI (Dayan)
 - [x] Protected routes (Akram)
+- [x] Application status page — student view (Dayan)
 
 ## In Progress
 - [ ] Navbar auth state (Akram)
 - [ ] Student Dashboard UI (Umar - feature/student-dashboard)
-- [ ] Edit Profile page/functionality (Akram - after protected routes)
+- [ ] Edit Profile page/functionality (Akram - after navbar)
 
 ## Pending Features
 
@@ -66,10 +67,9 @@
 - [ ] Search/filter jobs UI
 - [ ] Job filters UI (by type, location, salary)
 - [ ] Pagination UI on Jobs page
-- [ ] Application status page — student view (Dayan - feature/application-status)
 - [ ] Employer — accept/reject applicants UI + API (Akram)
 - [ ] Feedback form (employer to student)
-- [ ] Student — view feedback received
+- [ ] Student — view feedback received (Dayan - feature/feedback-received)
 - [ ] Admin Panel page
 - [ ] College/Faculty Dashboard page
 - [ ] Real-time Chat UI (Socket.io)
@@ -102,7 +102,7 @@
 
 ## Current Task
 - Akram: Navbar auth state
-- Dayan: Application Status Page UI (feature/application-status)
+- Dayan: Student — view feedback received (feature/feedback-received)
 - Umar: Student Dashboard UI (feature/student-dashboard)
 
 ## Notes
