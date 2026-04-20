@@ -14,6 +14,7 @@ import PostJob from "./pages/PostJob";
 import ApplicationStatus from "./pages/ApplicationStatus";
 import ProtectedRoute from "./components/ProtectedRoute";
 import FeedbackReceived from "./pages/FeedbackReceived";
+import FeedbackForm from "./pages/FeedbackForm";
 function App() {
   return (
     <>
@@ -52,6 +53,7 @@ function App() {
           path="/employer/jobs/:id/applicants"
           element={<EmployerApplicants />}/>
          <Route path="/my-feedback" element={<FeedbackReceived />} />
+         <Route path="/feedback/:applicationId" element={<FeedbackForm />} />
       </Routes>
       <Footer />
     </>
