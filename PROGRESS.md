@@ -20,6 +20,7 @@
 - [x] Expand User schema for profile data (location, college, skills, education, resume, internships, jobs, projects, accomplishments)
 - [x] GET /api/auth/me (getMe route)
 - [x] GET /api/jobs/employer (employer specific jobs)
+- [x] PUT /api/auth/profile (update profile endpoint)
 
 ### Frontend
 - [x] Routing setup
@@ -39,15 +40,15 @@
 - [x] Application status page — student view (Dayan)
 - [x] Navbar auth state (Akram)
 - [x] Student — view feedback received (Dayan)
+- [x] Edit Profile page
+- [x] Feedback form (employer to student)
 
 ## In Progress
-- [ ] Edit Profile page/functionality (Akram)
 - [ ] Student Dashboard UI (Umar - feature/student-dashboard)
 
 ## Pending Features
 
 ### Backend
-- [ ] PUT /api/auth/profile (update profile endpoint)
 - [ ] Resume upload (Cloudinary)
 - [ ] Admin routes
 - [ ] Job search/filter endpoint
@@ -64,12 +65,10 @@
 - [ ] CORS configuration (restrict to frontend URL in production)
 
 ### Frontend
-- [ ] Edit Profile page
 - [ ] Search/filter jobs UI
 - [ ] Job filters UI (by type, location, salary)
 - [ ] Pagination UI on Jobs page
 - [ ] Employer — accept/reject applicants UI + API (Akram)
-- [ ] Feedback form (employer to student)
 - [ ] Admin Panel page
 - [ ] College/Faculty Dashboard page
 - [ ] Real-time Chat UI (Socket.io)
@@ -101,8 +100,6 @@
 - [ ] Write README.md
 
 ## Current Task
-- Akram: Edit Profile (backend PUT /api/auth/profile + frontend)
-- Dayan: Feedback form — employer to student UI (feature/feedback-form)
 - Umar: Student Dashboard UI (feature/student-dashboard)
 
 ## Notes

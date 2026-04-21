@@ -15,6 +15,7 @@ import ApplicationStatus from "./pages/ApplicationStatus";
 import ProtectedRoute from "./components/ProtectedRoute";
 import FeedbackReceived from "./pages/FeedbackReceived";
 import FeedbackForm from "./pages/FeedbackForm";
+import EditProfile from "./pages/EditProfile";
 function App() {
   return (
     <>
@@ -44,6 +45,14 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/edit-profile"
+          element={
+            <ProtectedRoute>
+              <EditProfile />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/" element={<Home />} />
         <Route path="/jobs" element={<Jobs />} />
         <Route path="/jobs/:id" element={<JobDetail />} />
@@ -51,9 +60,11 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route
           path="/employer/jobs/:id/applicants"
-          element={<EmployerApplicants />}/>
-         <Route path="/my-feedback" element={<FeedbackReceived />} />
-         <Route path="/feedback/:applicationId" element={<FeedbackForm />} />
+          element={<EmployerApplicants />}
+        />
+        <Route path="/my-applications" element={<ApplicationStatus />} />
+        <Route path="/my-feedback" element={<FeedbackReceived />} />
+        <Route path="/feedback/:applicationId" element={<FeedbackForm />} />
       </Routes>
       <Footer />
     </>

@@ -1,10 +1,19 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { User, GraduationCap, Briefcase, FileText, Code, Trophy, Layout, Edit3 } from 'lucide-react';
-import API from '../api/axios';
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import {
+  User,
+  GraduationCap,
+  Briefcase,
+  FileText,
+  Code,
+  Trophy,
+  Layout,
+  Edit3,
+} from "lucide-react";
+import API from "../api/axios";
 
 export default function Profile() {
-  const [activeTab, setActiveTab] = useState('Education');
+  const [activeTab, setActiveTab] = useState("Education");
   const [userData, setUserData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -23,11 +32,11 @@ export default function Profile() {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
-      navigate('/login');
+      navigate("/login");
       return;
     }
 
-    API.get("/auth/me", { headers: { Authorization: `Bearer ${token}`} })
+    API.get("/auth/me", { headers: { Authorization: `Bearer ${token}` } })
       .then((response) => {
         setUserData(response.data.user);
         setIsLoading(false);
@@ -35,12 +44,16 @@ export default function Profile() {
       .catch((error) => {
         console.error(error);
         localStorage.removeItem("token");
-        navigate('/login');
+        navigate("/login");
       });
 
-      if (isLoading) {
-        return <div className="min-h-screen flex items-center justify-center bg-[#F8F9FA]">Loading Profile...</div>;
-      }
+    if (isLoading) {
+      return (
+        <div className="min-h-screen flex items-center justify-center bg-[#F8F9FA]">
+          Loading Profile...
+        </div>
+      );
+    }
   }, [navigate]);
 
   // Fallbacks for data the API doesn't return yet
@@ -50,7 +63,11 @@ export default function Profile() {
     role: userData?.role || "Student",
     college: userData?.college || "College not added",
     location: userData?.location || "Location not added",
-    education: userData?.education || { degree: "Degree not added", school: "", year: "" }
+    education: userData?.education || {
+      degree: "Degree not added",
+      school: "",
+      year: "",
+    },
   };
 
   return (
@@ -62,9 +79,13 @@ export default function Profile() {
               {profileData.name.charAt(0)}
             </div>
             <div className="text-left">
-              <h1 className="text-3xl font-bold text-gray-800">{profileData.name}</h1>
+              <h1 className="text-3xl font-bold text-gray-800">
+                {profileData.name}
+              </h1>
               <p className="text-gray-500 font-medium">{profileData.email}</p>
-              <p className="text-gray-400 text-sm mt-1 flex items-center gap-1">📍 {profileData.location}</p>
+              <p className="text-gray-400 text-sm mt-1 flex items-center gap-1">
+                📍 {profileData.location}
+              </p>
             </div>
           </div>
           <div className="w-full md:w-80 mt-6 md:mt-0">
@@ -86,12 +107,18 @@ export default function Profile() {
                     key={item.name}
                     onClick={() => setActiveTab(item.name)}
                     className={`flex items-center gap-3 text-left px-6 py-5 text-sm font-semibold border-b border-gray-50 transition-all ${
-                      activeTab === item.name 
-                      ? "text-[#00A5EC] bg-[#F0F9FF] border-r-4 border-[#00A5EC]" 
-                      : "text-gray-500 hover:bg-gray-50"
+                      activeTab === item.name
+                        ? "text-[#00A5EC] bg-[#F0F9FF] border-r-4 border-[#00A5EC]"
+                        : "text-gray-500 hover:bg-gray-50"
                     }`}
                   >
-                    <span className={activeTab === item.name ? "text-[#00A5EC]" : "text-gray-400"}>
+                    <span
+                      className={
+                        activeTab === item.name
+                          ? "text-[#00A5EC]"
+                          : "text-gray-400"
+                      }
+                    >
                       {item.icon}
                     </span>
                     {item.name}
@@ -103,23 +130,38 @@ export default function Profile() {
           <main className="w-full md:w-3/4">
             <div className="bg-white border border-gray-200 rounded-xl p-10 shadow-sm text-left relative min-h-[500px]">
               <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-bold text-gray-800">{activeTab}</h2>
-                <button className="flex items-center gap-1 text-[#00A5EC] border border-[#00A5EC] px-4 py-1.5 rounded-md font-bold text-sm hover:bg-blue-50 transition-colors">
+                <h2 className="text-2xl font-bold text-gray-800">
+                  {activeTab}
+                </h2>
+                <button
+                  onClick={() => (window.location.href = "/edit-profile")}
+                  className="flex items-center gap-1 text-[#00A5EC] border border-[#00A5EC] px-4 py-1.5 rounded-md font-bold text-sm hover:bg-blue-50 transition-colors"
+                >
                   <Edit3 size={14} /> Edit
                 </button>
               </div>
               <hr className="border-gray-100 mb-10" />
               {activeTab === "Education" && (
                 <div className="border-l-4 border-[#00A5EC] pl-6 py-2 mb-16">
-                  <h4 className="font-bold text-xl text-gray-800">{profileData.education.degree}</h4>
-                  <p className="text-[#00A5EC] font-bold mt-1 text-lg">{profileData.education.school}</p>
-                  <p className="text-gray-400 text-sm mt-1">{profileData.education.year}</p>
+                  <h4 className="font-bold text-xl text-gray-800">
+                    {profileData.education.degree}
+                  </h4>
+                  <p className="text-[#00A5EC] font-bold mt-1 text-lg">
+                    {profileData.education.school}
+                  </p>
+                  <p className="text-gray-400 text-sm mt-1">
+                    {profileData.education.year}
+                  </p>
                 </div>
               )}
               <div className="mt-20">
-                <h3 className="text-sm font-bold text-gray-500 uppercase mb-6 tracking-wide">Resume</h3>
+                <h3 className="text-sm font-bold text-gray-500 uppercase mb-6 tracking-wide">
+                  Resume
+                </h3>
                 <div className="border-2 border-dashed border-blue-200 rounded-lg p-12 text-center bg-white">
-                  <p className="text-gray-500 mb-6 font-medium">Upload your resume (PDF/DOC, max 2MB)</p>
+                  <p className="text-gray-500 mb-6 font-medium">
+                    Upload your resume (PDF/DOC, max 2MB)
+                  </p>
                   <button className="bg-[#3b82f6] text-white px-10 py-3 rounded-lg font-bold text-sm hover:bg-blue-600 transition-all shadow-lg shadow-blue-100">
                     Upload Resume
                   </button>
