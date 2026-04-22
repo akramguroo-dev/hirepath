@@ -40,11 +40,13 @@
 - [x] Application status page — student view (Dayan)
 - [x] Navbar auth state (Akram)
 - [x] Student — view feedback received (Dayan)
-- [x] Edit Profile page
-- [x] Feedback form (employer to student)
+- [x] Edit Profile page (Akram)
+- [x] Feedback form UI (Dayan)
 
 ## In Progress
+- [ ] Employer — connect applicants to API + accept/reject (Akram)
 - [ ] Student Dashboard UI (Umar - feature/student-dashboard)
+- [ ] 404 page (Dayan - feature/404-page)
 
 ## Pending Features
 
@@ -68,7 +70,9 @@
 - [ ] Search/filter jobs UI
 - [ ] Job filters UI (by type, location, salary)
 - [ ] Pagination UI on Jobs page
-- [ ] Employer — accept/reject applicants UI + API (Akram)
+- [ ] Connect application status page to API (Akram)
+- [ ] Connect feedback received to API (Akram)
+- [ ] Connect feedback form to API (Akram)
 - [ ] Admin Panel page
 - [ ] College/Faculty Dashboard page
 - [ ] Real-time Chat UI (Socket.io)
@@ -76,7 +80,6 @@
 - [ ] Loading spinners on all pages
 - [ ] Empty states (no jobs, no applications)
 - [ ] Mobile hamburger menu
-- [ ] 404 page
 - [ ] Lazy loading for pages
 - [ ] Error boundaries
 - [ ] Mobile responsiveness check on all pages
@@ -100,6 +103,8 @@
 - [ ] Write README.md
 
 ## Current Task
+- Akram: Employer — connect EmployerApplicants to API + accept/reject
+- Dayan: 404 page (feature/404-page)
 - Umar: Student Dashboard UI (feature/student-dashboard)
 
 ## Notes
