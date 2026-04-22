@@ -42,9 +42,10 @@
 - [x] Student — view feedback received (Dayan)
 - [x] Edit Profile page (Akram)
 - [x] Feedback form UI (Dayan)
+- [x] Employer — connect applicants to API + accept/reject (Akram)
 
 ## In Progress
-- [ ] Employer — connect applicants to API + accept/reject (Akram)
+- [ ] Connect application status page to API (Akram)
 - [ ] Student Dashboard UI (Umar - feature/student-dashboard)
 - [ ] 404 page (Dayan - feature/404-page)
 
@@ -103,7 +104,7 @@
 - [ ] Write README.md
 
 ## Current Task
-- Akram: Employer — connect EmployerApplicants to API + accept/reject
+- Akram: Connect application status page to API
 - Dayan: 404 page (feature/404-page)
 - Umar: Student Dashboard UI (feature/student-dashboard)
 

@@ -98,6 +98,7 @@ export default function EmployerDashboard() {
               jobs.map((job) => (
                 <div
                   key={job._id}
+                  onClick={() => navigate(`/employer/jobs/${job._id}/applicants`)}
                   className="p-6 hover:bg-blue-50/30 transition-colors flex flex-col md:flex-row md:items-center justify-between gap-4 cursor-pointer group"
                 >
                   <div className="space-y-2">
