@@ -46,24 +46,23 @@ export default function Profile() {
         localStorage.removeItem("token");
         navigate("/login");
       });
-
-    if (isLoading) {
-      return (
-        <div className="min-h-screen flex items-center justify-center bg-[#F8F9FA]">
-          Loading Profile...
-        </div>
-      );
-    }
   }, [navigate]);
 
-  // Fallbacks for data the API doesn't return yet
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-[#F8F9FA]">
+        Loading Profile...
+      </div>
+    );
+  }
+
   const profileData = {
     name: userData?.name || "Unknown User",
     email: userData?.email || "",
     role: userData?.role || "Student",
     college: userData?.college || "College not added",
     location: userData?.location || "Location not added",
-    education: userData?.education || {
+    education: userData?.education?.[0] || {
       degree: "Degree not added",
       school: "",
       year: "",
@@ -88,14 +87,22 @@ export default function Profile() {
               </p>
             </div>
           </div>
-          <div className="w-full md:w-80 mt-6 md:mt-0">
-            <div className="flex justify-between text-xs font-bold text-gray-500 mb-2 uppercase tracking-wide">
-              <span>Profile Completeness</span>
-              <span className="text-[#00A5EC]">30%</span>
+          <div className="flex flex-col items-end gap-4 mt-6 md:mt-0">
+            <div className="w-full md:w-80">
+              <div className="flex justify-between text-xs font-bold text-gray-500 mb-2 uppercase tracking-wide">
+                <span>Profile Completeness</span>
+                <span className="text-[#00A5EC]">30%</span>
+              </div>
+              <div className="w-full bg-gray-100 h-2 rounded-full overflow-hidden">
+                <div className="bg-[#3b82f6] h-full w-[30%]"></div>
+              </div>
             </div>
-            <div className="w-full bg-gray-100 h-2 rounded-full overflow-hidden">
-              <div className="bg-[#3b82f6] h-full w-[30%]"></div>
-            </div>
+            <button
+              onClick={() => navigate("/my-applications")}
+              className="text-sm font-semibold text-[#008BDC] border border-[#008BDC] px-4 py-2 rounded-md hover:bg-blue-50 transition-colors"
+            >
+              My Applications
+            </button>
           </div>
         </div>
         <div className="flex flex-col md:flex-row gap-8">
@@ -134,7 +141,7 @@ export default function Profile() {
                   {activeTab}
                 </h2>
                 <button
-                  onClick={() => (window.location.href = "/edit-profile")}
+                  onClick={() => navigate("/edit-profile")}
                   className="flex items-center gap-1 text-[#00A5EC] border border-[#00A5EC] px-4 py-1.5 rounded-md font-bold text-sm hover:bg-blue-50 transition-colors"
                 >
                   <Edit3 size={14} /> Edit

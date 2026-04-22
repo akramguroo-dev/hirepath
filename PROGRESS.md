@@ -43,9 +43,11 @@
 - [x] Edit Profile page (Akram)
 - [x] Feedback form UI (Dayan)
 - [x] Employer — connect applicants to API + accept/reject (Akram)
+- [x] Connect application status page to API (Akram)
+- [x] Profile page fixes + My Applications button (Akram)
 
 ## In Progress
-- [ ] Connect application status page to API (Akram)
+- [ ] Connect feedback received to API (Akram)
 - [ ] Student Dashboard UI (Umar - feature/student-dashboard)
 - [ ] 404 page (Dayan - feature/404-page)
 
@@ -71,7 +73,6 @@
 - [ ] Search/filter jobs UI
 - [ ] Job filters UI (by type, location, salary)
 - [ ] Pagination UI on Jobs page
-- [ ] Connect application status page to API (Akram)
 - [ ] Connect feedback received to API (Akram)
 - [ ] Connect feedback form to API (Akram)
 - [ ] Admin Panel page
@@ -104,7 +105,7 @@
 - [ ] Write README.md
 
 ## Current Task
-- Akram: Connect application status page to API
+- Akram: Connect feedback received to API
 - Dayan: 404 page (feature/404-page)
 - Umar: Student Dashboard UI (feature/student-dashboard)
 

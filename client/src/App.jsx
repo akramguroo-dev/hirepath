@@ -53,6 +53,14 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/my-applications"
+          element={
+            <ProtectedRoute>
+              <ApplicationStatus />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/" element={<Home />} />
         <Route path="/jobs" element={<Jobs />} />
         <Route path="/jobs/:id" element={<JobDetail />} />
@@ -62,7 +70,6 @@ function App() {
           path="/employer/jobs/:id/applicants"
           element={<EmployerApplicants />}
         />
-        <Route path="/my-applications" element={<ApplicationStatus />} />
         <Route path="/my-feedback" element={<FeedbackReceived />} />
         <Route path="/feedback/:applicationId" element={<FeedbackForm />} />
       </Routes>
