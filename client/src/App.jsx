@@ -16,6 +16,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import FeedbackReceived from "./pages/FeedbackReceived";
 import FeedbackForm from "./pages/FeedbackForm";
 import EditProfile from "./pages/EditProfile";
+import NotFound from "./pages/NotFound";
 function App() {
   return (
     <>
@@ -72,6 +73,7 @@ function App() {
         />
         <Route path="/my-feedback" element={<FeedbackReceived />} />
         <Route path="/feedback/:applicationId" element={<FeedbackForm />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </>
