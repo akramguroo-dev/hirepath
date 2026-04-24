@@ -3,7 +3,6 @@
 ## Team
 - Akram Guroo (Lead - Full Stack)
 - Dayan Hanief Shah (Frontend)
-- Umar Tariq (Frontend)
 
 ## Tech Stack
 - Frontend: React, Tailwind, React Router, Axios
@@ -44,74 +43,83 @@
 - [x] Feedback form UI (Dayan)
 - [x] Employer — connect applicants to API + accept/reject (Akram)
 - [x] Connect application status page to API (Akram)
-- [x] Profile page fixes + My Applications button (Akram)
+- [x] Profile page fixes + My Applications + My Feedback buttons side by side (Akram)
 - [x] 404 page (Dayan)
+- [x] Connect feedback received to API (Akram)
+- [x] Connect feedback form to API (Akram)
 
 ## In Progress
-- [ ] Connect feedback received to API (Akram)
-- [ ] Student Dashboard UI (Umar - feature/student-dashboard)
+- [ ] Job search/filter endpoint + UI (Akram)
 - [ ] Mobile hamburger menu (Dayan - feature/hamburger-menu)
 
-## Pending Features
+## Pending Core Features
 
 ### Backend
-- [ ] Resume upload (Cloudinary)
-- [ ] Admin routes
 - [ ] Job search/filter endpoint
 - [ ] Pagination for jobs
 - [ ] Input validation (express-validator)
 - [ ] Rate limiting
 - [ ] Helmet.js (security)
-- [ ] Real-time chat (Socket.io)
-- [ ] College/faculty routes
-- [ ] Job recommendation logic
-- [ ] Analytics endpoints
+- [ ] CORS configuration (restrict to frontend URL in production)
 - [ ] Token expiry handling
 - [ ] Role-based access control
-- [ ] CORS configuration (restrict to frontend URL in production)
 
 ### Frontend
 - [ ] Search/filter jobs UI
 - [ ] Job filters UI (by type, location, salary)
 - [ ] Pagination UI on Jobs page
-- [ ] Connect feedback received to API (Akram)
-- [ ] Connect feedback form to API (Akram)
-- [ ] Admin Panel page
-- [ ] College/Faculty Dashboard page
-- [ ] Real-time Chat UI (Socket.io)
-- [ ] Toast notification system
-- [ ] Loading spinners on all pages
-- [ ] Empty states (no jobs, no applications)
-- [ ] Mobile hamburger menu (Dayan - feature/hamburger-menu)
-- [ ] Lazy loading for pages
-- [ ] Error boundaries
-- [ ] Mobile responsiveness check on all pages
-- [ ] Animations/transitions (Framer Motion)
-- [ ] Company logo upload for employers
-- [ ] Profile photo upload for students
-- [ ] Proper aria-labels on buttons
-- [ ] Keyboard navigation support
-- [ ] Color contrast check
-- [ ] Dark mode (optional)
-
-### Testing
-- [ ] API testing with Jest
-- [ ] Basic frontend testing
+- [ ] Student Dashboard UI (Dayan)
 
 ## Deployment
-- [ ] Deploy frontend to Netlify
 - [ ] Deploy backend to Render
+- [ ] Deploy frontend to Netlify
 - [ ] Set environment variables
 - [ ] Connect frontend to production backend URL
 - [ ] Write README.md
 
+## Polish Phase (After Deployment)
+- [ ] Navbar auth state — proper fix with AuthContext (replace window.location.href)
+- [ ] Feedback button — only show for accepted applications without feedback
+- [ ] Profile page — display skills, college, education fields properly
+- [ ] Profile completeness — calculate dynamically based on filled fields
+- [ ] EmployerDashboard — show employer's actual name instead of "Company HR"
+- [ ] All pages — loading spinners
+- [ ] All pages — empty states
+- [ ] Mobile responsiveness check on all pages
+- [ ] Animations/transitions (Framer Motion)
+- [ ] Toast notification system
+- [ ] Error boundaries
+- [ ] Lazy loading for pages
+- [ ] Accessibility (aria-labels, keyboard navigation, color contrast)
+- [ ] Company logo upload for employers
+- [ ] Profile photo upload for students
+- [ ] Resume upload (Cloudinary)
+- [ ] Admin Panel page
+- [ ] College/Faculty Dashboard page
+- [ ] Real-time chat (Socket.io)
+- [ ] College/faculty routes + dashboard
+- [ ] Job recommendation logic
+- [ ] Analytics endpoints
+- [ ] Admin routes
+- [ ] Dark mode (optional)
+
+## Projects Roadmap (Parallel to Polish Phase)
+- [ ] Portfolio Site (Next.js + TypeScript) — deploy on Vercel
+- [ ] Chat App (React + Node + Socket.io) — learn Socket.io before adding to HirePath
+- [ ] Add real-time chat to HirePath
+- [ ] Dashboard App (React + Redux Toolkit + TypeScript + Jest)
+
+## Testing
+- [ ] API testing with Jest
+- [ ] Basic frontend testing
+
 ## Current Task
-- Akram: Connect feedback received to API
+- Akram: Job search/filter endpoint + UI
 - Dayan: Mobile hamburger menu (feature/hamburger-menu)
-- Umar: Student Dashboard UI (feature/student-dashboard)
 
 ## Notes
 - MongoDB Atlas cluster: nodetuts.amqi2r8.mongodb.net
 - Frontend runs on: localhost:5173
 - Backend runs on: localhost:5000
 - Rule: Only UI/frontend tasks for team. API connection and backend is Akram's job.
+- Always paste PROGRESS.md at start of new Claude session

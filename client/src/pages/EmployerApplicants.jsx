@@ -38,11 +38,11 @@ export default function EmployerApplicants() {
       await API.patch(
         `/applications/${appId}/status`,
         { status },
-        { headers: { Authorization: `Bearer ${token}` } }
+        { headers: { Authorization: `Bearer ${token}` } },
       );
-      setApplicants(applicants.map((a) =>
-        a._id === appId ? { ...a, status } : a
-      ));
+      setApplicants(
+        applicants.map((a) => (a._id === appId ? { ...a, status } : a)),
+      );
     } catch (error) {
       console.error(error);
     }
@@ -125,6 +125,12 @@ export default function EmployerApplicants() {
                     >
                       Reject
                     </button>
+                    <Link
+                      to={`/feedback/${app._id}`}
+                      className="px-3 py-1 bg-[#008BDC] hover:bg-[#0076bb] text-white text-xs font-bold rounded"
+                    >
+                      Feedback
+                    </Link>
                   </td>
                 </tr>
               ))}
