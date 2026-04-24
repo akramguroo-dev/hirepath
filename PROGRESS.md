@@ -21,6 +21,10 @@
 - [x] GET /api/jobs/employer (employer specific jobs)
 - [x] PUT /api/auth/profile (update profile endpoint)
 - [x] Job search/filter endpoint (search, type, location, status)
+- [x] Input validation (express-validator) on auth routes
+- [x] Rate limiting on auth routes
+- [x] Helmet.js (security headers)
+- [x] CORS configuration (restricted to frontend URL)
 
 ### Frontend
 - [x] Routing setup
@@ -49,25 +53,22 @@
 - [x] Connect feedback received to API (Akram)
 - [x] Connect feedback form to API (Akram)
 - [x] Job search/filter UI (Akram)
+- [x] Mobile hamburger menu (Dayan)
 
 ## In Progress
-- [ ] Security hardening (Akram)
-- [ ] Mobile hamburger menu (Dayan - feature/hamburger-menu)
+- [ ] Deployment (Akram)
+- [ ] Student Dashboard UI (Dayan - feature/student-dashboard)
 
 ## Pending Core Features
 
 ### Backend
 - [ ] Pagination for jobs
-- [ ] Input validation (express-validator)
-- [ ] Rate limiting
-- [ ] Helmet.js (security)
-- [ ] CORS configuration (restrict to frontend URL in production)
 - [ ] Token expiry handling
 - [ ] Role-based access control
 
 ### Frontend
 - [ ] Pagination UI on Jobs page
-- [ ] Student Dashboard UI (Dayan)
+- [ ] Student Dashboard UI (Dayan - feature/student-dashboard)
 
 ## Deployment
 - [ ] Deploy backend to Render
@@ -113,8 +114,8 @@
 - [ ] Basic frontend testing
 
 ## Current Task
-- Akram: Security hardening (input validation, rate limiting, Helmet.js, CORS)
-- Dayan: Mobile hamburger menu (feature/hamburger-menu)
+- Akram: Deployment (Render + Netlify)
+- Dayan: Student Dashboard UI (feature/student-dashboard)
 
 ## Notes
 - MongoDB Atlas cluster: nodetuts.amqi2r8.mongodb.net

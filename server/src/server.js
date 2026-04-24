@@ -1,5 +1,7 @@
 // Core
 const express = require('express');
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
 const cors = require('cors');
 require('dotenv').config();
 
@@ -16,10 +18,20 @@ const authMiddleware = require('./middleware/authMiddleware');
 
 const app = express();
 
-app.use(express.json());
-app.use(cors());
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 20, // max 20 requests per IP per 15 mins 
+  message: { error: "Too many requests, please try again later" }
+});
 
-app.use('/api/auth', authRoutes);
+app.use(express.json());
+app.use(helmet());
+app.use(cors({
+  origin: process.env.CLIENT_URL,
+  credentials: true
+}))
+
+app.use('/api/auth', limiter, authRoutes);
 app.use('/api/jobs', jobRoutes);
 app.use('/api/applications', applicationRoutes);
 
