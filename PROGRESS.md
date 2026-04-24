@@ -45,11 +45,12 @@
 - [x] Employer — connect applicants to API + accept/reject (Akram)
 - [x] Connect application status page to API (Akram)
 - [x] Profile page fixes + My Applications button (Akram)
+- [x] 404 page (Dayan)
 
 ## In Progress
 - [ ] Connect feedback received to API (Akram)
 - [ ] Student Dashboard UI (Umar - feature/student-dashboard)
-- [ ] 404 page (Dayan - feature/404-page)
+- [ ] Mobile hamburger menu (Dayan - feature/hamburger-menu)
 
 ## Pending Features
 
@@ -81,7 +82,7 @@
 - [ ] Toast notification system
 - [ ] Loading spinners on all pages
 - [ ] Empty states (no jobs, no applications)
-- [ ] Mobile hamburger menu
+- [ ] Mobile hamburger menu (Dayan - feature/hamburger-menu)
 - [ ] Lazy loading for pages
 - [ ] Error boundaries
 - [ ] Mobile responsiveness check on all pages
@@ -106,7 +107,7 @@
 
 ## Current Task
 - Akram: Connect feedback received to API
-- Dayan: 404 page (feature/404-page)
+- Dayan: Mobile hamburger menu (feature/hamburger-menu)
 - Umar: Student Dashboard UI (feature/student-dashboard)
 
 ## Notes
