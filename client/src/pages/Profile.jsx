@@ -97,12 +97,20 @@ export default function Profile() {
                 <div className="bg-[#3b82f6] h-full w-[30%]"></div>
               </div>
             </div>
-            <button
-              onClick={() => navigate("/my-applications")}
-              className="text-sm font-semibold text-[#008BDC] border border-[#008BDC] px-4 py-2 rounded-md hover:bg-blue-50 transition-colors"
-            >
-              My Applications
-            </button>
+            <div className="flex gap-2">
+              <button
+                onClick={() => navigate("/my-applications")}
+                className="text-sm font-semibold text-[#008BDC] border border-[#008BDC] px-4 py-2 rounded-md hover:bg-blue-50 transition-colors"
+              >
+                My Applications
+              </button>
+              <button
+                onClick={() => navigate("/my-feedback")}
+                className="text-sm font-semibold text-[#008BDC] border border-[#008BDC] px-4 py-2 rounded-md hover:bg-blue-50 transition-colors"
+              >
+                My Feedback
+              </button>
+            </div>
           </div>
         </div>
         <div className="flex flex-col md:flex-row gap-8">
