@@ -20,6 +20,7 @@
 - [x] GET /api/auth/me (getMe route)
 - [x] GET /api/jobs/employer (employer specific jobs)
 - [x] PUT /api/auth/profile (update profile endpoint)
+- [x] Job search/filter endpoint (search, type, location, status)
 
 ### Frontend
 - [x] Routing setup
@@ -47,15 +48,15 @@
 - [x] 404 page (Dayan)
 - [x] Connect feedback received to API (Akram)
 - [x] Connect feedback form to API (Akram)
+- [x] Job search/filter UI (Akram)
 
 ## In Progress
-- [ ] Job search/filter endpoint + UI (Akram)
+- [ ] Security hardening (Akram)
 - [ ] Mobile hamburger menu (Dayan - feature/hamburger-menu)
 
 ## Pending Core Features
 
 ### Backend
-- [ ] Job search/filter endpoint
 - [ ] Pagination for jobs
 - [ ] Input validation (express-validator)
 - [ ] Rate limiting
@@ -65,8 +66,6 @@
 - [ ] Role-based access control
 
 ### Frontend
-- [ ] Search/filter jobs UI
-- [ ] Job filters UI (by type, location, salary)
 - [ ] Pagination UI on Jobs page
 - [ ] Student Dashboard UI (Dayan)
 
@@ -114,7 +113,7 @@
 - [ ] Basic frontend testing
 
 ## Current Task
-- Akram: Job search/filter endpoint + UI
+- Akram: Security hardening (input validation, rate limiting, Helmet.js, CORS)
 - Dayan: Mobile hamburger menu (feature/hamburger-menu)
 
 ## Notes
