@@ -54,10 +54,10 @@
 - [x] Connect feedback form to API (Akram)
 - [x] Job search/filter UI (Akram)
 - [x] Mobile hamburger menu (Dayan)
+- [x] Student Dashboard UI (Dayan)
 
 ## In Progress
 - [ ] Deployment (Akram)
-- [ ] Student Dashboard UI (Dayan - feature/student-dashboard)
 
 ## Pending Core Features
 
@@ -68,7 +68,7 @@
 
 ### Frontend
 - [ ] Pagination UI on Jobs page
-- [ ] Student Dashboard UI (Dayan - feature/student-dashboard)
+- [ ] Connect Student Dashboard to API (Akram)
 
 ## Deployment
 - [ ] Deploy backend to Render
@@ -115,7 +115,7 @@
 
 ## Current Task
 - Akram: Deployment (Render + Netlify)
-- Dayan: Student Dashboard UI (feature/student-dashboard)
+- Dayan: Next task pending
 
 ## Notes
 - MongoDB Atlas cluster: nodetuts.amqi2r8.mongodb.net
