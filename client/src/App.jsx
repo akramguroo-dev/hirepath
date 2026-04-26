@@ -17,6 +17,8 @@ import FeedbackReceived from "./pages/FeedbackReceived";
 import FeedbackForm from "./pages/FeedbackForm";
 import EditProfile from "./pages/EditProfile";
 import NotFound from "./pages/NotFound";
+import StudentDashboard from "./pages/StudentDashboard";
+
 function App() {
   return (
     <>
@@ -67,6 +69,14 @@ function App() {
           element={
             <ProtectedRoute>
               <FeedbackReceived />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/student-dashboard"
+          element={
+            <ProtectedRoute>
+              <StudentDashboard />
             </ProtectedRoute>
           }
         />
