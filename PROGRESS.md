@@ -56,8 +56,16 @@
 - [x] Mobile hamburger menu (Dayan)
 - [x] Student Dashboard UI (Dayan)
 
+## Deployment ✅
+- [x] Deploy backend to Render — https://hirepath-api.onrender.com
+- [x] Deploy frontend to Vercel — https://hirepath-eight.vercel.app
+- [x] Set environment variables
+- [x] Connect frontend to production backend URL
+- [ ] Write README.md
+
 ## In Progress
-- [ ] Deployment (Akram)
+- [ ] Polish Phase (Akram)
+- [ ] Connect Student Dashboard to API (Akram)
 
 ## Pending Core Features
 
@@ -70,14 +78,7 @@
 - [ ] Pagination UI on Jobs page
 - [ ] Connect Student Dashboard to API (Akram)
 
-## Deployment
-- [ ] Deploy backend to Render
-- [ ] Deploy frontend to Netlify
-- [ ] Set environment variables
-- [ ] Connect frontend to production backend URL
-- [ ] Write README.md
-
-## Polish Phase (After Deployment)
+## Polish Phase
 - [ ] Navbar auth state — proper fix with AuthContext (replace window.location.href)
 - [ ] Feedback button — only show for accepted applications without feedback
 - [ ] Profile page — display skills, college, education fields properly
@@ -114,12 +115,14 @@
 - [ ] Basic frontend testing
 
 ## Current Task
-- Akram: Deployment (Render + Netlify)
-- Dayan: Next task pending
+- Akram: Polish Phase + Connect Student Dashboard to API
+- Dayan: Toast notification system UI (feature/toast-notifications)
 
 ## Notes
 - MongoDB Atlas cluster: nodetuts.amqi2r8.mongodb.net
-- Frontend runs on: localhost:5173
-- Backend runs on: localhost:5000
+- Production frontend: https://hirepath-eight.vercel.app
+- Production backend: https://hirepath-api.onrender.com
+- Local frontend: localhost:5173
+- Local backend: localhost:5000
 - Rule: Only UI/frontend tasks for team. API connection and backend is Akram's job.
 - Always paste PROGRESS.md at start of new Claude session
