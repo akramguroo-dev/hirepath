@@ -18,6 +18,7 @@ import FeedbackForm from "./pages/FeedbackForm";
 import EditProfile from "./pages/EditProfile";
 import NotFound from "./pages/NotFound";
 import StudentDashboard from "./pages/StudentDashboard";
+
 function App() {
   return (
     <>
@@ -71,6 +72,14 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/student-dashboard"
+          element={
+            <ProtectedRoute>
+              <StudentDashboard />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/" element={<Home />} />
         <Route path="/jobs" element={<Jobs />} />
         <Route path="/jobs/:id" element={<JobDetail />} />
@@ -82,7 +91,6 @@ function App() {
         />
         <Route path="/feedback/:applicationId" element={<FeedbackForm />} />
         <Route path="*" element={<NotFound />} />
-        <Route path="/student-dashboard" element={<StudentDashboard />} />
       </Routes>
       <Footer />
     </>
