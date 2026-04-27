@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../api/axios";
 
+import toast from "react-hot-toast";
+
 export default function EditProfile() {
   const [formData, setFormData] = useState({
     name: "",
@@ -42,6 +44,7 @@ export default function EditProfile() {
         },
         { headers: { Authorization: `Bearer ${token}` } },
       );
+      toast.success("Profile saved successfully!");
       navigate("/profile");
     } catch (err) {
       console.error(err);

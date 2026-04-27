@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import API from "../api/axios";
 import { useState } from "react";
 
+import toast from "react-hot-toast";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -16,6 +17,8 @@ export default function Login() {
       window.location.href = "/";
     } catch (error) {
       console.log(error.response.data);
+
+      toast.error(error.response?.data?.message || "Invalid credentials. Please try again.");
     }
   };
 
