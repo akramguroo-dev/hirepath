@@ -55,6 +55,7 @@
 - [x] Job search/filter UI (Akram)
 - [x] Mobile hamburger menu (Dayan)
 - [x] Student Dashboard UI (Dayan)
+- [x] Toast notification system (Dayan + Akram fix)
 
 ## Deployment ✅
 - [x] Deploy backend to Render — https://hirepath-api.onrender.com
@@ -64,8 +65,8 @@
 - [ ] Write README.md
 
 ## In Progress
-- [ ] Polish Phase (Akram)
 - [ ] Connect Student Dashboard to API (Akram)
+- [ ] Loading spinners on all pages (Dayan - feature/loading-spinners)
 
 ## Pending Core Features
 
@@ -84,11 +85,10 @@
 - [ ] Profile page — display skills, college, education fields properly
 - [ ] Profile completeness — calculate dynamically based on filled fields
 - [ ] EmployerDashboard — show employer's actual name instead of "Company HR"
-- [ ] All pages — loading spinners
+- [ ] Loading spinners on all pages (Dayan - feature/loading-spinners)
 - [ ] All pages — empty states
 - [ ] Mobile responsiveness check on all pages
 - [ ] Animations/transitions (Framer Motion)
-- [ ] Toast notification system
 - [ ] Error boundaries
 - [ ] Lazy loading for pages
 - [ ] Accessibility (aria-labels, keyboard navigation, color contrast)
@@ -115,8 +115,8 @@
 - [ ] Basic frontend testing
 
 ## Current Task
-- Akram: Polish Phase + Connect Student Dashboard to API
-- Dayan: Toast notification system UI (feature/toast-notifications)
+- Akram: Connect Student Dashboard to API
+- Dayan: Loading spinners on all pages (feature/loading-spinners)
 
 ## Notes
 - MongoDB Atlas cluster: nodetuts.amqi2r8.mongodb.net
