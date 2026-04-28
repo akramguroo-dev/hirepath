@@ -22,8 +22,9 @@ export default function ApplicationStatus() {
       })
       .catch((error) => {
         console.error(error);
+        setIsLoading(false);
       });
-  }, []);
+  }, [navigate]);
 
   const getStatusStyle = (status) => {
     switch (status) {
@@ -39,7 +40,7 @@ export default function ApplicationStatus() {
   if (isLoading)
     return (
       <div className="min-h-screen flex items-center justify-center">
-        Loading applications...
+        <div className="w-10 h-10 border-4 border-[#008BDC] border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
 

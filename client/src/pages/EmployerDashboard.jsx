@@ -37,8 +37,8 @@ export default function EmployerDashboard() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#F8F9FB]">
-        Loading dashboard...
+     <div className="min-h-screen flex items-center justify-center">
+        <div className="w-10 h-10 border-4 border-[#008BDC] border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
   }
