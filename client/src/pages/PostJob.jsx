@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../api/axios";
 
+import toast from "react-hot-toast";
+
 export default function PostJob() {
   const [formData, setFormData] = useState({
     title: "",
@@ -28,6 +30,7 @@ export default function PostJob() {
       await API.post("/jobs", formData, {
         headers: { Authorization: `Bearer ${token}` },
       });
+      toast.success("Job posted successfully!");
       navigate("/employer-dashboard");
     } catch (err) {
       console.error(err);

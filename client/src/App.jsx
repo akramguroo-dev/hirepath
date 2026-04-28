@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 
+import {Toaster} from "react-hot-toast"
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
@@ -22,6 +23,7 @@ import StudentDashboard from "./pages/StudentDashboard";
 function App() {
   return (
     <>
+    <Toaster/>
       <Navbar />
       <Routes>
         <Route

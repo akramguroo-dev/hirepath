@@ -2,6 +2,8 @@ import { Link, useNavigate } from "react-router-dom";
 import API from "../api/axios";
 import { useState } from "react";
 
+import toast from "react-hot-toast";
+
 export default function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -18,9 +20,11 @@ export default function Register() {
         email,
         password,
       });
+      toast.success("Account created successfully! Please login.");
       navigate("/login");
     } catch (error) {
       console.log(error.response.data);
+      toast.error(error.response?.data?.error || "Registration failed. Please try again.");
     }
   };
 
