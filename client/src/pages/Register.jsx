@@ -24,7 +24,7 @@ export default function Register() {
       navigate("/login");
     } catch (error) {
       console.log(error.response.data);
-      toast.error(error.response?.data?.message || "Registration failed. Please try again.");
+      toast.error(error.response?.data?.error || "Registration failed. Please try again.");
     }
   };
 
