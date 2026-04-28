@@ -27,9 +27,9 @@ const limiter = rateLimit({
 app.use(express.json());
 app.use(helmet());
 app.use(cors({
-  origin: process.env.CLIENT_URL,
+  origin: [process.env.CLIENT_URL, 'http://localhost:5173'],
   credentials: true
-}))
+}));
 
 app.use('/api/auth', limiter, authRoutes);
 app.use('/api/jobs', jobRoutes);
