@@ -48,6 +48,7 @@ export default function EditProfile() {
       navigate("/profile");
     } catch (err) {
       console.error(err);
+      toast.error("Failed to save profile. Please try again.");
     }
   };
 

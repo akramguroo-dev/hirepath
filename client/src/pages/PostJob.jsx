@@ -34,6 +34,7 @@ export default function PostJob() {
       navigate("/employer-dashboard");
     } catch (err) {
       console.error(err);
+      toast.error("Failed to post job. Please try again.");
     }
   };
   return (
