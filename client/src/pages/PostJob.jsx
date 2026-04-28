@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 export default function PostJob() {
   const [formData, setFormData] = useState({
     title: "",
-    type: "",
+    type: "internship",
     company: "",
     location: "",
     salary: "",
