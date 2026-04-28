@@ -18,7 +18,7 @@ export default function Login() {
     } catch (error) {
       console.log(error.response.data);
 
-      toast.error(error.response?.data?.message || "Invalid credentials. Please try again.");
+      toast.error(error.response?.data?.error || "Invalid credentials. Please try again.");
     }
   };
 
