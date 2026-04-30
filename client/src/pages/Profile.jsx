@@ -179,6 +179,70 @@ export default function Profile() {
                   </p>
                 </div>
               )}
+              {activeTab === "Personal Details" && (
+                <div className="space-y-4">
+                  <div>
+                    <p className="text-xs font-bold text-gray-400 uppercase tracking-wide mb-1">
+                      Full Name
+                    </p>
+                    <p className="text-gray-800 font-semibold">
+                      {profileData.name}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-gray-400 uppercase tracking-wide mb-1">
+                      Email
+                    </p>
+                    <p className="text-gray-800 font-semibold">
+                      {profileData.email}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-gray-400 uppercase tracking-wide mb-1">
+                      College
+                    </p>
+                    <p className="text-gray-800 font-semibold">
+                      {profileData.college}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-gray-400 uppercase tracking-wide mb-1">
+                      Location
+                    </p>
+                    <p className="text-gray-800 font-semibold">
+                      {profileData.location}
+                    </p>
+                  </div>
+                </div>
+              )}
+              {activeTab === "Skills" && (
+                <div className="flex flex-wrap gap-2">
+                  {userData?.skills?.length > 0 ? (
+                    userData.skills.map((skill, index) => (
+                      <span
+                        key={index}
+                        className="px-3 py-1 bg-blue-50 text-[#008BDC] border border-blue-100 rounded-full text-sm font-semibold"
+                      >
+                        {skill}
+                      </span>
+                    ))
+                  ) : (
+                    <p className="text-gray-400">No skills added yet.</p>
+                  )}
+                </div>
+              )}
+              {activeTab === "Internships" && (
+                <p className="text-gray-400">No internships added yet.</p>
+              )}
+              {activeTab === "Jobs" && (
+                <p className="text-gray-400">No jobs added yet.</p>
+              )}
+              {activeTab === "Projects" && (
+                <p className="text-gray-400">No projects added yet.</p>
+              )}
+              {activeTab === "Accomplishments" && (
+                <p className="text-gray-400">No accomplishments added yet.</p>
+              )}
               <div className="mt-20">
                 <h3 className="text-sm font-bold text-gray-500 uppercase mb-6 tracking-wide">
                   Resume

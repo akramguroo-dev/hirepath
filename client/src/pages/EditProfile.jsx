@@ -9,6 +9,8 @@ export default function EditProfile() {
     name: "",
     location: "",
     college: "",
+    degree: "",
+    year: "",
     skills: "",
   });
 
@@ -24,6 +26,8 @@ export default function EditProfile() {
         name: name || "",
         location: location || "",
         college: college || "",
+        degree: res.data.user.education?.[0]?.degree || "",
+        year: res.data.user.education?.[0]?.year || "",
         skills: skills ? skills.join(", ") : "",
       });
     });
@@ -40,6 +44,13 @@ export default function EditProfile() {
         "/auth/profile",
         {
           ...formData,
+          education: [
+            {
+              degree: formData.degree,
+              school: formData.college,
+              year: formData.year,
+            },
+          ],
           skills: formData.skills.split(",").map((s) => s.trim()),
         },
         { headers: { Authorization: `Bearer ${token}` } },
@@ -96,6 +107,32 @@ export default function EditProfile() {
                 onChange={handleChange}
                 type="text"
                 placeholder="e.g. NIT Srinagar"
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#008BDC] focus:border-transparent outline-none transition-all"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
+                Degree
+              </label>
+              <input
+                name="degree"
+                value={formData.degree}
+                onChange={handleChange}
+                type="text"
+                placeholder="e.g. BTech in CSE"
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#008BDC] focus:border-transparent outline-none transition-all"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
+                Year
+              </label>
+              <input
+                name="year"
+                value={formData.year}
+                onChange={handleChange}
+                type="text"
+                placeholder="e.g. 2026"
                 className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#008BDC] focus:border-transparent outline-none transition-all"
               />
             </div>

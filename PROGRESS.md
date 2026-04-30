@@ -59,6 +59,8 @@
 - [x] Connect Student Dashboard to API (Akram)
 - [x] Loading spinners on all pages (Dayan)
 - [x] Refactor Profile + StudentDashboard to async/await with finally (Akram)
+- [x] Profile page — display skills, college, education fields properly (Akram)
+- [x] Edit Profile — add degree, year fields (Akram)
 
 ## Deployment ✅
 - [x] Deploy backend to Render — https://hirepath-api.onrender.com
@@ -68,7 +70,7 @@
 - [ ] Write README.md
 
 ## In Progress
-- [ ] Profile page — display skills, college, education fields properly (Akram)
+- [ ] EmployerDashboard — show employer's actual name (Akram)
 - [ ] Empty states on all pages (Dayan - feature/empty-states)
 
 ## Pending Core Features
@@ -84,7 +86,6 @@
 ## Polish Phase
 - [ ] Navbar auth state — proper fix with AuthContext (replace window.location.href)
 - [ ] Feedback button — only show for accepted applications without feedback
-- [ ] Profile page — display skills, college, education fields properly (Akram)
 - [ ] Profile completeness — calculate dynamically based on filled fields
 - [ ] EmployerDashboard — show employer's actual name instead of "Company HR"
 - [ ] Empty states on all pages (Dayan - feature/empty-states)
@@ -116,7 +117,7 @@
 - [ ] Basic frontend testing
 
 ## Current Task
-- Akram: Profile page — display skills, college, education fields properly
+- Akram: EmployerDashboard — show employer's actual name
 - Dayan: Empty states on all pages (feature/empty-states)
 
 ## Notes
