@@ -8,18 +8,20 @@ export default function EmployerApplicants() {
   const { id } = useParams();
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    API.get(`/applications/job/${id}`, {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-      .then((response) => {
+    const fetchApplicants = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await API.get(`/applications/job/${id}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
         setApplicants(response.data.jobApps);
-        setIsLoading(false);
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error(error);
+      } finally {
         setIsLoading(false);
-      });
+      }
+    };
+    fetchApplicants();
   }, [id]);
 
   const getStatusStyle = (status) => {
@@ -51,7 +53,7 @@ export default function EmployerApplicants() {
 
   if (isLoading)
     return (
-     <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center">
         <div className="w-10 h-10 border-4 border-[#008BDC] border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
@@ -97,23 +99,23 @@ export default function EmployerApplicants() {
                   key={app._id}
                   className="hover:bg-gray-50 transition duration-150"
                 >
-                  <td className="px-6 py-4 font-medium text-gray-900">
+                  <td className="px-6 py-4 font-medium text-gray-900 align-middle whitespace-nowrap">
                     {app.student_id.name}
                   </td>
-                  <td className="px-6 py-4 text-gray-600">
+                  <td className="px-6 py-4 text-gray-600 align-middle">
                     {app.student_id.email}
                   </td>
-                  <td className="px-6 py-4 text-gray-600">
+                  <td className="px-6 py-4 text-gray-600 align-middle">
                     {new Date(app.createdAt).toLocaleDateString()}
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-6 py-4 align-middle">
                     <span
                       className={`px-3 py-1 rounded-full text-xs font-semibold border ${getStatusStyle(app.status)}`}
                     >
                       {app.status}
                     </span>
                   </td>
-                  <td className="px-6 py-4 flex gap-2">
+                  <td className="px-6 py-4 flex gap-2 items-center">
                     <button
                       onClick={() => handleStatus(app._id, "accepted")}
                       className="px-3 py-1 bg-green-500 hover:bg-green-600 text-white text-xs font-bold rounded"

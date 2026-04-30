@@ -25,6 +25,7 @@
 - [x] Rate limiting on auth routes
 - [x] Helmet.js (security headers)
 - [x] CORS configuration (restricted to frontend URL)
+- [x] Fix applicants count increment on apply
 
 ### Frontend
 - [x] Routing setup
@@ -58,9 +59,12 @@
 - [x] Toast notification system (Dayan + Akram fix)
 - [x] Connect Student Dashboard to API (Akram)
 - [x] Loading spinners on all pages (Dayan)
-- [x] Refactor Profile + StudentDashboard to async/await with finally (Akram)
+- [x] Refactor to async/await with finally (Akram)
 - [x] Profile page — display skills, college, education fields properly (Akram)
 - [x] Edit Profile — add degree, year fields (Akram)
+- [x] EmployerDashboard — show employer's actual name (Akram)
+- [x] Fix applicants count display on Employer Dashboard (Akram)
+- [x] EmployerApplicants — align-middle fix + async/await refactor (Akram)
 
 ## Deployment ✅
 - [x] Deploy backend to Render — https://hirepath-api.onrender.com
@@ -70,7 +74,6 @@
 - [ ] Write README.md
 
 ## In Progress
-- [ ] EmployerDashboard — show employer's actual name (Akram)
 - [ ] Empty states on all pages (Dayan - feature/empty-states)
 
 ## Pending Core Features
@@ -87,7 +90,6 @@
 - [ ] Navbar auth state — proper fix with AuthContext (replace window.location.href)
 - [ ] Feedback button — only show for accepted applications without feedback
 - [ ] Profile completeness — calculate dynamically based on filled fields
-- [ ] EmployerDashboard — show employer's actual name instead of "Company HR"
 - [ ] Empty states on all pages (Dayan - feature/empty-states)
 - [ ] Mobile responsiveness check on all pages
 - [ ] Animations/transitions (Framer Motion)
@@ -117,7 +119,7 @@
 - [ ] Basic frontend testing
 
 ## Current Task
-- Akram: EmployerDashboard — show employer's actual name
+- Akram: AuthContext refactor + Feedback button fix
 - Dayan: Empty states on all pages (feature/empty-states)
 
 ## Notes

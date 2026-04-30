@@ -27,6 +27,7 @@ const applyToJob = async (req, res) => {
       cover_letter,
     });
 
+    await Job.findByIdAndUpdate(job_id, { $inc: { applicants: 1 }});
     res.status(201).json({ application });
   } catch (err) {
     res.status(500).json({ error: err.message });

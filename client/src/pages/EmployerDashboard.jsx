@@ -12,32 +12,43 @@ import API from "../api/axios";
 
 export default function EmployerDashboard() {
   const [jobs, setJobs] = useState([]);
+  const [employerName, setEmployerName] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      navigate("/login");
-      return;
-    }
+    const employerDetails = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          navigate("/login");
+          return;
+        }
 
-    API.get("/jobs/employer", { headers: { Authorization: `Bearer ${token}` } })
-      .then((response) => {
-        setJobs(response.data.jobs);
-        setIsLoading(false);
-      })
-      .catch((error) => {
+        const resOne = await API.get("/jobs/employer", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setJobs(resOne.data.jobs);
+
+        const resTwo = await API.get("/auth/me", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setEmployerName(resTwo.data.user.name);
+      } catch (error) {
         console.error(error);
         localStorage.removeItem("token");
         navigate("/login");
-      });
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    employerDetails();
   }, [navigate]);
 
   if (isLoading) {
     return (
-     <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center">
         <div className="w-10 h-10 border-4 border-[#008BDC] border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
@@ -49,7 +60,7 @@ export default function EmployerDashboard() {
         <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-6">
           <div>
             <h1 className="text-2xl md:text-3xl font-bold text-[#212121]">
-              Welcome, Company HR 👋
+              Welcome, {employerName} 👋
             </h1>
             <p className="text-gray-500 mt-1">
               Here is what's happening with your job postings today.
@@ -98,7 +109,9 @@ export default function EmployerDashboard() {
               jobs.map((job) => (
                 <div
                   key={job._id}
-                  onClick={() => navigate(`/employer/jobs/${job._id}/applicants`)}
+                  onClick={() =>
+                    navigate(`/employer/jobs/${job._id}/applicants`)
+                  }
                   className="p-6 hover:bg-blue-50/30 transition-colors flex flex-col md:flex-row md:items-center justify-between gap-4 cursor-pointer group"
                 >
                   <div className="space-y-2">
