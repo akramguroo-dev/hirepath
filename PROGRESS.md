@@ -35,7 +35,7 @@
 - [x] Jobs page (fetching from backend)
 - [x] Job Detail page (fetching from backend)
 - [x] Apply Now button (connected to API)
-- [x] Student Profile page (connected to API - shows name only, edit profile pending)
+- [x] Student Profile page (connected to API)
 - [x] Employer Dashboard (connected to API - shows active jobs)
 - [x] Post Job form UI (Dayan)
 - [x] Connect Post Job form to backend API (Akram)
@@ -48,7 +48,7 @@
 - [x] Feedback form UI (Dayan)
 - [x] Employer — connect applicants to API + accept/reject (Akram)
 - [x] Connect application status page to API (Akram)
-- [x] Profile page fixes + My Applications + My Feedback buttons side by side (Akram)
+- [x] Profile page fixes + My Applications + My Feedback + My Dashboard buttons (Akram)
 - [x] 404 page (Dayan)
 - [x] Connect feedback received to API (Akram)
 - [x] Connect feedback form to API (Akram)
@@ -56,6 +56,9 @@
 - [x] Mobile hamburger menu (Dayan)
 - [x] Student Dashboard UI (Dayan)
 - [x] Toast notification system (Dayan + Akram fix)
+- [x] Connect Student Dashboard to API (Akram)
+- [x] Loading spinners on all pages (Dayan)
+- [x] Refactor Profile + StudentDashboard to async/await with finally (Akram)
 
 ## Deployment ✅
 - [x] Deploy backend to Render — https://hirepath-api.onrender.com
@@ -65,8 +68,8 @@
 - [ ] Write README.md
 
 ## In Progress
-- [ ] Connect Student Dashboard to API (Akram)
-- [ ] Loading spinners on all pages (Dayan - feature/loading-spinners)
+- [ ] Profile page — display skills, college, education fields properly (Akram)
+- [ ] Empty states on all pages (Dayan - feature/empty-states)
 
 ## Pending Core Features
 
@@ -77,16 +80,14 @@
 
 ### Frontend
 - [ ] Pagination UI on Jobs page
-- [ ] Connect Student Dashboard to API (Akram)
 
 ## Polish Phase
 - [ ] Navbar auth state — proper fix with AuthContext (replace window.location.href)
 - [ ] Feedback button — only show for accepted applications without feedback
-- [ ] Profile page — display skills, college, education fields properly
+- [ ] Profile page — display skills, college, education fields properly (Akram)
 - [ ] Profile completeness — calculate dynamically based on filled fields
 - [ ] EmployerDashboard — show employer's actual name instead of "Company HR"
-- [ ] Loading spinners on all pages (Dayan - feature/loading-spinners)
-- [ ] All pages — empty states
+- [ ] Empty states on all pages (Dayan - feature/empty-states)
 - [ ] Mobile responsiveness check on all pages
 - [ ] Animations/transitions (Framer Motion)
 - [ ] Error boundaries
@@ -115,8 +116,8 @@
 - [ ] Basic frontend testing
 
 ## Current Task
-- Akram: Connect Student Dashboard to API
-- Dayan: Loading spinners on all pages (feature/loading-spinners)
+- Akram: Profile page — display skills, college, education fields properly
+- Dayan: Empty states on all pages (feature/empty-states)
 
 ## Notes
 - MongoDB Atlas cluster: nodetuts.amqi2r8.mongodb.net

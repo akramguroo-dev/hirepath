@@ -1,26 +1,60 @@
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import API from "../api/axios";
+
 export default function StudentDashboard() {
-  const userName = "Dayan Shah";
+  const [userName, setUserName] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+  const [applications, setApplications] = useState([]);
+
+  useEffect(() => {
+    const getUserDetails = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const userRes = await API.get("/auth/me", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setUserName(userRes.data.user.name);
+        const appsRes = await API.get("/applications/student", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setApplications(appsRes.data.myApplications);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    getUserDetails();
+  }, []);
+
+  const validApplications = applications.filter(a => a.job_id !== null);
+  const totalAppSent = applications.length;
+  const recentApplications = validApplications.slice(0, 3);
+  const acceptedApps = applications.filter(a => a.status === "accepted").length;
+  const rejectedApps = applications.filter(a => a.status === "rejected").length;
+
   const stats = [
-    { label: "Application Sent", count: 12, color: "text-blue-600", bg: "bg-blue-50" },
-    { label: "Accepted", count: 3, color: "text-green-600", bg: "bg-green-50" },
-    { label: "Rejected", count: 2, color: "text-red-600", bg: "bg-red-50" },
+    { label: "Applications Sent", count: totalAppSent, color: "text-blue-600", bg: "bg-blue-50" },
+    { label: "Accepted", count: acceptedApps, color: "text-green-600", bg: "bg-green-50" },
+    { label: "Rejected", count: rejectedApps, color: "text-red-600", bg: "bg-red-50" },
   ];
-  const recentApplications = [
-    { id: 1, company: "TechCorp", role: "Frontend Developer", status: "pending", date: "2026-04-20" },
-    { id: 2, company: "Designly", role: "UI Intern", status: "accepted", date: "2026-04-18" },
-    { id: 3, company: "SoftSys", role: "Backend Developer", status: "rejected", date: "2026-04-15" },
-  ];
+
   const getStatusStyle = (status) => {
     switch (status) {
-      case "accepted":
-        return "bg-green-100 text-green-700 border-green-200";
-      case "rejected":
-        return "bg-red-100 text-red-700 border-red-200";
-      default:
-        return "bg-yellow-100 text-yellow-700 border-yellow-200";
+      case "accepted": return "bg-green-100 text-green-700 border-green-200";
+      case "rejected": return "bg-red-100 text-red-700 border-red-200";
+      default: return "bg-yellow-100 text-yellow-700 border-yellow-200";
     }
   };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-[#F8F9FA]">
+        Loading Dashboard...
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#F8F9FB] p-4 md:p-10 font-sans">
@@ -65,10 +99,10 @@ export default function StudentDashboard() {
               </thead>
               <tbody className="divide-y divide-gray-100">
                 {recentApplications.map((app) => (
-                  <tr key={app.id} className="hover:bg-gray-50 transition-colors">
-                    <td className="px-6 py-4 font-semibold text-[#008BDC]">{app.role}</td>
-                    <td className="px-6 py-4 text-gray-700 font-medium">{app.company}</td>
-                    <td className="px-6 py-4 text-gray-500 text-sm">{app.date}</td>
+                  <tr key={app._id} className="hover:bg-gray-50 transition-colors">
+                    <td className="px-6 py-4 font-semibold text-[#008BDC]">{app.job_id.title}</td>
+                    <td className="px-6 py-4 text-gray-700 font-medium">{app.job_id.company}</td>
+                    <td className="px-6 py-4 text-gray-500 text-sm">{new Date(app.createdAt).toLocaleDateString()}</td>
                     <td className="px-6 py-4">
                       <span className={`px-3 py-1 rounded-full text-xs font-bold border ${getStatusStyle(app.status)}`}>
                         {app.status}
@@ -80,7 +114,6 @@ export default function StudentDashboard() {
             </table>
           </div>
         </div>
-
       </div>
     </div>
   );

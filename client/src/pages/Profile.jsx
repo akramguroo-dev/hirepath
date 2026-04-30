@@ -30,22 +30,26 @@ export default function Profile() {
   ];
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      navigate("/login");
-      return;
-    }
-
-    API.get("/auth/me", { headers: { Authorization: `Bearer ${token}` } })
-      .then((response) => {
+    const fetchProfile = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          navigate("/login");
+          return;
+        }
+        const response = await API.get("/auth/me", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
         setUserData(response.data.user);
-        setIsLoading(false);
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error(error);
         localStorage.removeItem("token");
         navigate("/login");
-      });
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchProfile();
   }, [navigate]);
 
   if (isLoading) {
@@ -109,6 +113,12 @@ export default function Profile() {
                 className="text-sm font-semibold text-[#008BDC] border border-[#008BDC] px-4 py-2 rounded-md hover:bg-blue-50 transition-colors"
               >
                 My Feedback
+              </button>
+              <button
+                onClick={() => navigate("/student-dashboard")}
+                className="text-sm font-semibold text-[#008BDC] border border-[#008BDC] px-4 py-2 rounded-md hover:bg-blue-50 transition-colors"
+              >
+                My Dashboard
               </button>
             </div>
           </div>
