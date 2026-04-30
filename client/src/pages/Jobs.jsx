@@ -6,9 +6,12 @@ export default function Jobs() {
   const [jobsList, setJobsList] = useState([]);
   const [filters, setFilters] = useState({ search: "", type: "", location: "" });
 
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const fetchJobs = async () => {
       try {
+        setLoading(true);
         const response = await API.get("/jobs", {
           params: {
             search: filters.search,
@@ -19,11 +22,20 @@ export default function Jobs() {
         setJobsList(response.data.jobs);
       } catch (error) {
         console.error(error);
+      } finally{
+        setLoading(false);
       }
     };
     fetchJobs();
   }, [filters]);
 
+if(loading){
+  return (
+<div className="min-h-screen flex items-center justify-center">
+        <div className="w-10 h-10 border-4 border-[#008BDC] border-t-transparent rounded-full animate-spin"></div>
+      </div>
+  );
+}
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">

@@ -18,8 +18,9 @@ export default function EmployerApplicants() {
       })
       .catch((error) => {
         console.error(error);
+        setIsLoading(false);
       });
-  }, []);
+  }, [id]);
 
   const getStatusStyle = (status) => {
     switch (status) {
@@ -50,8 +51,8 @@ export default function EmployerApplicants() {
 
   if (isLoading)
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        Loading applicants...
+     <div className="min-h-screen flex items-center justify-center">
+        <div className="w-10 h-10 border-4 border-[#008BDC] border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
 
