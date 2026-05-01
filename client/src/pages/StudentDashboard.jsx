@@ -98,7 +98,8 @@ export default function StudentDashboard() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100">
-                {recentApplications.map((app) => (
+                {recentApplications.length>0 ?(
+                recentApplications.map((app) => (
                   <tr key={app._id} className="hover:bg-gray-50 transition-colors">
                     <td className="px-6 py-4 font-semibold text-[#008BDC]">{app.job_id.title}</td>
                     <td className="px-6 py-4 text-gray-700 font-medium">{app.job_id.company}</td>
@@ -109,7 +110,16 @@ export default function StudentDashboard() {
                       </span>
                     </td>
                   </tr>
-                ))}
+                ))
+              ) : (
+              <tr>
+                <td colSpan="4">
+                      <div className="p-12 text-center text-gray-400">
+                        No applications found.
+                      </div>
+                    </td>
+              </tr>
+              )}
               </tbody>
             </table>
           </div>

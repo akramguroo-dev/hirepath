@@ -94,7 +94,8 @@ export default function EmployerApplicants() {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
-              {applicants.map((app) => (
+              {applicants.length>0 ?(
+              applicants.map((app) => (
                 <tr
                   key={app._id}
                   className="hover:bg-gray-50 transition duration-150"
@@ -136,7 +137,16 @@ export default function EmployerApplicants() {
                     </Link>
                   </td>
                 </tr>
-              ))}
+              ))
+            ) :(
+              <tr>
+                <td colSpan="5">
+                    <div className="p-12 text-center text-gray-400">
+                      No applicants yet for this job.
+                    </div>
+                  </td>
+              </tr>
+              )}
             </tbody>
           </table>
           <div className="p-4 bg-gray-50 border-t border-gray-200 text-center">
