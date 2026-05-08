@@ -5,6 +5,7 @@ import API from "../api/axios";
 export default function EmployerApplicants() {
   const [applicants, setApplicants] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [jobTitle, setJobTitle] = useState("");
   const { id } = useParams();
 
   useEffect(() => {
@@ -15,6 +16,10 @@ export default function EmployerApplicants() {
           headers: { Authorization: `Bearer ${token}` },
         });
         setApplicants(response.data.jobApps);
+        const title = await API.get(`/jobs/${id}`, {
+          headers: { Authorization: `Bearer ${token}`},
+        });
+        setJobTitle(title.data.job.title);
       } catch (error) {
         console.error(error);
       } finally {
@@ -70,7 +75,7 @@ export default function EmployerApplicants() {
 
         <h1 className="text-2xl font-bold text-gray-800 mb-8">
           Applicants for{" "}
-          <span className="text-blue-600">Frontend Developer</span>
+          <span className="text-blue-600">{jobTitle}</span>
         </h1>
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
           <table className="w-full text-left">
