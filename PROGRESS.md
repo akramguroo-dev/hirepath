@@ -67,6 +67,7 @@
 - [x] EmployerApplicants — alignment fix + async/await refactor (Akram)
 - [x] Empty states on all pages (Dayan)
 - [x] AuthContext refactor — replace window.location.href (Akram)
+- [x] Profile completeness — dynamic calculation (Dayan)
 
 ## Deployment ✅
 - [x] Deploy backend to Render — https://hirepath-api.onrender.com
@@ -77,7 +78,7 @@
 
 ## In Progress
 - [ ] Feedback button — only show for accepted without feedback (Akram)
-- [ ] Profile completeness — calculate dynamically (Dayan - feature/profile-completeness)
+- [ ] Mobile responsiveness check (Dayan - feature/mobile-responsiveness)
 
 ## Pending Core Features
 
@@ -91,8 +92,7 @@
 
 ## Polish Phase
 - [ ] Feedback button — only show for accepted applications without feedback
-- [ ] Profile completeness — calculate dynamically (Dayan - feature/profile-completeness)
-- [ ] Mobile responsiveness check on all pages
+- [ ] Mobile responsiveness check on all pages (Dayan - feature/mobile-responsiveness)
 - [ ] Animations/transitions (Framer Motion)
 - [ ] Error boundaries
 - [ ] Lazy loading for pages
@@ -121,7 +121,7 @@
 
 ## Current Task
 - Akram: Feedback button — only show for accepted applications without feedback
-- Dayan: Profile completeness dynamic calculation (feature/profile-completeness)
+- Dayan: Mobile responsiveness check (feature/mobile-responsiveness)
 
 ## Notes
 - MongoDB Atlas cluster: nodetuts.amqi2r8.mongodb.net
