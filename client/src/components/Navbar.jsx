@@ -1,10 +1,11 @@
 import { useState } from "react"; 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false); 
-  const token = localStorage.getItem("token");
-  const role = localStorage.getItem("role");
+  const { token, role, logout } = useAuth();
+  const navigate = useNavigate();
 
   return (
     <nav className="bg-white text-black border-b border-gray-100 sticky top-0 z-50 shadow-sm">
@@ -72,9 +73,8 @@ export default function Navbar() {
           {token && (
             <button
               onClick={() => {
-                localStorage.removeItem("token");
-                localStorage.removeItem("role");
-                window.location.href = "/";
+                logout();
+                navigate("/");
               }}
               className="px-5 py-2 text-[#008BDC] border border-[#008BDC] rounded font-semibold flex items-center justify-center leading-none"
             >
@@ -119,9 +119,9 @@ export default function Navbar() {
             {token && (
               <button
                 onClick={() => {
-                  localStorage.removeItem("token");
-                  localStorage.removeItem("role");
-                  window.location.href = "/";
+                  logout();
+                  navigate("/");
+                  setIsOpen(false);
                 }}
                 className="w-full py-3 text-[#008BDC] border border-[#008BDC] rounded font-semibold text-center"
               >

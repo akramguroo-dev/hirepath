@@ -1,23 +1,23 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import API from "../api/axios";
 import { useState } from "react";
-
+import { useAuth } from "../context/AuthContext";
 import toast from "react-hot-toast";
+
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const response = await API.post("/auth/login", { email, password });
-      localStorage.setItem("token", response.data.token);
-      localStorage.setItem("role", response.data.role);
-      window.location.href = "/";
+      login(response.data.token, response.data.role);
+      navigate("/");
     } catch (error) {
       console.log(error.response.data);
-
       toast.error(error.response?.data?.error || "Invalid credentials. Please try again.");
     }
   };

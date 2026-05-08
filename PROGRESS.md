@@ -66,6 +66,7 @@
 - [x] Fix applicants count display on Employer Dashboard (Akram)
 - [x] EmployerApplicants — alignment fix + async/await refactor (Akram)
 - [x] Empty states on all pages (Dayan)
+- [x] AuthContext refactor — replace window.location.href (Akram)
 
 ## Deployment ✅
 - [x] Deploy backend to Render — https://hirepath-api.onrender.com
@@ -75,7 +76,7 @@
 - [ ] Write README.md
 
 ## In Progress
-- [ ] AuthContext refactor (Akram)
+- [ ] Feedback button — only show for accepted without feedback (Akram)
 - [ ] Profile completeness — calculate dynamically (Dayan - feature/profile-completeness)
 
 ## Pending Core Features
@@ -89,7 +90,6 @@
 - [ ] Pagination UI on Jobs page
 
 ## Polish Phase
-- [ ] Navbar auth state — proper fix with AuthContext (replace window.location.href)
 - [ ] Feedback button — only show for accepted applications without feedback
 - [ ] Profile completeness — calculate dynamically (Dayan - feature/profile-completeness)
 - [ ] Mobile responsiveness check on all pages
@@ -120,7 +120,7 @@
 - [ ] Basic frontend testing
 
 ## Current Task
-- Akram: AuthContext refactor
+- Akram: Feedback button — only show for accepted applications without feedback
 - Dayan: Profile completeness dynamic calculation (feature/profile-completeness)
 
 ## Notes
