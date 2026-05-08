@@ -52,6 +52,19 @@ export default function Profile() {
     fetchProfile();
   }, [navigate]);
 
+  const calculateCompleteness = () =>{
+    if(!userData) return 0;
+    let count =0;
+    if(userData.name) count++;
+    if(userData.location) count++;
+    if(userData.college) count++;
+    if(userData.skills && userData.skills.length > 0) count++;
+    if(userData.education && userData.education[0]?.degree) count++;
+
+    return count * 20;
+  };
+  const Completeness = calculateCompleteness();
+
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#F8F9FA]">
@@ -95,10 +108,10 @@ export default function Profile() {
             <div className="w-full md:w-80">
               <div className="flex justify-between text-xs font-bold text-gray-500 mb-2 uppercase tracking-wide">
                 <span>Profile Completeness</span>
-                <span className="text-[#00A5EC]">30%</span>
+                <span className="text-[#00A5EC]">{Completeness}%</span>
               </div>
               <div className="w-full bg-gray-100 h-2 rounded-full overflow-hidden">
-                <div className="bg-[#3b82f6] h-full w-[30%]"></div>
+                <div className="bg-[#3b82f6] h-full transition-all duration-500" style={{width:`${Completeness}%`}}></div>
               </div>
             </div>
             <div className="flex gap-2">
