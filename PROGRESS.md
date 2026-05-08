@@ -64,7 +64,8 @@
 - [x] Edit Profile — add degree, year fields (Akram)
 - [x] EmployerDashboard — show employer's actual name (Akram)
 - [x] Fix applicants count display on Employer Dashboard (Akram)
-- [x] EmployerApplicants — align-middle fix + async/await refactor (Akram)
+- [x] EmployerApplicants — alignment fix + async/await refactor (Akram)
+- [x] Empty states on all pages (Dayan)
 
 ## Deployment ✅
 - [x] Deploy backend to Render — https://hirepath-api.onrender.com
@@ -74,7 +75,8 @@
 - [ ] Write README.md
 
 ## In Progress
-- [ ] Empty states on all pages (Dayan - feature/empty-states)
+- [ ] AuthContext refactor (Akram)
+- [ ] Profile completeness — calculate dynamically (Dayan - feature/profile-completeness)
 
 ## Pending Core Features
 
@@ -89,8 +91,7 @@
 ## Polish Phase
 - [ ] Navbar auth state — proper fix with AuthContext (replace window.location.href)
 - [ ] Feedback button — only show for accepted applications without feedback
-- [ ] Profile completeness — calculate dynamically based on filled fields
-- [ ] Empty states on all pages (Dayan - feature/empty-states)
+- [ ] Profile completeness — calculate dynamically (Dayan - feature/profile-completeness)
 - [ ] Mobile responsiveness check on all pages
 - [ ] Animations/transitions (Framer Motion)
 - [ ] Error boundaries
@@ -119,8 +120,8 @@
 - [ ] Basic frontend testing
 
 ## Current Task
-- Akram: AuthContext refactor + Feedback button fix
-- Dayan: Empty states on all pages (feature/empty-states)
+- Akram: AuthContext refactor
+- Dayan: Profile completeness dynamic calculation (feature/profile-completeness)
 
 ## Notes
 - MongoDB Atlas cluster: nodetuts.amqi2r8.mongodb.net
