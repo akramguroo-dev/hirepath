@@ -68,6 +68,7 @@ export default function Profile() {
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#F8F9FA]">
+        <div className="w-10 h-10 border-4 border-[#008BDC] border-t-transparent rounded-full animate-spin"></div>
         Loading Profile...
       </div>
     );
@@ -87,25 +88,25 @@ export default function Profile() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8F9FA] py-10 px-4 md:px-12 font-sans text-[#444444]">
+    <div className="min-h-screen bg-[#F8F9FA] py-6 md:py-10 px-4 md:px-12 font-sans text-[#444444]">
       <div className="max-w-6xl mx-auto">
-        <div className="bg-white border border-gray-200 rounded-xl shadow-sm p-8 flex flex-col md:flex-row justify-between items-center mb-8">
-          <div className="flex items-center gap-6">
+        <div className="bg-white border border-gray-200 rounded-xl shadow-sm p-6 md:p-8 flex flex-col lg:flex-row justify-between items-center lg:items-start mb-8 gap-8">
+          <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-6 w-full lg:w-auto">
             <div className="w-20 h-20 bg-[#F0F9FF] text-[#00A5EC] rounded-full flex items-center justify-center text-3xl font-bold border border-blue-100">
               {profileData.name.charAt(0)}
             </div>
             <div className="text-left">
-              <h1 className="text-3xl font-bold text-gray-800">
+              <h1 className="text-2xl md:text-3xl font-bold text-gray-800">
                 {profileData.name}
               </h1>
               <p className="text-gray-500 font-medium">{profileData.email}</p>
-              <p className="text-gray-400 text-sm mt-1 flex items-center gap-1">
+              <p className="text-gray-400 text-sm mt-1 flex items-center justify-center sm:justify-start gap-1">
                 📍 {profileData.location}
               </p>
             </div>
           </div>
-          <div className="flex flex-col items-end gap-4 mt-6 md:mt-0">
-            <div className="w-full md:w-80">
+          <div className="flex flex-col items-center lg:items-end gap-6 w-full lg:w-auto">
+            <div className="w-full max-w-xs md:w-80">
               <div className="flex justify-between text-xs font-bold text-gray-500 mb-2 uppercase tracking-wide">
                 <span>Profile Completeness</span>
                 <span className="text-[#00A5EC]">{completeness}%</span>
@@ -114,22 +115,22 @@ export default function Profile() {
                 <div className="bg-[#3b82f6] h-full transition-all duration-500" style={{width:`${completeness}%`}}></div>
               </div>
             </div>
-            <div className="flex gap-2">
+            <div className="flex flex-wrap justify-center lg:justify-end gap-2 w-full">
               <button
                 onClick={() => navigate("/my-applications")}
-                className="text-sm font-semibold text-[#008BDC] border border-[#008BDC] px-4 py-2 rounded-md hover:bg-blue-50 transition-colors"
+                className=" flex-1 sm:flex-none text-xs font-semibold text-[#008BDC] border border-[#008BDC] px-3 md:px-4  py-2 rounded-md hover:bg-blue-50 transition-colors whitespace-nowrap"
               >
                 My Applications
               </button>
               <button
                 onClick={() => navigate("/my-feedback")}
-                className="text-sm font-semibold text-[#008BDC] border border-[#008BDC] px-4 py-2 rounded-md hover:bg-blue-50 transition-colors"
+                className=" flex-1 sm:flex-none text-xs sm:text-sm font-semibold text-[#008BDC] border border-[#008BDC] px-3 md:px-4 py-2 rounded-md hover:bg-blue-50 transition-colors whitespace-nowrap"
               >
                 My Feedback
               </button>
               <button
                 onClick={() => navigate("/student-dashboard")}
-                className="text-sm font-semibold text-[#008BDC] border border-[#008BDC] px-4 py-2 rounded-md hover:bg-blue-50 transition-colors"
+                className="w-full sm:w-auto text-xs font-semibold text-[#008BDC] border border-[#008BDC] px-3 md:px-4 py-2 rounded-md hover:bg-blue-50 transition-colors whitespace-nowrap"
               >
                 My Dashboard
               </button>
@@ -138,15 +139,15 @@ export default function Profile() {
         </div>
         <div className="flex flex-col md:flex-row gap-8">
           <aside className="w-full md:w-1/4">
-            <div className="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
-              <nav className="flex flex-col">
+            <div className="bg-white border border-gray-200 rounded-xl shadow-sm overflow-x-auto md:overflow-hidden">
+              <nav className="flex flex-row md:flex-col min-w-max md:min-w-0">
                 {menuItems.map((item) => (
                   <button
                     key={item.name}
                     onClick={() => setActiveTab(item.name)}
-                    className={`flex items-center gap-3 text-left px-6 py-5 text-sm font-semibold border-b border-gray-50 transition-all ${
+                    className={`flex items-center gap-3 text-left px-5 md:px-6 py-4 md:py-5 text-sm font-semibold border-b border-gray-50 transition-all whitespace-nowrap ${
                       activeTab === item.name
-                        ? "text-[#00A5EC] bg-[#F0F9FF] border-r-4 border-[#00A5EC]"
+                        ? "text-[#00A5EC] bg-[#F0F9FF] border-b-2 md:border-b-0 md:border-r-4 border-[#00A5EC]"
                         : "text-gray-500 hover:bg-gray-50"
                     }`}
                   >
@@ -166,25 +167,25 @@ export default function Profile() {
             </div>
           </aside>
           <main className="w-full md:w-3/4">
-            <div className="bg-white border border-gray-200 rounded-xl p-10 shadow-sm text-left relative min-h-[500px]">
+            <div className="bg-white border border-gray-200 rounded-xl p-6 md:p-10 shadow-sm text-left relative min-h-[400px] md:min-h-[500px]">
               <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-bold text-gray-800">
+                <h2 className="text-xl  md:text-2xl font-bold text-gray-800">
                   {activeTab}
                 </h2>
                 <button
                   onClick={() => navigate("/edit-profile")}
-                  className="flex items-center gap-1 text-[#00A5EC] border border-[#00A5EC] px-4 py-1.5 rounded-md font-bold text-sm hover:bg-blue-50 transition-colors"
+                  className="flex items-center gap-1 text-[#00A5EC] border border-[#00A5EC] px-3 py-1.5 rounded-md font-bold text-xs md:text-sm hover:bg-blue-50 transition-colors"
                 >
                   <Edit3 size={14} /> Edit
                 </button>
               </div>
-              <hr className="border-gray-100 mb-10" />
+              <hr className="border-gray-100 mb-8 md:mb-10" />
               {activeTab === "Education" && (
-                <div className="border-l-4 border-[#00A5EC] pl-6 py-2 mb-16">
-                  <h4 className="font-bold text-xl text-gray-800">
+                <div className="border-l-4 border-[#00A5EC] pl-4 md:pl-6 py-2 mb-16">
+                  <h4 className="font-bold text-lg md:text-xl text-gray-800">
                     {profileData.education.degree}
                   </h4>
-                  <p className="text-[#00A5EC] font-bold mt-1 text-lg">
+                  <p className="text-[#00A5EC] font-bold mt-1 text-base md:text-lg">
                     {profileData.education.school}
                   </p>
                   <p className="text-gray-400 text-sm mt-1">
@@ -193,9 +194,9 @@ export default function Profile() {
                 </div>
               )}
               {activeTab === "Personal Details" && (
-                <div className="space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
-                    <p className="text-xs font-bold text-gray-400 uppercase tracking-wide mb-1">
+                    <p className=" text-[10px] font-bold text-gray-400 uppercase tracking-wide mb-1">
                       Full Name
                     </p>
                     <p className="text-gray-800 font-semibold">
@@ -203,7 +204,7 @@ export default function Profile() {
                     </p>
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-gray-400 uppercase tracking-wide mb-1">
+                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wide mb-1">
                       Email
                     </p>
                     <p className="text-gray-800 font-semibold">
@@ -211,7 +212,7 @@ export default function Profile() {
                     </p>
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-gray-400 uppercase tracking-wide mb-1">
+                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wide mb-1">
                       College
                     </p>
                     <p className="text-gray-800 font-semibold">
@@ -219,7 +220,7 @@ export default function Profile() {
                     </p>
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-gray-400 uppercase tracking-wide mb-1">
+                    <p className=" text-[10px] font-bold text-gray-400 uppercase tracking-wide mb-1">
                       Location
                     </p>
                     <p className="text-gray-800 font-semibold">
@@ -234,37 +235,37 @@ export default function Profile() {
                     userData.skills.map((skill, index) => (
                       <span
                         key={index}
-                        className="px-3 py-1 bg-blue-50 text-[#008BDC] border border-blue-100 rounded-full text-sm font-semibold"
+                        className="px-3 py-1 bg-blue-50 text-[#008BDC] border border-blue-100 rounded-full text-xs font-semibold"
                       >
                         {skill}
                       </span>
                     ))
                   ) : (
-                    <p className="text-gray-400">No skills added yet.</p>
+                    <p className="text-gray-400 text-sm">No skills added yet.</p>
                   )}
                 </div>
               )}
               {activeTab === "Internships" && (
-                <p className="text-gray-400">No internships added yet.</p>
+                <p className="text-gray-400 text-sm">No internships added yet.</p>
               )}
               {activeTab === "Jobs" && (
-                <p className="text-gray-400">No jobs added yet.</p>
+                <p className="text-gray-400 text-sm">No jobs added yet.</p>
               )}
               {activeTab === "Projects" && (
-                <p className="text-gray-400">No projects added yet.</p>
+                <p className="text-gray-400 text-sm">No projects added yet.</p>
               )}
               {activeTab === "Accomplishments" && (
-                <p className="text-gray-400">No accomplishments added yet.</p>
+                <p className="text-gray-400 text-sm">No accomplishments added yet.</p>
               )}
-              <div className="mt-20">
-                <h3 className="text-sm font-bold text-gray-500 uppercase mb-6 tracking-wide">
+              <div className=" mt-12 md:mt-20">
+                <h3 className="text-xs font-bold text-gray-500 uppercase mb-6 tracking-wide">
                   Resume
                 </h3>
-                <div className="border-2 border-dashed border-blue-200 rounded-lg p-12 text-center bg-white">
-                  <p className="text-gray-500 mb-6 font-medium">
+                <div className="border-2 border-dashed border-blue-200 rounded-lg p-6 md:p-12 text-center bg-white">
+                  <p className="text-gray-500 mb-6 text-sm font-medium">
                     Upload your resume (PDF/DOC, max 2MB)
                   </p>
-                  <button className="bg-[#3b82f6] text-white px-10 py-3 rounded-lg font-bold text-sm hover:bg-blue-600 transition-all shadow-lg shadow-blue-100">
+                  <button className=" w-full sm:w-auto bg-[#3b82f6] text-white px-8 py-3 rounded-lg font-bold text-sm hover:bg-blue-600 transition-all shadow-lg shadow-blue-100">
                     Upload Resume
                   </button>
                 </div>

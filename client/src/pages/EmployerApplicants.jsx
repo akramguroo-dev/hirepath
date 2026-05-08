@@ -77,8 +77,8 @@ export default function EmployerApplicants() {
           Applicants for{" "}
           <span className="text-blue-600">{jobTitle}</span>
         </h1>
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-          <table className="w-full text-left">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-x-auto">
+          <table className="w-full text-left min-w-[700px]">
             <thead className="bg-gray-100 border-b border-gray-200">
               <tr>
                 <th className="px-6 py-4 font-semibold text-gray-700 text-sm uppercase tracking-wider">
