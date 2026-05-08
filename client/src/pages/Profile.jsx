@@ -63,7 +63,7 @@ export default function Profile() {
 
     return count * 20;
   };
-  const Completeness = calculateCompleteness();
+  const completeness = calculateCompleteness();
 
   if (isLoading) {
     return (
@@ -108,10 +108,10 @@ export default function Profile() {
             <div className="w-full md:w-80">
               <div className="flex justify-between text-xs font-bold text-gray-500 mb-2 uppercase tracking-wide">
                 <span>Profile Completeness</span>
-                <span className="text-[#00A5EC]">{Completeness}%</span>
+                <span className="text-[#00A5EC]">{completeness}%</span>
               </div>
               <div className="w-full bg-gray-100 h-2 rounded-full overflow-hidden">
-                <div className="bg-[#3b82f6] h-full transition-all duration-500" style={{width:`${Completeness}%`}}></div>
+                <div className="bg-[#3b82f6] h-full transition-all duration-500" style={{width:`${completeness}%`}}></div>
               </div>
             </div>
             <div className="flex gap-2">
