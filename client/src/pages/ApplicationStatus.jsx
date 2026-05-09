@@ -53,8 +53,8 @@ export default function ApplicationStatus() {
             Track the progress of your job and internship applications.
           </p>
         </div>
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-          <table className="w-full text-left border-collapse">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-x-auto">
+          <table className="w-full text-left border-collapse min-w-[650px]">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
                 <th className="px-6 py-4 font-semibold text-gray-700 text-sm uppercase tracking-wider">
@@ -77,16 +77,16 @@ export default function ApplicationStatus() {
                   key={app._id}
                   className="hover:bg-gray-50 transition-colors"
                 >
-                  <td className="px-6 py-4 font-semibold text-[#008BDC]">
+                  <td className="px-6 py-4 font-semibold text-[#008BDC] whitespace-nowrap">
                     {app.job_id.title}
                   </td>
-                  <td className="px-6 py-4 text-gray-700 font-medium">
+                  <td className="px-6 py-4 text-gray-700 font-medium whitespace-nowrap">
                     {app.job_id.company}
                   </td>
-                  <td className="px-6 py-4 text-gray-500 text-sm">
+                  <td className="px-6 py-4 text-gray-500 text-sm whitespace-nowrap">
                     {new Date(app.createdAt).toLocaleDateString()}
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-6 py-4 whitespace-nowrap">
                     <span
                       className={`px-3 py-1 rounded-full text-xs font-bold border ${getStatusStyle(app.status)}`}
                     >
@@ -98,7 +98,7 @@ export default function ApplicationStatus() {
             </tbody>
           </table>
           {applications.length === 0 && (
-            <div className="p-12 text-center text-gray-400">
+            <div className="p-12 text-center text-gray-400 bg-white">
               No applications found. Go find your dream internship!
             </div>
           )}

@@ -47,20 +47,20 @@ export default function FeedbackReceived() {
             Direct feedback and ratings from employers on your applications.
           </p>
         </div>
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-          <table className="w-full text-left border-collapse">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-x-auto">
+          <table className="w-full text-left border-collapse min-w-[700px]">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="px-6 py-4 font-semibold text-gray-700 text-sm uppercase">
+                <th className="px-6 py-4 font-semibold text-gray-700 text-sm uppercase tracking-wider">
                   Job Title
                 </th>
-                <th className="px-6 py-4 font-semibold text-gray-700 text-sm uppercase">
+                <th className="px-6 py-4 font-semibold text-gray-700 text-sm uppercase tracking-wider">
                   Company
                 </th>
-                <th className="px-6 py-4 font-semibold text-gray-700 text-sm uppercase">
+                <th className="px-6 py-4 font-semibold text-gray-700 text-sm uppercase tracking-wider">
                   Rating
                 </th>
-                <th className="px-6 py-4 font-semibold text-gray-700 text-sm uppercase">
+                <th className="px-6 py-4 font-semibold text-gray-700 text-sm uppercase tracking-wider">
                   Comment
                 </th>
               </tr>
@@ -68,19 +68,19 @@ export default function FeedbackReceived() {
             <tbody className="divide-y divide-gray-100">
               {feedbacks.map((item) => (
                 <tr key={item._id} className="hover:bg-gray-50 transition-colors">
-                  <td className="px-6 py-4 font-semibold text-[#008BDC]">
+                  <td className="px-6 py-4 font-semibold text-[#008BDC] whitespace-nowrap">
                     {item.job_id.title}
                   </td>
-                  <td className="px-6 py-4 text-gray-700 font-medium">
+                  <td className="px-6 py-4 text-gray-700 font-medium whitespace-nowrap">
                     {item.job_id.company}
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-6 py-4 whitespace-nowrap" >
                     <div className="flex text-yellow-500 text-sm font-bold items-center">
                       {item.rating} / 5
                       <span className="ml-1">⭐</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 text-gray-600 text-sm italic">
+                  <td className="px-6 py-4 text-gray-600 text-sm italic min-w-[300px]">
                     "{item.employer_feedback}"
                   </td>
                 </tr>
@@ -88,7 +88,7 @@ export default function FeedbackReceived() {
             </tbody>
           </table>
           {feedbacks.length === 0 && (
-            <div className="p-12 text-center text-gray-400">
+            <div className="p-12 text-center text-gray-400 bg-white">
               No feedback received yet. Keep applying!
             </div>
           )}
