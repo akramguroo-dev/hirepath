@@ -69,17 +69,15 @@
 - [x] AuthContext refactor — replace window.location.href (Akram)
 - [x] Profile completeness — dynamic calculation (Dayan)
 - [x] Mobile responsiveness check on all pages (Dayan)
+- [x] Feedback button — conditional logic (Akram)
+- [x] README.md (Dayan + Akram fixes)
 
 ## Deployment ✅
 - [x] Deploy backend to Render — https://hirepath-api.onrender.com
 - [x] Deploy frontend to Vercel — https://hirepath-eight.vercel.app
 - [x] Set environment variables
 - [x] Connect frontend to production backend URL
-- [ ] Write README.md
-
-## In Progress
-- [ ] Feedback button — only show for accepted without feedback (Akram)
-- [ ] README.md (Dayan - feature/readme)
+- [x] Write README.md
 
 ## Pending Core Features
 
@@ -92,7 +90,6 @@
 - [ ] Pagination UI on Jobs page
 
 ## Polish Phase
-- [ ] Feedback button — only show for accepted applications without feedback
 - [ ] Animations/transitions (Framer Motion)
 - [ ] Error boundaries
 - [ ] Lazy loading for pages
@@ -120,8 +117,8 @@
 - [ ] Basic frontend testing
 
 ## Current Task
-- Akram: Feedback button — only show for accepted applications without feedback
-- Dayan: README.md (feature/readme)
+- Akram: Pagination for jobs (backend + frontend)
+- Dayan: Next task pending
 
 ## Notes
 - MongoDB Atlas cluster: nodetuts.amqi2r8.mongodb.net

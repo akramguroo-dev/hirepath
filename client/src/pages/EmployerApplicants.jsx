@@ -17,7 +17,7 @@ export default function EmployerApplicants() {
         });
         setApplicants(response.data.jobApps);
         const title = await API.get(`/jobs/${id}`, {
-          headers: { Authorization: `Bearer ${token}`},
+          headers: { Authorization: `Bearer ${token}` },
         });
         setJobTitle(title.data.job.title);
       } catch (error) {
@@ -74,8 +74,7 @@ export default function EmployerApplicants() {
         </Link>
 
         <h1 className="text-2xl font-bold text-gray-800 mb-8">
-          Applicants for{" "}
-          <span className="text-blue-600">{jobTitle}</span>
+          Applicants for <span className="text-blue-600">{jobTitle}</span>
         </h1>
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-x-auto">
           <table className="w-full text-left min-w-[700px]">
@@ -99,58 +98,80 @@ export default function EmployerApplicants() {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
-              {applicants.length>0 ?(
-              applicants.map((app) => (
-                <tr
-                  key={app._id}
-                  className="hover:bg-gray-50 transition duration-150"
-                >
-                  <td className="px-6 py-4 font-medium text-gray-900 align-middle whitespace-nowrap">
-                    {app.student_id.name}
-                  </td>
-                  <td className="px-6 py-4 text-gray-600 align-middle">
-                    {app.student_id.email}
-                  </td>
-                  <td className="px-6 py-4 text-gray-600 align-middle">
-                    {new Date(app.createdAt).toLocaleDateString()}
-                  </td>
-                  <td className="px-6 py-4 align-middle">
-                    <span
-                      className={`px-3 py-1 rounded-full text-xs font-semibold border ${getStatusStyle(app.status)}`}
-                    >
-                      {app.status}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 flex gap-2 items-center">
-                    <button
-                      onClick={() => handleStatus(app._id, "accepted")}
-                      className="px-3 py-1 bg-green-500 hover:bg-green-600 text-white text-xs font-bold rounded"
-                    >
-                      Accept
-                    </button>
-                    <button
-                      onClick={() => handleStatus(app._id, "rejected")}
-                      className="px-3 py-1 bg-red-500 hover:bg-red-600 text-white text-xs font-bold rounded"
-                    >
-                      Reject
-                    </button>
-                    <Link
-                      to={`/feedback/${app._id}`}
-                      className="px-3 py-1 bg-[#008BDC] hover:bg-[#0076bb] text-white text-xs font-bold rounded"
-                    >
-                      Feedback
-                    </Link>
-                  </td>
-                </tr>
-              ))
-            ) :(
-              <tr>
-                <td colSpan="5">
+              {applicants.length > 0 ? (
+                applicants.map((app) => (
+                  <tr
+                    key={app._id}
+                    className="hover:bg-gray-50 transition duration-150"
+                  >
+                    <td className="px-6 py-4 font-medium text-gray-900 align-middle whitespace-nowrap">
+                      {app.student_id.name}
+                    </td>
+                    <td className="px-6 py-4 text-gray-600 align-middle">
+                      {app.student_id.email}
+                    </td>
+                    <td className="px-6 py-4 text-gray-600 align-middle">
+                      {new Date(app.createdAt).toLocaleDateString()}
+                    </td>
+                    <td className="px-6 py-4 align-middle">
+                      <span
+                        className={`px-3 py-1 rounded-full text-xs font-semibold border ${getStatusStyle(app.status)}`}
+                      >
+                        {app.status}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4 flex gap-2 items-center">
+                      {app.status === "pending" && (
+                        <>
+                          <button
+                            onClick={() => handleStatus(app._id, "accepted")}
+                            className="px-3 py-1 bg-green-500 hover:bg-green-600 text-white text-xs font-bold rounded"
+                          >
+                            Accept
+                          </button>
+                          <button
+                            onClick={() => handleStatus(app._id, "rejected")}
+                            className="px-3 py-1 bg-red-500 hover:bg-red-600 text-white text-xs font-bold rounded"
+                          >
+                            Reject
+                          </button>
+                        </>
+                      )}
+                      {app.status === "accepted" && (
+                        <button
+                          onClick={() => handleStatus(app._id, "rejected")}
+                          className="px-3 py-1 bg-red-500 hover:bg-red-600 text-white text-xs font-bold rounded"
+                        >
+                          Reject
+                        </button>
+                      )}
+                      {app.status === "rejected" && (
+                        <button
+                          onClick={() => handleStatus(app._id, "accepted")}
+                          className="px-3 py-1 bg-green-500 hover:bg-green-600 text-white text-xs font-bold rounded"
+                        >
+                          Accept
+                        </button>
+                      )}
+                      {app.status === "accepted" && !app.employer_feedback && (
+                        <Link
+                          to={`/feedback/${app._id}`}
+                          className="px-3 py-1 bg-[#008BDC] hover:bg-[#0076bb] text-white text-xs font-bold rounded"
+                        >
+                          Feedback
+                        </Link>
+                      )}
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="5">
                     <div className="p-12 text-center text-gray-400">
                       No applicants yet for this job.
                     </div>
                   </td>
-              </tr>
+                </tr>
               )}
             </tbody>
           </table>
