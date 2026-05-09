@@ -68,6 +68,7 @@
 - [x] Empty states on all pages (Dayan)
 - [x] AuthContext refactor — replace window.location.href (Akram)
 - [x] Profile completeness — dynamic calculation (Dayan)
+- [x] Mobile responsiveness check on all pages (Dayan)
 
 ## Deployment ✅
 - [x] Deploy backend to Render — https://hirepath-api.onrender.com
@@ -78,7 +79,7 @@
 
 ## In Progress
 - [ ] Feedback button — only show for accepted without feedback (Akram)
-- [ ] Mobile responsiveness check (Dayan - feature/mobile-responsiveness)
+- [ ] README.md (Dayan - feature/readme)
 
 ## Pending Core Features
 
@@ -92,7 +93,6 @@
 
 ## Polish Phase
 - [ ] Feedback button — only show for accepted applications without feedback
-- [ ] Mobile responsiveness check on all pages (Dayan - feature/mobile-responsiveness)
 - [ ] Animations/transitions (Framer Motion)
 - [ ] Error boundaries
 - [ ] Lazy loading for pages
@@ -121,7 +121,7 @@
 
 ## Current Task
 - Akram: Feedback button — only show for accepted applications without feedback
-- Dayan: Mobile responsiveness check (feature/mobile-responsiveness)
+- Dayan: README.md (feature/readme)
 
 ## Notes
 - MongoDB Atlas cluster: nodetuts.amqi2r8.mongodb.net
