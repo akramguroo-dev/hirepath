@@ -16,7 +16,7 @@
 - [x] Application system
 - [x] Employer verification
 - [x] Feedback/rating
-- [x] Expand User schema for profile data (location, college, skills, education, resume, internships, jobs, projects, accomplishments)
+- [x] Expand User schema for profile data
 - [x] GET /api/auth/me (getMe route)
 - [x] GET /api/jobs/employer (employer specific jobs)
 - [x] PUT /api/auth/profile (update profile endpoint)
@@ -26,6 +26,7 @@
 - [x] Helmet.js (security headers)
 - [x] CORS configuration (restricted to frontend URL)
 - [x] Fix applicants count increment on apply
+- [x] Pagination for jobs
 
 ### Frontend
 - [x] Routing setup
@@ -37,7 +38,7 @@
 - [x] Job Detail page (fetching from backend)
 - [x] Apply Now button (connected to API)
 - [x] Student Profile page (connected to API)
-- [x] Employer Dashboard (connected to API - shows active jobs)
+- [x] Employer Dashboard (connected to API)
 - [x] Post Job form UI (Dayan)
 - [x] Connect Post Job form to backend API (Akram)
 - [x] Employer — view applicants per job UI (Dayan)
@@ -60,7 +61,7 @@
 - [x] Connect Student Dashboard to API (Akram)
 - [x] Loading spinners on all pages (Dayan)
 - [x] Refactor to async/await with finally (Akram)
-- [x] Profile page — display skills, college, education fields properly (Akram)
+- [x] Profile page — display skills, college, education fields (Akram)
 - [x] Edit Profile — add degree, year fields (Akram)
 - [x] EmployerDashboard — show employer's actual name (Akram)
 - [x] Fix applicants count display on Employer Dashboard (Akram)
@@ -71,6 +72,7 @@
 - [x] Mobile responsiveness check on all pages (Dayan)
 - [x] Feedback button — conditional logic (Akram)
 - [x] README.md (Dayan + Akram fixes)
+- [x] Pagination for jobs UI (Akram)
 
 ## Deployment ✅
 - [x] Deploy backend to Render — https://hirepath-api.onrender.com
@@ -79,17 +81,7 @@
 - [x] Connect frontend to production backend URL
 - [x] Write README.md
 
-## Pending Core Features
-
-### Backend
-- [ ] Pagination for jobs
-- [ ] Token expiry handling
-- [ ] Role-based access control
-
-### Frontend
-- [ ] Pagination UI on Jobs page
-
-## Polish Phase
+## Polish Phase (Remaining)
 - [ ] Animations/transitions (Framer Motion)
 - [ ] Error boundaries
 - [ ] Lazy loading for pages
@@ -106,7 +98,13 @@
 - [ ] Admin routes
 - [ ] Dark mode (optional)
 
-## Projects Roadmap (Parallel to Polish Phase)
+## Pending Core Features
+
+### Backend
+- [ ] Token expiry handling
+- [ ] Role-based access control
+
+## Projects Roadmap (After HirePath)
 - [ ] Portfolio Site (Next.js + TypeScript) — deploy on Vercel
 - [ ] Chat App (React + Node + Socket.io) — learn Socket.io before adding to HirePath
 - [ ] Add real-time chat to HirePath
@@ -117,8 +115,8 @@
 - [ ] Basic frontend testing
 
 ## Current Task
-- Akram: Pagination for jobs (backend + frontend)
-- Dayan: Next task pending
+- Akram: Token expiry handling
+- Dayan: Animations/transitions with Framer Motion (feature/animations)
 
 ## Notes
 - MongoDB Atlas cluster: nodetuts.amqi2r8.mongodb.net

@@ -36,8 +36,17 @@ const getAllJobs = async (req, res) => {
         { company: { $regex: search, $options: "i" } },
       ];
 
-    const jobs = await Job.find(filter).populate("posted_by", "name email");
-    res.json({ jobs });
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const skip = (page - 1) * limit;
+
+    const total = await Job.countDocuments(filter);
+    const jobs = await Job.find(filter)
+      .populate("posted_by", "name email")
+      .skip(skip)
+      .limit(limit);
+
+    res.json({ jobs, total, page, totalPages: Math.ceil(total / limit) });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
