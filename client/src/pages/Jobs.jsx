@@ -27,7 +27,7 @@ export default function Jobs() {
             type: filters.type,
             location: filters.location,
             page,
-            limit: 10,
+            limit: 9,
           },
         });
 
