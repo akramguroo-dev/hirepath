@@ -74,6 +74,7 @@
 - [x] README.md (Dayan + Akram fixes)
 - [x] Pagination for jobs UI (Akram)
 - [x] Animations/transitions — Framer Motion (Dayan)
+- [x] Token expiry handling — Axios interceptor (Akram)
 
 ## Deployment ✅
 - [x] Deploy backend to Render — https://hirepath-api.onrender.com
@@ -101,7 +102,6 @@
 ## Pending Core Features
 
 ### Backend
-- [ ] Token expiry handling
 - [ ] Role-based access control
 
 ## Projects Roadmap (After HirePath)
@@ -115,7 +115,7 @@
 - [ ] Basic frontend testing
 
 ## Current Task
-- Akram: Token expiry handling
+- Akram: Role-based access control (backend middleware)
 - Dayan: Lazy loading for pages (feature/lazy-loading)
 
 ## Notes

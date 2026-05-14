@@ -1,4 +1,5 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useState } from "react";
+import { setLogoutFunction } from "../api/axios";
 
 const AuthContext = createContext();
 
@@ -14,13 +15,16 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem("role", role);
   };
 
-  const logout = () => {
+  const logout = useCallback(() => {
     setToken(null);
     setRole(null);
-
     localStorage.removeItem("token");
     localStorage.removeItem("role");
-  };
+  }, []);
+
+  useEffect(() => {
+    setLogoutFunction(logout);
+  }, [logout]);
 
   return (
     <AuthContext.Provider
