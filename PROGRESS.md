@@ -5,7 +5,7 @@
 - Dayan Hanief Shah (Frontend)
 
 ## Tech Stack
-- Frontend: React, Tailwind, React Router, Axios
+- Frontend: React, Tailwind, React Router, Axios, Framer Motion
 - Backend: Node.js, Express, MongoDB Atlas, JWT
 
 ## Completed Features
@@ -73,6 +73,7 @@
 - [x] Feedback button — conditional logic (Akram)
 - [x] README.md (Dayan + Akram fixes)
 - [x] Pagination for jobs UI (Akram)
+- [x] Animations/transitions — Framer Motion (Dayan)
 
 ## Deployment ✅
 - [x] Deploy backend to Render — https://hirepath-api.onrender.com
@@ -82,7 +83,6 @@
 - [x] Write README.md
 
 ## Polish Phase (Remaining)
-- [ ] Animations/transitions (Framer Motion)
 - [ ] Error boundaries
 - [ ] Lazy loading for pages
 - [ ] Accessibility (aria-labels, keyboard navigation, color contrast)
@@ -116,7 +116,7 @@
 
 ## Current Task
 - Akram: Token expiry handling
-- Dayan: Animations/transitions with Framer Motion (feature/animations)
+- Dayan: Lazy loading for pages (feature/lazy-loading)
 
 ## Notes
 - MongoDB Atlas cluster: nodetuts.amqi2r8.mongodb.net
