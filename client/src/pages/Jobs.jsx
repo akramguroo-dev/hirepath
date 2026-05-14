@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import JobCard from "../components/JobCard";
 import API from "../api/axios";
+import { motion } from "framer-motion";
 
 export default function Jobs() {
   const [jobsList, setJobsList] = useState([]);
@@ -111,6 +112,12 @@ export default function Jobs() {
             </div>
           ) : (
             jobsList.map((job) => (
+              <motion.div
+              key={job._id}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5 }}
+              >
               <JobCard
                 key={job._id}
                 id={job._id}
@@ -120,6 +127,7 @@ export default function Jobs() {
                 salary={job.salary}
                 duration={job.duration}
               />
+              </motion.div>
             ))
           )}
         </div>

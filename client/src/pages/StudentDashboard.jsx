@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import API from "../api/axios";
+import { motion } from "framer-motion";
 
 export default function StudentDashboard() {
   const [userName, setUserName] = useState("");
@@ -79,10 +80,17 @@ export default function StudentDashboard() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
           {stats.map((stat, index) => (
-            <div key={index} className={`${stat.bg} p-6 md:p-10 rounded-lg border border-gray-100 shadow-sm transition hover:shadow-md`}>
+            <motion.div
+            key={index}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className={`${stat.bg} p-6 md:p-10 rounded-lg border border-gray-100 shadow-sm transition hover:shadow-md`}
+            
+            >
               <p className="text-xs md:text-sm font-bold text-gray-500 uppercase tracking-widest">{stat.label}</p>
               <p className={`text-4xl md:text-5xl font-extrabold ${stat.color} mt-3`}>{stat.count}</p>
-            </div>
+              </motion.div>
           ))}
         </div>
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
@@ -127,6 +135,6 @@ export default function StudentDashboard() {
           </div>
         </div>
       </div>
-    </div>
+      </div>
   );
 }

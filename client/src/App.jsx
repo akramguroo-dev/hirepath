@@ -1,6 +1,7 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route ,useLocation } from "react-router-dom";
 
 import {Toaster} from "react-hot-toast"
+import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
@@ -21,11 +22,20 @@ import NotFound from "./pages/NotFound";
 import StudentDashboard from "./pages/StudentDashboard";
 
 function App() {
+  const location = useLocation();
   return (
     <>
     <Toaster/>
       <Navbar />
-      <Routes>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={location.pathname} // Unique key triggers animation on route change
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+      <Routes location={location} key={location.pathname}>
         <Route
           path="/profile"
           element={
@@ -94,6 +104,8 @@ function App() {
         <Route path="/feedback/:applicationId" element={<FeedbackForm />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      </motion.div>
+      </AnimatePresence>
       <Footer />
     </>
   );
