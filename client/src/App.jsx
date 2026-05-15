@@ -116,8 +116,8 @@ function App() {
       </Routes>
       </motion.div>
       </AnimatePresence>
-      <Footer />
       </Suspense>
+      <Footer />
     </>
   );
 }
