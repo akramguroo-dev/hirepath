@@ -27,6 +27,8 @@
 - [x] CORS configuration (restricted to frontend URL)
 - [x] Fix applicants count increment on apply
 - [x] Pagination for jobs
+- [x] Token expiry handling — Axios interceptor (frontend)
+- [x] Role-based access control — middleware
 
 ### Frontend
 - [x] Routing setup
@@ -84,29 +86,23 @@
 - [x] Write README.md
 
 ## Polish Phase (Remaining)
-- [ ] Error boundaries
-- [ ] Lazy loading for pages
-- [ ] Accessibility (aria-labels, keyboard navigation, color contrast)
-- [ ] Company logo upload for employers
-- [ ] Profile photo upload for students
+- [ ] Error boundaries (Dayan)
+- [ ] Lazy loading for pages (Dayan)
+- [ ] Accessibility (aria-labels, keyboard navigation, color contrast) (Dayan)
+- [ ] Company logo upload for employers (Cloudinary)
+- [ ] Profile photo upload for students (Cloudinary)
 - [ ] Resume upload (Cloudinary)
 - [ ] Admin Panel page
 - [ ] College/Faculty Dashboard page
 - [ ] Real-time chat (Socket.io)
-- [ ] College/faculty routes + dashboard
 - [ ] Job recommendation logic
 - [ ] Analytics endpoints
 - [ ] Admin routes
 - [ ] Dark mode (optional)
 
-## Pending Core Features
-
-### Backend
-- [ ] Role-based access control
-
-## Projects Roadmap (After HirePath)
+## Projects Roadmap (After HirePath Polish)
 - [ ] Portfolio Site (Next.js + TypeScript) — deploy on Vercel
-- [ ] Chat App (React + Node + Socket.io) — learn Socket.io before adding to HirePath
+- [ ] Chat App (React + Node + Socket.io)
 - [ ] Add real-time chat to HirePath
 - [ ] Dashboard App (React + Redux Toolkit + TypeScript + Jest)
 
@@ -115,7 +111,7 @@
 - [ ] Basic frontend testing
 
 ## Current Task
-- Akram: Role-based access control (backend middleware)
+- Akram: Error boundaries (frontend) + Accessibility (Dayan)
 - Dayan: Lazy loading for pages (feature/lazy-loading)
 
 ## Notes
