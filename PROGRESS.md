@@ -77,6 +77,7 @@
 - [x] Pagination for jobs UI (Akram)
 - [x] Animations/transitions — Framer Motion (Dayan)
 - [x] Token expiry handling — Axios interceptor (Akram)
+- [x] Lazy loading for pages (Dayan)
 
 ## Deployment ✅
 - [x] Deploy backend to Render — https://hirepath-api.onrender.com
@@ -85,34 +86,64 @@
 - [x] Connect frontend to production backend URL
 - [x] Write README.md
 
-## Polish Phase (Remaining)
-- [ ] Error boundaries (Dayan)
-- [ ] Lazy loading for pages (Dayan)
-- [ ] Accessibility (aria-labels, keyboard navigation, color contrast) (Dayan)
-- [ ] Company logo upload for employers (Cloudinary)
-- [ ] Profile photo upload for students (Cloudinary)
-- [ ] Resume upload (Cloudinary)
+## Week 1: HirePath Polish (3-4 days)
+- [ ] Error boundaries (Dayan) — #42
+- [ ] Accessibility — aria-labels (Dayan) — #43
+- [ ] Cloudinary uploads — profile photo, resume, logo (Akram)
+
+## Week 2: Portfolio Site (Next.js + TypeScript) (5 days)
+- [ ] Next.js setup + basic routing
+- [ ] TypeScript interfaces + props typing
+- [ ] Projects grid UI
+- [ ] About + Contact form
+- [ ] Deploy to Vercel
+
+## Week 3: Chat App (React + Node + Socket.io) (5 days)
+- [ ] Express + Socket.io server setup
+- [ ] React chat UI (message list, input)
+- [ ] Frontend ↔ Backend connection (send/receive)
+- [ ] Multiple rooms/users
+- [ ] Deploy backend + frontend
+
+## Week 4: Dashboard App (React + Redux + Testing) (5 days)
+- [ ] React + Redux Toolkit setup
+- [ ] Todo list UI (add, delete, filter)
+- [ ] Redux async thunks
+- [ ] Jest unit tests
+- [ ] Deploy to Vercel
+
+## Week 5: HirePath v2 — Real-time Chat (5 days)
+- [ ] Socket.io backend integration
+- [ ] Chat UI component
+- [ ] Connect to Socket.io
+- [ ] Redux notifications
+- [ ] Deploy to production
+
+## Pending Features (Post-5 weeks)
 - [ ] Admin Panel page
 - [ ] College/Faculty Dashboard page
-- [ ] Real-time chat (Socket.io)
 - [ ] Job recommendation logic
 - [ ] Analytics endpoints
 - [ ] Admin routes
 - [ ] Dark mode (optional)
 
-## Projects Roadmap (After HirePath Polish)
-- [ ] Portfolio Site (Next.js + TypeScript) — deploy on Vercel
-- [ ] Chat App (React + Node + Socket.io)
-- [ ] Add real-time chat to HirePath
-- [ ] Dashboard App (React + Redux Toolkit + TypeScript + Jest)
+## Projects Roadmap
+1. ✅ HirePath (MERN) — In Progress
+2. Portfolio Site (Next.js + TypeScript) — Week 2
+3. Chat App (React + Node + Socket.io) — Week 3
+4. Dashboard App (Redux + Jest) — Week 4
+5. HirePath v2 Polish (Real-time Chat) — Week 5
 
 ## Testing
 - [ ] API testing with Jest
 - [ ] Basic frontend testing
 
 ## Current Task
-- Akram: Error boundaries (frontend) + Accessibility (Dayan)
-- Dayan: Lazy loading for pages (feature/lazy-loading)
+- Akram: Cloudinary uploads (Week 1, Day 3-4)
+- Dayan: Error boundaries (Week 1, Day 1-2) — #42
+
+## Next Task (After Error Boundaries)
+- Dayan: Accessibility — aria-labels (Week 1, Day 2-3) — #43
 
 ## Notes
 - MongoDB Atlas cluster: nodetuts.amqi2r8.mongodb.net
@@ -120,5 +151,12 @@
 - Production backend: https://hirepath-api.onrender.com
 - Local frontend: localhost:5173
 - Local backend: localhost:5000
-- Rule: Only UI/frontend tasks for team. API connection and backend is Akram's job.
+- Rule: Only UI/frontend tasks for Dayan. API/backend is Akram's job.
+- **5-Week Sprint Goal:** 4 production projects + strong resume by end of Week 5
 - Always paste PROGRESS.md at start of new Claude session
+
+## Post-5 Week Plan
+- Build resume with all 4 projects
+- Resume optimization + shortlisting strategy
+- Target startups + internship applications
+- Application strategy: 10-15 daily, track responses
