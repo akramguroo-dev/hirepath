@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ProtectedRoute from "./components/ProtectedRoute";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 const Home = lazy(() => import("./pages/Home"));
 const Login = lazy(() => import("./pages/Login"));
@@ -49,69 +50,83 @@ function App() {
         <Route
           path="/profile"
           element={
+            <ErrorBoundary>
             <ProtectedRoute>
               <Profile />
             </ProtectedRoute>
+            </ErrorBoundary>
           }
         />
         <Route
           path="/employer-dashboard"
           element={
+            <ErrorBoundary>
             <ProtectedRoute>
               <EmployerDashboard />
             </ProtectedRoute>
+            </ErrorBoundary>
           }
         />
         <Route
           path="/post-job"
           element={
+            <ErrorBoundary>
             <ProtectedRoute>
               <PostJob />
             </ProtectedRoute>
+            </ErrorBoundary>
           }
         />
         <Route
           path="/edit-profile"
           element={
+            <ErrorBoundary>
             <ProtectedRoute>
               <EditProfile />
             </ProtectedRoute>
+            </ErrorBoundary>
           }
         />
         <Route
           path="/my-applications"
           element={
+            <ErrorBoundary>
             <ProtectedRoute>
               <ApplicationStatus />
             </ProtectedRoute>
+            </ErrorBoundary>
           }
         />
         <Route
           path="/my-feedback"
           element={
+            <ErrorBoundary>
             <ProtectedRoute>
               <FeedbackReceived />
             </ProtectedRoute>
+            </ErrorBoundary>
           }
         />
         <Route
           path="/student-dashboard"
           element={
+            <ErrorBoundary>
             <ProtectedRoute>
               <StudentDashboard />
             </ProtectedRoute>
+            </ErrorBoundary>
           }
         />
-        <Route path="/" element={<Home />} />
-        <Route path="/jobs" element={<Jobs />} />
-        <Route path="/jobs/:id" element={<JobDetail />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/" element={ <ErrorBoundary><Home /> </ErrorBoundary>} />
+        <Route path="/jobs" element={<ErrorBoundary><Jobs /> </ErrorBoundary>} />
+        <Route path="/jobs/:id" element={ <ErrorBoundary><JobDetail /> </ErrorBoundary>} />
+        <Route path="/login" element={ <ErrorBoundary><Login /> </ErrorBoundary>} />
+        <Route path="/register" element={ <ErrorBoundary><Register /> </ErrorBoundary>} />
         <Route
           path="/employer/jobs/:id/applicants"
-          element={<EmployerApplicants />}
+          element={<ErrorBoundary><EmployerApplicants /> </ErrorBoundary>}
         />
-        <Route path="/feedback/:applicationId" element={<FeedbackForm />} />
+        <Route path="/feedback/:applicationId" element={ <ErrorBoundary><FeedbackForm /> </ErrorBoundary>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       </motion.div>
