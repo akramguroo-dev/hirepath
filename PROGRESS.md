@@ -78,6 +78,7 @@
 - [x] Animations/transitions — Framer Motion (Dayan)
 - [x] Token expiry handling — Axios interceptor (Akram)
 - [x] Lazy loading for pages (Dayan)
+- [x] Error boundaries (Dayan) — #42
 
 ## Deployment ✅
 - [x] Deploy backend to Render — https://hirepath-api.onrender.com
@@ -87,7 +88,7 @@
 - [x] Write README.md
 
 ## Week 1: HirePath Polish (3-4 days)
-- [ ] Error boundaries (Dayan) — #42
+- [x] Error boundaries (Dayan) — #42
 - [ ] Accessibility — aria-labels (Dayan) — #43
 - [ ] Cloudinary uploads — profile photo, resume, logo (Akram)
 
@@ -128,7 +129,7 @@
 - [ ] Dark mode (optional)
 
 ## Projects Roadmap
-1. ✅ HirePath (MERN) — In Progress
+1. ✅ HirePath (MERN) — Polish Phase In Progress
 2. Portfolio Site (Next.js + TypeScript) — Week 2
 3. Chat App (React + Node + Socket.io) — Week 3
 4. Dashboard App (Redux + Jest) — Week 4
@@ -140,9 +141,6 @@
 
 ## Current Task
 - Akram: Cloudinary uploads (Week 1, Day 3-4)
-- Dayan: Error boundaries (Week 1, Day 1-2) — #42
-
-## Next Task (After Error Boundaries)
 - Dayan: Accessibility — aria-labels (Week 1, Day 2-3) — #43
 
 ## Notes
