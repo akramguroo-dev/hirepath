@@ -12,6 +12,12 @@ cloudinary.v2.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary.v2,
+  folder: "hirepath",
+  allowedFormats: ["jpg", "jpeg", "png", "pdf"],
+});
+
 const upload = multer({ storage });
 
 router.post("/profile-photo", authMiddleware, upload.single("file"), (req, res) => {
