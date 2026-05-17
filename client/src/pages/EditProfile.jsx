@@ -80,8 +80,12 @@ export default function EditProfile() {
 
     try {
       setIsLoading(true);
+      const token = localStorage.getItem("token");
       const res = await API.post("/upload/profile-photo", uploadFormData, {
-        headers: { "Content-Type": "multipart/form-data" },
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${token}`,
+        },
       });
       setFormData((prev) => ({ ...prev, profilePhoto: res.data.url }));
       toast.success("Photo uploaded!");
@@ -103,7 +107,10 @@ export default function EditProfile() {
     try {
       setIsLoading(true);
       const res = await API.post("/upload/resume", uploadFormData, {
-        headers: { "Content-Type": "multipart/form-data" },
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${token}`,
+        },
       });
       setFormData((prev) => ({ ...prev, resume: res.data.url }));
       toast.success("Resume uploaded!");

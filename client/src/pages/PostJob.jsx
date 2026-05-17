@@ -34,7 +34,10 @@ export default function PostJob() {
     try {
       setIsLoading(true);
       const res = await API.post("/upload/logo", uploadFormData, {
-        headers: { "Content-Type": "multipart/form-data" },
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${token}`,
+        },
       });
       setFormData((prev) => ({ ...prev, companyLogo: res.data.url }));
       toast.success("Logo uploaded!");
