@@ -32,6 +32,10 @@ const userSchema = new Schema(
       type: String,
       required: false,
     },
+    profilePhoto: {
+      type: String,
+      required: false,
+    },
     skills: {
       type: [String],
       default: [],

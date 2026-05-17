@@ -29,6 +29,9 @@ const jobSchema = new Schema({
   duration: {
     type: String,
   },
+  companyLogo: {
+    type: String,
+  },
   startDate: {
     type: String,
   },

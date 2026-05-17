@@ -13,7 +13,7 @@ import {
 import API from "../api/axios";
 
 export default function Profile() {
-  const [activeTab, setActiveTab] = useState("Education");
+  const [activeTab, setActiveTab] = useState("Personal Details");
   const [userData, setUserData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -52,14 +52,14 @@ export default function Profile() {
     fetchProfile();
   }, [navigate]);
 
-  const calculateCompleteness = () =>{
-    if(!userData) return 0;
-    let count =0;
-    if(userData.name) count++;
-    if(userData.location) count++;
-    if(userData.college) count++;
-    if(userData.skills && userData.skills.length > 0) count++;
-    if(userData.education && userData.education[0]?.degree) count++;
+  const calculateCompleteness = () => {
+    if (!userData) return 0;
+    let count = 0;
+    if (userData.name) count++;
+    if (userData.location) count++;
+    if (userData.college) count++;
+    if (userData.skills && userData.skills.length > 0) count++;
+    if (userData.education && userData.education[0]?.degree) count++;
 
     return count * 20;
   };
@@ -92,9 +92,17 @@ export default function Profile() {
       <div className="max-w-6xl mx-auto">
         <div className="bg-white border border-gray-200 rounded-xl shadow-sm p-6 md:p-8 flex flex-col lg:flex-row justify-between items-center lg:items-start mb-8 gap-8">
           <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-6 w-full lg:w-auto">
-            <div className="w-20 h-20 bg-[#F0F9FF] text-[#00A5EC] rounded-full flex items-center justify-center text-3xl font-bold border border-blue-100">
-              {profileData.name.charAt(0)}
-            </div>
+            {userData?.profilePhoto ? (
+              <img
+                src={userData.profilePhoto}
+                alt="Profile"
+                className="w-20 h-20 rounded-full object-cover border border-blue-100"
+              />
+            ) : (
+              <div className="w-20 h-20 bg-[#F0F9FF] text-[#00A5EC] rounded-full flex items-center justify-center text-3xl font-bold border border-blue-100">
+                {profileData.name.charAt(0)}
+              </div>
+            )}
             <div className="text-left">
               <h1 className="text-2xl md:text-3xl font-bold text-gray-800">
                 {profileData.name}
@@ -112,7 +120,10 @@ export default function Profile() {
                 <span className="text-[#00A5EC]">{completeness}%</span>
               </div>
               <div className="w-full bg-gray-100 h-2 rounded-full overflow-hidden">
-                <div className="bg-[#3b82f6] h-full transition-all duration-500" style={{width:`${completeness}%`}}></div>
+                <div
+                  className="bg-[#3b82f6] h-full transition-all duration-500"
+                  style={{ width: `${completeness}%` }}
+                ></div>
               </div>
             </div>
             <div className="flex flex-wrap justify-center lg:justify-end gap-2 w-full">
@@ -180,19 +191,7 @@ export default function Profile() {
                 </button>
               </div>
               <hr className="border-gray-100 mb-8 md:mb-10" />
-              {activeTab === "Education" && (
-                <div className="border-l-4 border-[#00A5EC] pl-4 md:pl-6 py-2 mb-16">
-                  <h4 className="font-bold text-lg md:text-xl text-gray-800">
-                    {profileData.education.degree}
-                  </h4>
-                  <p className="text-[#00A5EC] font-bold mt-1 text-base md:text-lg">
-                    {profileData.education.school}
-                  </p>
-                  <p className="text-gray-400 text-sm mt-1">
-                    {profileData.education.year}
-                  </p>
-                </div>
-              )}
+
               {activeTab === "Personal Details" && (
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
@@ -227,8 +226,38 @@ export default function Profile() {
                       {profileData.location}
                     </p>
                   </div>
+                  {userData?.resume && (
+                    <div>
+                      <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wide mb-1">
+                        Resume
+                      </p>
+                      <a
+                        href={userData.resume}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[#008BDC] font-semibold hover:underline"
+                      >
+                        Download Resume →
+                      </a>
+                    </div>
+                  )}
                 </div>
               )}
+
+              {activeTab === "Education" && (
+                <div className="border-l-4 border-[#00A5EC] pl-4 md:pl-6 py-2 mb-16">
+                  <h4 className="font-bold text-lg md:text-xl text-gray-800">
+                    {profileData.education.degree}
+                  </h4>
+                  <p className="text-[#00A5EC] font-bold mt-1 text-base md:text-lg">
+                    {profileData.education.school}
+                  </p>
+                  <p className="text-gray-400 text-sm mt-1">
+                    {profileData.education.year}
+                  </p>
+                </div>
+              )}
+
               {activeTab === "Skills" && (
                 <div className="flex flex-wrap gap-2">
                   {userData?.skills?.length > 0 ? (
@@ -241,35 +270,32 @@ export default function Profile() {
                       </span>
                     ))
                   ) : (
-                    <p className="text-gray-400 text-sm">No skills added yet.</p>
+                    <p className="text-gray-400 text-sm">
+                      No skills added yet.
+                    </p>
                   )}
                 </div>
               )}
+
               {activeTab === "Internships" && (
-                <p className="text-gray-400 text-sm">No internships added yet.</p>
+                <p className="text-gray-400 text-sm">
+                  No internships added yet.
+                </p>
               )}
+
               {activeTab === "Jobs" && (
                 <p className="text-gray-400 text-sm">No jobs added yet.</p>
               )}
+
               {activeTab === "Projects" && (
                 <p className="text-gray-400 text-sm">No projects added yet.</p>
               )}
+
               {activeTab === "Accomplishments" && (
-                <p className="text-gray-400 text-sm">No accomplishments added yet.</p>
+                <p className="text-gray-400 text-sm">
+                  No accomplishments added yet.
+                </p>
               )}
-              <div className=" mt-12 md:mt-20">
-                <h3 className="text-xs font-bold text-gray-500 uppercase mb-6 tracking-wide">
-                  Resume
-                </h3>
-                <div className="border-2 border-dashed border-blue-200 rounded-lg p-6 md:p-12 text-center bg-white">
-                  <p className="text-gray-500 mb-6 text-sm font-medium">
-                    Upload your resume (PDF/DOC, max 2MB)
-                  </p>
-                  <button className=" w-full sm:w-auto bg-[#3b82f6] text-white px-8 py-3 rounded-lg font-bold text-sm hover:bg-blue-600 transition-all shadow-lg shadow-blue-100">
-                    Upload Resume
-                  </button>
-                </div>
-              </div>
             </div>
           </main>
         </div>

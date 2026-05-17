@@ -12,6 +12,7 @@ const connectDB = require('./config/db');
 const authRoutes = require('./routes/auth');
 const jobRoutes = require('./routes/job');
 const applicationRoutes = require('./routes/application');
+const uploadRoutes = require('./routes/uploadRoutes');
 
 // Middleware
 const authMiddleware = require('./middleware/authMiddleware');
@@ -35,6 +36,7 @@ app.use(cors({
 app.use('/api/auth', limiter, authRoutes);
 app.use('/api/jobs', jobRoutes);
 app.use('/api/applications', applicationRoutes);
+app.use('/api/upload', uploadRoutes);
 
 app.get('/api/protected', authMiddleware, (req, res) => {
   res.json({ message: 'Protected route accessed', user: req.user });
