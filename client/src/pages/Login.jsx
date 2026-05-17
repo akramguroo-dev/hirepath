@@ -38,36 +38,41 @@ export default function Login() {
         <div className="flex justify-center mb-4">
           <p className="text-gray-500 text-sm">OR</p>
         </div>
-        <label htmlFor="" className="block mb-4">
+        <label htmlFor="login-email" className="block mb-4">
           Email
           <input
+          id="login-email"
+          aria-label="Enter your email address"
             className="border rounded w-full px-3 py-2 mt-2 focus:outline-none focus:border-blue-500"
             type="email"
             onChange={(e) => setEmail(e.target.value)}
             placeholder="john@example.com"
           />
         </label>
-        <label htmlFor="" className="block mb-3">
+        <label htmlFor="login-password" className="block mb-3">
           Password
           <input
+          id="login-password"
+          aria-label="Enter your account password"
             className="border rounded w-full px-3 py-2 mt-2 focus:outline-none focus:border-blue-500"
             type="password"
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Must be atleast 6 characters"
           />
         </label>
-        <Link to="" className="text-[#00A5EC] flex justify-end mb-3">
+        <Link to="" aria-label="Recover forgotten account credentials" className="text-[#00A5EC] flex justify-end mb-3">
           Forgot password?
         </Link>
         <button
           type="submit"
+          aria-label="Log in to your account dashboard secure form submission"
           className="w-full border rounded bg-[#00A5EC] text-white font-semibold py-2 mb-4 hover:bg-blue-600"
         >
           Login
         </button>
         <p className="w-full">
           Don't have an account?{" "}
-          <Link to="/register" className="text-[#00A5EC] hover:underline">
+          <Link to="/register" aria-label="Navigate to account registration view" className="text-[#00A5EC] hover:underline">
             Register
           </Link>
         </p>

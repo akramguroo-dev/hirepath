@@ -13,9 +13,9 @@ export default function Footer() {
           <div className="flex-1 md:text-center">
             <h3 className="text-[#00A5EC] font-bold text-lg mb-4 uppercase tracking-wider">Quick Links</h3>
             <ul className="text-gray-300 text-sm space-y-3">
-              <li><a href="#" className="hover:text-white transition">Find Jobs</a></li>
-              <li><a href="#" className="hover:text-white transition">Internships</a></li>
-              <li><a href="#" className="hover:text-white transition">Our Services</a></li>
+              <li><a href="#" aria-label="Browse all available job listings from the footer"  className="hover:text-white transition">Find Jobs</a></li>
+              <li><a href="#" aria-label="Browse all available internship listings from the footer" className="hover:text-white transition">Internships</a></li>
+              <li><a href="#" aria-label="View our offered platform services" className="hover:text-white transition">Our Services</a></li>
             </ul>
           </div>
           <div className="flex-1 md:text-right">

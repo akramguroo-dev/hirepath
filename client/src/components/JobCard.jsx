@@ -52,6 +52,7 @@ export default function JobCard({ id, title, company, location, salary, duration
         <span className="bg-gray-50 px-2 py-1 rounded border border-gray-100">Internship</span>
         <button 
           onClick={() => navigate(`/jobs/${id}`)}
+          aria-label={`View details for ${title} at ${company}`}
           className="text-[#00A5EC] text-sm font-bold hover:underline lowercase first-letter:uppercase tracking-normal transition-colors"
         >
         View details ›

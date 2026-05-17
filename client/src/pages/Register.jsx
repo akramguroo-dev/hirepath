@@ -44,27 +44,33 @@ export default function Register() {
         <div className="flex justify-center mb-4">
           <p className="text-gray-500 text-sm">OR</p>
         </div>
-        <label htmlFor="" className="block mb-4">
+        <label htmlFor="register-name" className="block mb-4">
           Name
           <input
+          id="register-name"
+          aria-label="Enter your full name"
             onChange={(e) => setName(e.target.value)}
             className="border rounded w-full px-3 py-2 mt-2 focus:outline-none focus:border-blue-500"
             type="text"
             placeholder="John Doe"
           />
         </label>
-        <label htmlFor="" className="block mb-4">
+        <label htmlFor="register-email" className="block mb-4">
           Email
           <input
+          id="register-email"
+          aria-label="Enter your email address"
             onChange={(e) => setEmail(e.target.value)}
             className="border rounded w-full px-3 py-2 mt-2 focus:outline-none focus:border-blue-500"
             type="email"
             placeholder="john@example.com"
           />
         </label>
-        <label htmlFor="" className="block mb-3">
+        <label htmlFor="register-password" className="block mb-3">
           Password
           <input
+          id="register-password"
+          aria-label="Create a secure account password"
             onChange={(e) => setPassword(e.target.value)}
             className="border rounded w-full px-3 py-2 mt-2 focus:outline-none focus:border-blue-500"
             type="password"
@@ -73,13 +79,14 @@ export default function Register() {
         </label>
         <button
           type="submit"
+          aria-label="Submit registration form to create a new student account"
           className="w-full border rounded bg-[#00A5EC] text-white font-semibold py-2 mb-4 hover:bg-blue-600 cursor-pointer"
         >
           Register
         </button>
         <p className="w-full">
           Already have an account?{" "}
-          <Link to="/login" className="text-[#00A5EC] hover:underline">
+          <Link to="/login" aria-label="Navigate back to the login page" className="text-[#00A5EC] hover:underline">
             Login
           </Link>
         </p>

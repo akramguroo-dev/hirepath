@@ -46,52 +46,63 @@ export default function PostJob() {
         <div className="bg-white rounded-xl shadow-md overflow-hidden border-t-8 border-[#008BDC] p-6 md:p-10">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
+              <label htmlFor="job-title" className="block text-sm font-semibold text-gray-700 mb-2">
                 Job Title
               </label>
               <input
+              id="job-title"
                 name="title"
                 value={formData.title}
                 onChange={handleChange}
                 type="text"
                 placeholder="e.g. Senior React Developer"
+                aria-label="Enter the official title for the job position"
                 className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#008BDC] focus:border-transparent outline-none transition-all"
               />
             </div>
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
+              <label htmlFor="company-name" className="block text-sm font-semibold text-gray-700 mb-2">
                 Company Name
               </label>
               <input
+              id="company-name"
                 name="company"
                 value={formData.company}
                 onChange={handleChange}
                 type="text"
                 placeholder="e.g. HirePath Tech"
+
+                aria-label="Enter your company or organization name"
                 className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#008BDC] focus:border-transparent outline-none transition-all"
               />
             </div>
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
+              <label htmlFor="job-location" className="block text-sm font-semibold text-gray-700 mb-2">
                 Location
               </label>
               <input
+              id="job-location"
                 name="location"
                 value={formData.location}
                 onChange={handleChange}
                 type="text"
                 placeholder="e.g. Remote / Srinagar, J&K"
+
+                aria-label="Enter job location such as city, region or Remote"
                 className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#008BDC] focus:border-transparent outline-none transition-all"
               />
             </div>
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
+              <label htmlFor="job-type" className="block text-sm font-semibold text-gray-700 mb-2">
                 Type
               </label>
               <select
+              id="job-type"
                 name="type"
                 value={formData.type}
                 onChange={handleChange}
+
+                aria-label="Select the employment type format"
                 className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#008BDC] focus:border-transparent outline-none transition-all"
               >
                 <option value="internship">internship</option>
@@ -101,48 +112,59 @@ export default function PostJob() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label htmlFor="job-salary" className="block text-sm font-semibold text-gray-700 mb-2">
                   Stipend/Salary
                 </label>
                 <input
+                id="job-salary"
                   name="salary"
                   value={formData.salary}
                   onChange={handleChange}
                   type="text"
                   placeholder="e.g. ₹25,000/month"
+
+                  aria-label="Enter compensation package or stipend details"
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#008BDC] focus:border-transparent outline-none transition-all"
                 />
               </div>
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label htmlFor="job-duration" className="block text-sm font-semibold text-gray-700 mb-2">
                   Duration
                 </label>
                 <input
+                id="job-duration"
                   name="duration"
                   value={formData.duration}
                   onChange={handleChange}
                   type="text"
                   placeholder="e.g. 6 Months"
+
+                  aria-label="Enter employment or contract tenure duration"
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#008BDC] focus:border-transparent outline-none transition-all"
                 />
               </div>
             </div>
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
+              <label htmlFor="job-description" className="block text-sm font-semibold text-gray-700 mb-2">
                 Job Description
               </label>
               <textarea
+              id="job-description"
                 name="description"
                 value={formData.description}
                 onChange={handleChange}
                 rows="6"
                 placeholder="Describe the job responsibilities and requirements..."
+
+                aria-label="Write a thorough summary of job descriptions and criteria"
                 className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#008BDC] focus:border-transparent outline-none transition-all"
               ></textarea>
             </div>
             <div className="pt-4">
               <button
                 type="submit"
+
+                aria-label="Submit form to publish this new job listing"
                 className="w-full bg-[#008BDC] hover:bg-[#0076bb] text-white font-bold py-3 px-6 rounded-lg shadow-lg transform transition-transform active:scale-95"
               >
                 Submit Job

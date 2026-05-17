@@ -75,6 +75,8 @@ export default function Jobs() {
             onChange={(e) =>
               setFilters({ ...filters, search: e.target.value })
             }
+
+            aria-label="Search jobs by title or company name"
             className="w-full md:flex-1 px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#008BDC] focus:border-transparent outline-none shadow-sm"
           />
 
@@ -83,6 +85,8 @@ export default function Jobs() {
             onChange={(e) =>
               setFilters({ ...filters, type: e.target.value })
             }
+
+            aria-label="Filter jobs by employment type"
             className="w-full md:w-48 px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#008BDC] focus:border-transparent outline-none bg-white shadow-sm"
           >
             <option value="">All Types</option>
@@ -98,6 +102,8 @@ export default function Jobs() {
             onChange={(e) =>
               setFilters({ ...filters, location: e.target.value })
             }
+
+            aria-label="Filter jobs by geographic location"
             className="w-full md:w-64 px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#008BDC] focus:border-transparent outline-none shadow-sm"
           />
         </div>
@@ -137,6 +143,8 @@ export default function Jobs() {
           <button
             onClick={() => setPage((p) => p - 1)}
             disabled={page === 1}
+
+            aria-label="Go to previous page of job listings"
             className="px-4 py-2 bg-[#008BDC] text-white rounded disabled:opacity-50"
           >
             Previous
@@ -149,6 +157,7 @@ export default function Jobs() {
           <button
             onClick={() => setPage((p) => p + 1)}
             disabled={page === totalPages}
+            aria-label="Go to next page of job listings"
             className="px-4 py-2 bg-[#008BDC] text-white rounded disabled:opacity-50"
           >
             Next
