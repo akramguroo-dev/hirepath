@@ -29,6 +29,7 @@
 - [x] Pagination for jobs
 - [x] Token expiry handling — Axios interceptor (frontend)
 - [x] Role-based access control — middleware
+- [x] Cloudinary upload routes (profile photo, resume, logo)
 
 ### Frontend
 - [x] Routing setup
@@ -79,6 +80,7 @@
 - [x] Token expiry handling — Axios interceptor (Akram)
 - [x] Lazy loading for pages (Dayan)
 - [x] Error boundaries (Dayan) — #42
+- [x] Cloudinary uploads UI — profile photo, resume, logo (Akram)
 
 ## Deployment ✅
 - [x] Deploy backend to Render — https://hirepath-api.onrender.com
@@ -87,10 +89,10 @@
 - [x] Connect frontend to production backend URL
 - [x] Write README.md
 
-## Week 1: HirePath Polish (3-4 days)
+## Week 1: HirePath Polish ✅ (3-4 days)
 - [x] Error boundaries (Dayan) — #42
 - [ ] Accessibility — aria-labels (Dayan) — #43
-- [ ] Cloudinary uploads — profile photo, resume, logo (Akram)
+- [x] Cloudinary uploads — profile photo, resume, logo (Akram)
 
 ## Week 2: Portfolio Site (Next.js + TypeScript) (5 days)
 - [ ] Next.js setup + basic routing
@@ -140,7 +142,7 @@
 - [ ] Basic frontend testing
 
 ## Current Task
-- Akram: Cloudinary uploads (Week 1, Day 3-4)
+- Akram: Deploy & verify Cloudinary uploads in production
 - Dayan: Accessibility — aria-labels (Week 1, Day 2-3) — #43
 
 ## Notes

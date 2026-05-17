@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../api/axios";
-
 import toast from "react-hot-toast";
 
 export default function PostJob() {
@@ -13,8 +12,10 @@ export default function PostJob() {
     salary: "",
     duration: "",
     description: "",
+    companyLogo: "",
   });
 
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) =>
@@ -22,6 +23,28 @@ export default function PostJob() {
       ...formData,
       [e.target.name]: e.target.value,
     });
+
+  const handleLogoUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const uploadFormData = new FormData();
+    uploadFormData.append("file", file);
+
+    try {
+      setIsLoading(true);
+      const res = await API.post("/upload/logo", uploadFormData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      setFormData((prev) => ({ ...prev, companyLogo: res.data.url }));
+      toast.success("Logo uploaded!");
+    } catch (err) {
+      toast.error("Logo upload failed");
+      console.error(err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const handleSubmit = async (e) => {
     try {
@@ -37,6 +60,7 @@ export default function PostJob() {
       toast.error("Failed to post job. Please try again.");
     }
   };
+
   return (
     <div className="min-h-screen bg-gray-50 py-10 px-4">
       <div className="max-w-3xl mx-auto">
@@ -45,6 +69,30 @@ export default function PostJob() {
         </h1>
         <div className="bg-white rounded-xl shadow-md overflow-hidden border-t-8 border-[#008BDC] p-6 md:p-10">
           <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Company Logo Upload */}
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
+                Company Logo
+              </label>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleLogoUpload}
+                disabled={isLoading}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg cursor-pointer"
+              />
+              {formData.companyLogo && (
+                <div className="mt-3">
+                  <img
+                    src={formData.companyLogo}
+                    alt="Company Logo"
+                    className="w-20 h-20 object-cover rounded-lg border-2 border-[#008BDC]"
+                  />
+                </div>
+              )}
+            </div>
+
+            {/* Job Title */}
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
                 Job Title
@@ -58,6 +106,8 @@ export default function PostJob() {
                 className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#008BDC] focus:border-transparent outline-none transition-all"
               />
             </div>
+
+            {/* Company Name */}
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
                 Company Name
@@ -71,6 +121,8 @@ export default function PostJob() {
                 className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#008BDC] focus:border-transparent outline-none transition-all"
               />
             </div>
+
+            {/* Location */}
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
                 Location
@@ -84,6 +136,8 @@ export default function PostJob() {
                 className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#008BDC] focus:border-transparent outline-none transition-all"
               />
             </div>
+
+            {/* Type */}
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
                 Type
@@ -99,6 +153,8 @@ export default function PostJob() {
                 <option value="part-time">part-time</option>
               </select>
             </div>
+
+            {/* Salary & Duration */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -127,6 +183,8 @@ export default function PostJob() {
                 />
               </div>
             </div>
+
+            {/* Job Description */}
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
                 Job Description
@@ -140,12 +198,15 @@ export default function PostJob() {
                 className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#008BDC] focus:border-transparent outline-none transition-all"
               ></textarea>
             </div>
+
+            {/* Submit Button */}
             <div className="pt-4">
               <button
                 type="submit"
-                className="w-full bg-[#008BDC] hover:bg-[#0076bb] text-white font-bold py-3 px-6 rounded-lg shadow-lg transform transition-transform active:scale-95"
+                disabled={isLoading}
+                className="w-full bg-[#008BDC] hover:bg-[#0076bb] disabled:bg-gray-400 text-white font-bold py-3 px-6 rounded-lg shadow-lg transform transition-transform active:scale-95"
               >
-                Submit Job
+                {isLoading ? "Uploading..." : "Submit Job"}
               </button>
             </div>
           </form>
