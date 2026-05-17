@@ -68,6 +68,8 @@ export default function EmployerApplicants() {
       <div className="max-w-5xl mx-auto">
         <Link
           to="/employer-dashboard"
+
+          aria-label="Return to the main employer dashboard panel"
           className="text-blue-600 hover:underline flex items-center mb-6 font-medium"
         >
           <span className="mr-2">←</span> Back to Employer Dashboard
@@ -125,12 +127,14 @@ export default function EmployerApplicants() {
                         <>
                           <button
                             onClick={() => handleStatus(app._id, "accepted")}
+                            aria-label={`Accept candidate application from ${app.student_id.name}`}
                             className="px-3 py-1 bg-green-500 hover:bg-green-600 text-white text-xs font-bold rounded"
                           >
                             Accept
                           </button>
                           <button
                             onClick={() => handleStatus(app._id, "rejected")}
+                            aria-label={`Reject candidate application from ${app.student_id.name}`}
                             className="px-3 py-1 bg-red-500 hover:bg-red-600 text-white text-xs font-bold rounded"
                           >
                             Reject
@@ -140,6 +144,7 @@ export default function EmployerApplicants() {
                       {app.status === "accepted" && (
                         <button
                           onClick={() => handleStatus(app._id, "rejected")}
+                          aria-label={`Reject candidate application from ${app.student_id.name}`}
                           className="px-3 py-1 bg-red-500 hover:bg-red-600 text-white text-xs font-bold rounded"
                         >
                           Reject
@@ -148,6 +153,7 @@ export default function EmployerApplicants() {
                       {app.status === "rejected" && (
                         <button
                           onClick={() => handleStatus(app._id, "accepted")}
+                          aria-label={`Accept candidate application from ${app.student_id.name}`}
                           className="px-3 py-1 bg-green-500 hover:bg-green-600 text-white text-xs font-bold rounded"
                         >
                           Accept
@@ -156,6 +162,7 @@ export default function EmployerApplicants() {
                       {app.status === "accepted" && !app.employer_feedback && (
                         <Link
                           to={`/feedback/${app._id}`}
+                          aria-label={`Write performance feedback for ${app.student_id.name}`}
                           className="px-3 py-1 bg-[#008BDC] hover:bg-[#0076bb] text-white text-xs font-bold rounded"
                         >
                           Feedback

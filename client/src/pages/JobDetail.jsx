@@ -39,6 +39,8 @@ export default function JobDetail() {
       <div className="max-w-4xl mx-auto">
         <button
           onClick={() => navigate("/jobs")}
+
+          aria-label="Return to all job listings"
           className="flex items-center text-[#00A5EC] font-bold mb-6 hover:underline transition-all"
         >
           <span className="mr-2">←</span> Back to all jobs
@@ -119,6 +121,8 @@ export default function JobDetail() {
               <button
                 onClick={handleApply}
                 disabled={message === "Application submitted successfully!"}
+
+                aria-label={`Apply now for the ${job.title} position at ${job.company}`}
                 className="bg-[#00A5EC] text-white px-12 py-4 rounded-xl font-black hover:bg-[#0084c0] transition-all shadow-xl shadow-blue-100 uppercase tracking-wide cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Apply Now
