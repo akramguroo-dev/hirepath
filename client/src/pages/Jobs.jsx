@@ -72,17 +72,13 @@ export default function Jobs() {
             type="text"
             placeholder="Search by title or company..."
             value={filters.search}
-            onChange={(e) =>
-              setFilters({ ...filters, search: e.target.value })
-            }
+            onChange={(e) => setFilters({ ...filters, search: e.target.value })}
             className="w-full md:flex-1 px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#008BDC] focus:border-transparent outline-none shadow-sm"
           />
 
           <select
             value={filters.type}
-            onChange={(e) =>
-              setFilters({ ...filters, type: e.target.value })
-            }
+            onChange={(e) => setFilters({ ...filters, type: e.target.value })}
             className="w-full md:w-48 px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#008BDC] focus:border-transparent outline-none bg-white shadow-sm"
           >
             <option value="">All Types</option>
@@ -113,20 +109,21 @@ export default function Jobs() {
           ) : (
             jobsList.map((job) => (
               <motion.div
-              key={job._id}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
-              >
-              <JobCard
                 key={job._id}
-                id={job._id}
-                title={job.title}
-                company={job.company}
-                location={job.location}
-                salary={job.salary}
-                duration={job.duration}
-              />
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
+              >
+                <JobCard
+                  key={job._id}
+                  id={job._id}
+                  title={job.title}
+                  company={job.company}
+                  location={job.location}
+                  salary={job.salary}
+                  duration={job.duration}
+                  companyLogo={job.companyLogo}
+                />
               </motion.div>
             ))
           )}

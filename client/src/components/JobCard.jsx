@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
-export default function JobCard({ id, title, company, location, salary, duration }) {
+
+export default function JobCard({ id, title, company, location, salary, duration, companyLogo }) {
   const navigate = useNavigate();
   const Path = ({ type }) => {
     const paths = {
@@ -27,8 +28,16 @@ export default function JobCard({ id, title, company, location, salary, duration
           </h3>
           <p className="text-gray-400 text-[13px] mt-1 font-medium">{company}</p>
         </div>
-        <div className="w-14 h-14 border border-gray-100 rounded-lg flex items-center justify-center text-[8px] text-gray-300 font-bold flex-shrink-0 bg-white">
-          LOGO
+        <div className="w-14 h-14 border border-gray-100 rounded-lg flex items-center justify-center text-[8px] text-gray-300 font-bold flex-shrink-0 bg-white overflow-hidden">
+          {companyLogo ? (
+            <img 
+              src={companyLogo} 
+              alt={company}
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <span>LOGO</span>
+          )}
         </div>
       </div>
       <hr className="border-gray-50 mb-5" />

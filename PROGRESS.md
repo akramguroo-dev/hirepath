@@ -6,7 +6,7 @@
 
 ## Tech Stack
 - Frontend: React, Tailwind, React Router, Axios, Framer Motion
-- Backend: Node.js, Express, MongoDB Atlas, JWT
+- Backend: Node.js, Express, MongoDB Atlas, JWT, Cloudinary
 
 ## Completed Features
 
@@ -29,7 +29,8 @@
 - [x] Pagination for jobs
 - [x] Token expiry handling — Axios interceptor (frontend)
 - [x] Role-based access control — middleware
-- [x] Cloudinary upload routes (profile photo, resume, logo)
+- [x] Cloudinary integration — upload routes (profile photo, resume, logo)
+- [x] Job schema — add companyLogo field
 
 ### Frontend
 - [x] Routing setup
@@ -80,21 +81,25 @@
 - [x] Token expiry handling — Axios interceptor (Akram)
 - [x] Lazy loading for pages (Dayan)
 - [x] Error boundaries (Dayan) — #42
-- [x] Cloudinary uploads UI — profile photo, resume, logo (Akram)
+- [x] Cloudinary uploads — profile photo, resume, logo UI (Akram)
+- [x] Profile display with photo + resume download link (Akram)
+- [x] Company logo upload & display on job cards (Akram)
+- [x] Fix axios.js — remove Content-Type header for FormData (Akram)
+- [x] Fix EditProfile & PostJob — add token to upload handlers (Akram)
 
 ## Deployment ✅
 - [x] Deploy backend to Render — https://hirepath-api.onrender.com
 - [x] Deploy frontend to Vercel — https://hirepath-eight.vercel.app
-- [x] Set environment variables
+- [x] Set environment variables (Cloudinary on Render)
 - [x] Connect frontend to production backend URL
 - [x] Write README.md
 
-## Week 1: HirePath Polish ✅ (3-4 days)
-- [x] Error boundaries (Dayan) — #42
-- [ ] Accessibility — aria-labels (Dayan) — #43
-- [x] Cloudinary uploads — profile photo, resume, logo (Akram)
+## Week 1: HirePath Polish ✅ IN PROGRESS
+- [x] Error boundaries (Dayan) — #42 ✅
+- [ ] Accessibility — aria-labels (Dayan) — #43 (PENDING)
+- [x] Cloudinary uploads complete (Akram) — profile photos, resumes, company logos ✅
 
-## Week 2: Portfolio Site (Next.js + TypeScript) (5 days)
+## Week 2: Portfolio Site (Next.js + TypeScript) (Starting next)
 - [ ] Next.js setup + basic routing
 - [ ] TypeScript interfaces + props typing
 - [ ] Projects grid UI
@@ -131,7 +136,7 @@
 - [ ] Dark mode (optional)
 
 ## Projects Roadmap
-1. ✅ HirePath (MERN) — Polish Phase In Progress
+1. ✅ HirePath (MERN) — Polish Phase IN PROGRESS (Dayan accessibility task remaining)
 2. Portfolio Site (Next.js + TypeScript) — Week 2
 3. Chat App (React + Node + Socket.io) — Week 3
 4. Dashboard App (Redux + Jest) — Week 4
@@ -142,8 +147,8 @@
 - [ ] Basic frontend testing
 
 ## Current Task
-- Akram: Deploy & verify Cloudinary uploads in production
-- Dayan: Accessibility — aria-labels (Week 1, Day 2-3) — #43
+- Akram: Week 2 — Portfolio Site (Next.js + TypeScript)
+- Dayan: Week 1 — Accessibility task #43 (aria-labels & keyboard navigation)
 
 ## Notes
 - MongoDB Atlas cluster: nodetuts.amqi2r8.mongodb.net
@@ -151,12 +156,13 @@
 - Production backend: https://hirepath-api.onrender.com
 - Local frontend: localhost:5173
 - Local backend: localhost:5000
+- Cloudinary account: dedx4wnca
 - Rule: Only UI/frontend tasks for Dayan. API/backend is Akram's job.
 - **5-Week Sprint Goal:** 4 production projects + strong resume by end of Week 5
 - Always paste PROGRESS.md at start of new Claude session
 
 ## Post-5 Week Plan
-- Build resume with all 4 projects
+- Build resume with all 4 projects + GitHub links
 - Resume optimization + shortlisting strategy
 - Target startups + internship applications
 - Application strategy: 10-15 daily, track responses
