@@ -94,38 +94,50 @@
 - [x] Connect frontend to production backend URL
 - [x] Write README.md
 
-## Week 1: HirePath Polish ✅ IN PROGRESS
+## Week 1: HirePath Polish ✅ COMPLETE
 - [x] Error boundaries (Dayan) — #42 ✅
-- [ ] Accessibility — aria-labels (Dayan) — #43 (PENDING)
+- [x] Accessibility — aria-labels & keyboard navigation (Dayan) — #43 ✅ MERGED
 - [x] Cloudinary uploads complete (Akram) — profile photos, resumes, company logos ✅
 
-## Week 2: Portfolio Site (Next.js + TypeScript) (Starting next)
-- [ ] Next.js setup + basic routing
-- [ ] TypeScript interfaces + props typing
-- [ ] Projects grid UI
-- [ ] About + Contact form
+## Week 1 (Continued): Remaining v1 Features — BEFORE Week 2 STARTS
+- [ ] Browse Jobs button on Home page → navigate to /jobs
+- [ ] Internships route — filter jobs by type (or use /jobs with filter)
+- [ ] Employer registration in browser form (currently Student only)
+- [ ] EmployerDashboard tabs — Active/Pending/Closed status filters
+- [ ] View all postings link on EmployerDashboard
+
+## Week 2: Portfolio Site (Next.js + TypeScript) (5 days) — STARTING AFTER v1 FEATURES
+- [ ] Next.js 15 setup + TypeScript configuration
+- [ ] Basic routing (Home, About, Projects, Contact pages)
+- [ ] TypeScript interfaces + props typing for all components
+- [ ] Projects grid UI (showcase HirePath + other projects)
+- [ ] About section with bio + tech stack overview
+- [ ] Contact form (Formspree or Nodemailer backend)
+- [ ] Mobile responsiveness + SEO optimization
 - [ ] Deploy to Vercel
 
 ## Week 3: Chat App (React + Node + Socket.io) (5 days)
 - [ ] Express + Socket.io server setup
-- [ ] React chat UI (message list, input)
-- [ ] Frontend ↔ Backend connection (send/receive)
-- [ ] Multiple rooms/users
-- [ ] Deploy backend + frontend
+- [ ] React chat UI (message list, input, user list)
+- [ ] Frontend ↔ Backend WebSocket connection (send/receive)
+- [ ] Multiple chat rooms/users support
+- [ ] Basic online status indicator
+- [ ] Deploy backend (Railway/Render) + frontend (Vercel)
 
 ## Week 4: Dashboard App (React + Redux + Testing) (5 days)
 - [ ] React + Redux Toolkit setup
-- [ ] Todo list UI (add, delete, filter)
-- [ ] Redux async thunks
-- [ ] Jest unit tests
+- [ ] Todo/Task dashboard UI (add, delete, filter, mark complete)
+- [ ] Redux async thunks (mock API calls)
+- [ ] Jest unit tests (reducer tests + component snapshots)
+- [ ] Mobile responsive dashboard
 - [ ] Deploy to Vercel
 
-## Week 5: HirePath v2 — Real-time Chat (5 days)
-- [ ] Socket.io backend integration
-- [ ] Chat UI component
-- [ ] Connect to Socket.io
-- [ ] Redux notifications
-- [ ] Deploy to production
+## Week 5: HirePath v2 — Real-time Chat Integration (5 days)
+- [ ] Socket.io backend integration on HirePath
+- [ ] Chat UI component for student-employer messaging
+- [ ] Redux for chat state management
+- [ ] Message notifications & typing indicators
+- [ ] Deploy to production (Vercel + Render)
 
 ## Pending Features (Post-5 weeks)
 - [ ] Admin Panel page
@@ -136,7 +148,7 @@
 - [ ] Dark mode (optional)
 
 ## Projects Roadmap
-1. ✅ HirePath (MERN) — Polish Phase IN PROGRESS (Dayan accessibility task remaining)
+1. ✅ HirePath (MERN) — Polish Phase COMPLETE ✅
 2. Portfolio Site (Next.js + TypeScript) — Week 2
 3. Chat App (React + Node + Socket.io) — Week 3
 4. Dashboard App (Redux + Jest) — Week 4
@@ -147,8 +159,8 @@
 - [ ] Basic frontend testing
 
 ## Current Task
-- Akram: Week 2 — Portfolio Site (Next.js + TypeScript)
-- Dayan: Week 1 — Accessibility task #43 (aria-labels & keyboard navigation)
+- **Akram (Solo):** Week 2 — Portfolio Site (Next.js + TypeScript)
+- **Dayan (Standby):** On standby. Learning resources: Next.js docs, TypeScript handbook. Will be involved in Week 3 Chat App UI or future HirePath features.
 
 ## Notes
 - MongoDB Atlas cluster: nodetuts.amqi2r8.mongodb.net
@@ -157,7 +169,7 @@
 - Local frontend: localhost:5173
 - Local backend: localhost:5000
 - Cloudinary account: dedx4wnca
-- Rule: Only UI/frontend tasks for Dayan. API/backend is Akram's job.
+- **Work Allocation:** Weeks 2-5 projects are AKRAM SOLO (full-stack learning). Dayan available for Week 3+ UI/frontend tasks on HirePath features.
 - **5-Week Sprint Goal:** 4 production projects + strong resume by end of Week 5
 - Always paste PROGRESS.md at start of new Claude session
 
