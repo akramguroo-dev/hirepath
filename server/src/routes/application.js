@@ -10,6 +10,13 @@ router.post("/", authMiddleware, roleCheck(["student"]), applicationController.a
 router.get("/student", authMiddleware, applicationController.getMyApplications);
 
 router.get(
+  "/employer",
+  authMiddleware,
+  roleCheck(["employer"]),
+  applicationController.getEmployerApplications,
+);
+
+router.get(
   "/job/:jobId",
   authMiddleware,
   roleCheck(["employer"]),
@@ -22,4 +29,5 @@ router.patch(
   roleCheck(["employer"]),
   applicationController.updateApplicationStatus,
 );
+
 module.exports = router;

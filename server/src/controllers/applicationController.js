@@ -90,9 +90,31 @@ const updateApplicationStatus = async (req, res) => {
   }
 };
 
+const getEmployerApplications = async (req, res) => {
+  try {
+    if (req.user.role !== "employer") {
+      return res.status(403).json({ error: "Only employers can access this" });
+    }
+
+    // Get all jobs posted by this employer
+    const employerJobs = await Job.find({ posted_by: req.user._id });
+    const jobIds = employerJobs.map(job => job._id);
+
+    // Get all applications for those jobs
+    const applications = await Application.find({ job_id: { $in: jobIds } })
+      .populate("student_id", "name email")
+      .populate("job_id", "title company");
+
+    res.json({ applications });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
 module.exports = {
   applyToJob,
   getMyApplications,
   getJobApplications,
   updateApplicationStatus,
+  getEmployerApplications,
 };
