@@ -1,13 +1,15 @@
 import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import JobCard from "../components/JobCard";
 import API from "../api/axios";
 import { motion } from "framer-motion";
 
 export default function Jobs() {
+  const [searchParams] = useSearchParams();
   const [jobsList, setJobsList] = useState([]);
   const [filters, setFilters] = useState({
     search: "",
-    type: "",
+    type: searchParams.get("type") || "",
     location: "",
   });
 

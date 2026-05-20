@@ -33,7 +33,7 @@ export default function Navbar() {
             Jobs <span className="text-2xl">▾</span>
           </Link>
           <Link
-            to="/internships"
+            to="/jobs?type=internship"
             aria-label="Browse available internships"
             className="flex items-center gap-1 text-[#484848] font-medium hover:bg-blue-50 hover:text-[#008BDC] transition p-5"
           >
@@ -109,7 +109,7 @@ export default function Navbar() {
       {isOpen && (
         <div className="md:hidden bg-white border-t border-gray-100 flex flex-col pb-4">
           <Link to="/jobs" aria-label="Browse available jobs mobile link" className="p-4 border-b border-gray-50 text-[#484848]" onClick={() => setIsOpen(false)}>Jobs</Link>
-          <Link to="/internships" aria-label="Browse available internships mobile link" className="p-4 border-b border-gray-50 text-[#484848]" onClick={() => setIsOpen(false)}>Internships</Link>
+          <Link to="/jobs?type=internship" aria-label="Browse available internships mobile link" className="p-4 border-b border-gray-50 text-[#484848]" onClick={() => setIsOpen(false)}>Internships</Link>
           
           {token && role === "student" && (
             <Link to="/profile" aria-label="View student profile mobile link"  className="p-4 border-b border-gray-50 text-[#484848]" onClick={() => setIsOpen(false)}>Profile</Link>
