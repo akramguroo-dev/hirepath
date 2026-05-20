@@ -5,6 +5,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 
 export default function Register() {
+  const [role, setRole] = useState("student");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -19,6 +20,7 @@ export default function Register() {
         name,
         email,
         password,
+        role,
       });
       toast.success("Account created successfully! Please login.");
       navigate("/login");
@@ -36,10 +38,30 @@ export default function Register() {
       >
         <h2 className="text-2xl font-bold mb-6 text-center">Register</h2>
         <div className="flex gap-8 mb-6">
-          <div className="text-[#00A5EC] border-b-2 border-[#00A5EC] pb-1 inline-block">
+          <button
+            type="button"
+            onClick={() => setRole("student")}
+            aria-label="Register as a student"
+            className={`pb-1 transition-all ${
+              role === "student"
+                ? "text-[#00A5EC] border-b-2 border-[#00A5EC]"
+                : "text-gray-500 hover:text-[#00A5EC]"
+            }`}
+          >
             Student
-          </div>
-          <div className="text-gray-500 pb-1 cursor-not-allowed">Employer</div>
+          </button>
+          <button
+            type="button"
+            onClick={() => setRole("employer")}
+            aria-label="Register as an employer"
+            className={`pb-1 transition-all ${
+              role === "employer"
+                ? "text-[#00A5EC] border-b-2 border-[#00A5EC]"
+                : "text-gray-500 hover:text-[#00A5EC]"
+            }`}
+          >
+            Employer
+          </button>
         </div>
         <div className="flex justify-center mb-4">
           <p className="text-gray-500 text-sm">OR</p>
@@ -79,7 +101,7 @@ export default function Register() {
         </label>
         <button
           type="submit"
-          aria-label="Submit registration form to create a new student account"
+          aria-label={`Submit registration form to create a new ${role} account`}
           className="w-full border rounded bg-[#00A5EC] text-white font-semibold py-2 mb-4 hover:bg-blue-600 cursor-pointer"
         >
           Register

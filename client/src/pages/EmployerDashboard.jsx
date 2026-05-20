@@ -14,6 +14,7 @@ export default function EmployerDashboard() {
   const [jobs, setJobs] = useState([]);
   const [employerName, setEmployerName] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [activeTab, setActiveTab] = useState("open");
 
   const navigate = useNavigate();
 
@@ -46,6 +47,16 @@ export default function EmployerDashboard() {
     employerDetails();
   }, [navigate]);
 
+  // Filter jobs by status
+  const filteredJobs = jobs.filter((job) => {
+    if (activeTab === "open") return job.status === "open";
+    if (activeTab === "closed") return job.status === "closed";
+    return true; // pending approval - show all
+  });
+
+  const openCount = jobs.filter((j) => j.status === "open").length;
+  const closedCount = jobs.filter((j) => j.status === "closed").length;
+
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -76,14 +87,38 @@ export default function EmployerDashboard() {
         </div>
 
         <div className="flex border-b border-gray-200 mb-8 overflow-x-auto whitespace-nowrap">
-          <button className="px-6 py-3 border-b-2 border-[#008BDC] text-[#008BDC] font-bold text-sm">
-            Active Postings ({jobs.filter((j) => j.status === "open").length})
+          <button 
+            onClick={() => setActiveTab("open")}
+            className={`px-6 py-3 border-b-2 font-bold text-sm transition-all ${
+              activeTab === "open"
+                ? "border-[#008BDC] text-[#008BDC]"
+                : "border-transparent text-gray-500 hover:text-[#008BDC]"
+            }`}
+            aria-label={`View active job postings - ${openCount} jobs`}
+          >
+            Active Postings ({openCount})
           </button>
-          <button className="px-6 py-3 text-gray-500 font-medium text-sm hover:text-[#008BDC] transition">
+          <button 
+            onClick={() => setActiveTab("pending")}
+            className={`px-6 py-3 border-b-2 font-bold text-sm transition-all ${
+              activeTab === "pending"
+                ? "border-[#008BDC] text-[#008BDC]"
+                : "border-transparent text-gray-500 hover:text-[#008BDC]"
+            }`}
+            aria-label="View pending approval job postings"
+          >
             Pending Approval
           </button>
-          <button className="px-6 py-3 text-gray-500 font-medium text-sm hover:text-[#008BDC] transition">
-            Closed Postings
+          <button 
+            onClick={() => setActiveTab("closed")}
+            className={`px-6 py-3 border-b-2 font-bold text-sm transition-all ${
+              activeTab === "closed"
+                ? "border-[#008BDC] text-[#008BDC]"
+                : "border-transparent text-gray-500 hover:text-[#008BDC]"
+            }`}
+            aria-label={`View closed job postings - ${closedCount} jobs`}
+          >
+            Closed Postings ({closedCount})
           </button>
         </div>
 
@@ -101,12 +136,12 @@ export default function EmployerDashboard() {
           </div>
 
           <div className="divide-y divide-gray-100">
-            {jobs.length === 0 ? (
+            {filteredJobs.length === 0 ? (
               <div className="p-10 text-center text-gray-500">
-                <p>You haven't posted any jobs yet!</p>
+                <p>No jobs in this category yet!</p>
               </div>
             ) : (
-              jobs.map((job) => (
+              filteredJobs.map((job) => (
                 <div
                   key={job._id}
                   onClick={() =>
@@ -153,7 +188,11 @@ export default function EmployerDashboard() {
             )}
           </div>
           <div className="p-4 bg-gray-50 border-t border-gray-100 text-center">
-            <button className="text-[#008BDC] font-semibold text-sm hover:underline">
+            <button 
+              onClick={() => setActiveTab("open")}
+              aria-label="View all job postings"
+              className="text-[#008BDC] font-semibold text-sm hover:underline"
+            >
               View all postings
             </button>
           </div>
