@@ -7,11 +7,13 @@ import {
   CheckCircle2,
   Clock,
   ChevronRight,
+  AlertCircle,
 } from "lucide-react";
 import API from "../api/axios";
 
 export default function EmployerDashboard() {
   const [jobs, setJobs] = useState([]);
+  const [applications, setApplications] = useState([]);
   const [employerName, setEmployerName] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [activeTab, setActiveTab] = useState("open");
@@ -27,11 +29,19 @@ export default function EmployerDashboard() {
           return;
         }
 
+        // Fetch employer's jobs
         const resOne = await API.get("/jobs/employer", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setJobs(resOne.data.jobs);
 
+        // Fetch employer's applications
+        const resApps = await API.get("/applications/employer", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setApplications(resApps.data.applications || []);
+
+        // Fetch employer name
         const resTwo = await API.get("/auth/me", {
           headers: { Authorization: `Bearer ${token}` },
         });
@@ -51,8 +61,11 @@ export default function EmployerDashboard() {
   const filteredJobs = jobs.filter((job) => {
     if (activeTab === "open") return job.status === "open";
     if (activeTab === "closed") return job.status === "closed";
-    return true; // pending approval - show all
+    return true;
   });
+
+  // Filter pending applications
+  const pendingApplications = applications.filter((app) => app.status === "pending");
 
   const openCount = jobs.filter((j) => j.status === "open").length;
   const closedCount = jobs.filter((j) => j.status === "closed").length;
@@ -86,6 +99,22 @@ export default function EmployerDashboard() {
           </button>
         </div>
 
+        {/* Pending Applications Alert */}
+        {pendingApplications.length > 0 && (
+          <div className="mb-8 bg-yellow-50 border border-yellow-200 rounded-lg p-4 flex items-start gap-3">
+            <AlertCircle size={20} className="text-yellow-600 flex-shrink-0 mt-0.5" />
+            <div>
+              <h3 className="font-semibold text-yellow-900">
+                {pendingApplications.length} Pending Application{pendingApplications.length !== 1 ? 's' : ''} Awaiting Review
+              </h3>
+              <p className="text-sm text-yellow-700 mt-1">
+                Review and respond to applicants to improve your hiring experience.
+              </p>
+            </div>
+          </div>
+        )}
+
+        {/* Job Status Tabs */}
         <div className="flex border-b border-gray-200 mb-8 overflow-x-auto whitespace-nowrap">
           <button 
             onClick={() => setActiveTab("open")}
@@ -97,17 +126,6 @@ export default function EmployerDashboard() {
             aria-label={`View active job postings - ${openCount} jobs`}
           >
             Active Postings ({openCount})
-          </button>
-          <button 
-            onClick={() => setActiveTab("pending")}
-            className={`px-6 py-3 border-b-2 font-bold text-sm transition-all ${
-              activeTab === "pending"
-                ? "border-[#008BDC] text-[#008BDC]"
-                : "border-transparent text-gray-500 hover:text-[#008BDC]"
-            }`}
-            aria-label="View pending approval job postings"
-          >
-            Pending Approval
           </button>
           <button 
             onClick={() => setActiveTab("closed")}
@@ -122,7 +140,8 @@ export default function EmployerDashboard() {
           </button>
         </div>
 
-        <div className="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
+        {/* Posted Jobs Section */}
+        <div className="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden mb-8">
           <div className="p-6 border-b border-gray-100 flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Briefcase size={20} className="text-[#008BDC]" />
@@ -197,6 +216,55 @@ export default function EmployerDashboard() {
             </button>
           </div>
         </div>
+
+        {/* Pending Applications Section */}
+        {pendingApplications.length > 0 && (
+          <div className="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
+            <div className="p-6 border-b border-gray-100 flex items-center gap-2">
+              <AlertCircle size={20} className="text-yellow-600" />
+              <h2 className="text-lg font-bold text-[#212121]">
+                Pending Applications ({pendingApplications.length})
+              </h2>
+            </div>
+
+            <div className="divide-y divide-gray-100">
+              {pendingApplications.map((app) => (
+                <div
+                  key={app._id}
+                  onClick={() =>
+                    navigate(`/employer/jobs/${app.job_id._id}/applicants`)
+                  }
+                  className="p-6 hover:bg-blue-50/30 transition-colors flex flex-col md:flex-row md:items-center justify-between gap-4 cursor-pointer group"
+                >
+                  <div className="space-y-2">
+                    <h3 className="font-bold text-lg text-[#212121] group-hover:text-[#008BDC] transition-colors">
+                      {app.student_id?.name || "Unknown Applicant"}
+                    </h3>
+                    <div className="flex flex-wrap items-center gap-5 text-sm text-gray-500">
+                      <span className="flex items-center gap-1.5">
+                        <Briefcase size={16} className="text-gray-400" />
+                        {app.job_id?.title || "Job Title"}
+                      </span>
+                      <span className="flex items-center gap-1.5 text-xs bg-gray-100 px-2 py-1 rounded">
+                        <Clock size={14} />{" "}
+                        {new Date(app.createdAt).toLocaleDateString()}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-yellow-50 text-yellow-600 border border-yellow-100">
+                      {app.status}
+                    </div>
+                    <ChevronRight
+                      size={20}
+                      className="text-gray-300 group-hover:text-[#008BDC] transition-transform group-hover:translate-x-1"
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
