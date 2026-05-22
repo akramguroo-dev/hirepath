@@ -99,14 +99,16 @@
 - [x] Accessibility — aria-labels & keyboard navigation (Dayan) — #43 ✅ MERGED
 - [x] Cloudinary uploads complete (Akram) — profile photos, resumes, company logos ✅
 
-## Week 1 (Continued): Remaining v1 Features — BEFORE Week 2 STARTS
-- [ ] Browse Jobs button on Home page → navigate to /jobs
-- [ ] Internships route — filter jobs by type (or use /jobs with filter)
-- [ ] Employer registration in browser form (currently Student only)
-- [ ] EmployerDashboard tabs — Active/Pending/Closed status filters
-- [ ] View all postings link on EmployerDashboard
+## Week 1 (Continued): Remaining v1 Features ✅ COMPLETE
+- [x] Browse Jobs button on Home page → navigate to /jobs ✅
+- [x] Internships route — filter jobs by type using query params ✅
+- [x] Employer registration in browser form ✅
+- [x] EmployerDashboard tabs — Active/Pending/Closed status filters ✅
+- [x] View all postings link + auto-close cron job ✅
+- [x] Pending Applications section on EmployerDashboard ✅
+- [x] GET /api/applications/employer endpoint ✅
 
-## Week 2: Portfolio Site (Next.js + TypeScript) (5 days) — STARTING AFTER v1 FEATURES
+## Week 2: Portfolio Site (Next.js + TypeScript) (5 days) — STARTING NOW
 - [ ] Next.js 15 setup + TypeScript configuration
 - [ ] Basic routing (Home, About, Projects, Contact pages)
 - [ ] TypeScript interfaces + props typing for all components
