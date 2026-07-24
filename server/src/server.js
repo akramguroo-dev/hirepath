@@ -17,6 +17,7 @@ const authRoutes = require('./routes/auth');
 const jobRoutes = require('./routes/job');
 const applicationRoutes = require('./routes/application');
 const uploadRoutes = require('./routes/uploadRoutes');
+const chatRoutes = require('./routes/chat'); // NEW
 
 // Middleware
 const authMiddleware = require('./middleware/authMiddleware');
@@ -41,6 +42,7 @@ app.use('/api/auth', limiter, authRoutes);
 app.use('/api/jobs', jobRoutes);
 app.use('/api/applications', applicationRoutes);
 app.use('/api/upload', uploadRoutes);
+app.use('/api/chat', chatRoutes); // NEW
 
 app.get('/api/protected', authMiddleware, (req, res) => {
   res.json({ message: 'Protected route accessed', user: req.user });
