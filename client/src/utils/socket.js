@@ -6,7 +6,7 @@ const getToken = () => {
 };
 
 // Create Socket.io connection
-const socket = io(import.meta.env.VITE_API_URL || 'https://hirepath-api.onrender.com', {
+const socket = io(import.meta.env.VITE_SOCKET_URL || 'https://hirepath-api.onrender.com', {
   auth: {
     token: getToken()
   },
