@@ -39,7 +39,7 @@ export default function Navbar() {
             Internships <span className="text-2xl">▾</span>
           </Link>
 
-          {user && (
+          {token && (
             <Link
               to="/messages"
               aria-label="View messages and conversations"
@@ -151,6 +151,16 @@ export default function Navbar() {
           >
             Internships
           </Link>
+
+          {token && (
+            <Link
+              to="/messages"
+              aria-label="View messages and conversations"
+              className="block px-4 py-2 text-[#484848] hover:bg-blue-50 hover:text-[#00A5EC]"
+            >
+              Messages
+            </Link>
+          )}
 
           {token && role === "student" && (
             <Link
