@@ -25,6 +25,24 @@ const authMiddleware = require('./middleware/authMiddleware');
 const app = express();
 app.set('trust proxy', 1);
 
+// ============================================
+// Socket.io Setup
+// ============================================
+const http = require('http');
+const socketIo = require('socket.io');
+const initializeSocket = require('./socket/socketHandler');
+
+const server = http.createServer(app);
+const io = socketIo(server, {
+  cors: {
+    origin: [process.env.CLIENT_URL, 'http://localhost:5173'],
+    credentials: true
+  }
+});
+
+// Initialize Socket.io event handlers
+initializeSocket(io);
+
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 20, // max 20 requests per IP per 15 mins 
@@ -95,5 +113,6 @@ cron.schedule('0 0 * * *', async () => {
 
 app.listen(process.env.PORT, () => {
   console.log(`Server is listening on ${process.env.PORT}`);
+  console.log('[SOCKET] Socket initialized');
   console.log('[CRON] Job scheduler initialized');
 });
