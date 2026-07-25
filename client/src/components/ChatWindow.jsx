@@ -29,7 +29,7 @@ export default function ChatWindow({ conversationId, socket, onClose }) {
     const loadMessages = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`/api/chat/${conversationId}/messages`, {
+        const response = await axios.get(`/chat/${conversationId}/messages`, {
           params: { limit: 50 }
         });
         setMessages(response.data);
