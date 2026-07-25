@@ -7,7 +7,7 @@ const User = require('../models/User');
 // ============================================
 exports.getConversations = async (req, res) => {
   try {
-    const userId = req.user.id;
+    const userId = req.user._id;
 
     // Find conversations where user is either student or employer
     const conversations = await Conversation.find({
@@ -35,7 +35,7 @@ exports.getConversations = async (req, res) => {
 // ============================================
 exports.getOrCreateConversation = async (req, res) => {
   try {
-    const userId = req.user.id;
+    const userId = req.user._id;
     const { otherUserId, jobId } = req.body;
 
     // Validate inputs
@@ -115,7 +115,7 @@ exports.getMessages = async (req, res) => {
 exports.markMessagesAsRead = async (req, res) => {
   try {
     const { conversationId } = req.params;
-    const userId = req.user.id;
+    const userId = req.user._id;
 
     // Mark all unread messages in this conversation as read
     await Message.updateMany(

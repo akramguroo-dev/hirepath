@@ -19,9 +19,9 @@ module.exports = function initializeSocket(io) {
       // Verify JWT
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
       socket.user = decoded; // Attach user info to socket
-      socket.userId = decoded.id;
+      socket.userId = decoded.userId;
 
-      console.log(`[SOCKET] User authenticated: ${decoded.name} (${decoded.id})`);
+      console.log(`[SOCKET] User authenticated: ${decoded.userId}`);
       next();
     } catch (error) {
       console.error('[SOCKET] Auth error:', error.message);
@@ -34,23 +34,21 @@ module.exports = function initializeSocket(io) {
   // ============================================
   io.on('connection', (socket) => {
     const userId = socket.userId;
-    const userName = socket.user.name;
 
     // Track active user
     activeUsers[userId] = socket.id;
-    console.log(`[SOCKET] ${userName} connected. Active users: ${Object.keys(activeUsers).length}`);
+    console.log(`[SOCKET] ${userId} connected. Active users: ${Object.keys(activeUsers).length}`);
 
     // ============================================
     // Join Conversation Room
     // ============================================
     socket.on('joinConversation', (conversationId) => {
       socket.join(conversationId);
-      console.log(`[SOCKET] User ${userName} joined conversation ${conversationId}`);
+      console.log(`[SOCKET] User ${userId} joined conversation ${conversationId}`);
 
       // Notify others in room that user is online
       socket.to(conversationId).emit('userOnline', {
         userId,
-        userName,
         timestamp: new Date()
       });
     });
@@ -60,12 +58,11 @@ module.exports = function initializeSocket(io) {
     // ============================================
     socket.on('leaveConversation', (conversationId) => {
       socket.leave(conversationId);
-      console.log(`[SOCKET] User ${userName} left conversation ${conversationId}`);
+      console.log(`[SOCKET] User ${userId} left conversation ${conversationId}`);
 
       // Notify others
       socket.to(conversationId).emit('userOffline', {
         userId,
-        userName,
         timestamp: new Date()
       });
     });
@@ -89,7 +86,7 @@ module.exports = function initializeSocket(io) {
           text
         );
 
-        console.log(`[SOCKET] Message saved: ${conversationId} from ${userName}`);
+        console.log(`[SOCKET] Message saved: ${conversationId} from ${userId}`);
 
         // Broadcast to all users in this conversation
         io.to(conversationId).emit('newMessage', {
@@ -118,14 +115,12 @@ module.exports = function initializeSocket(io) {
     socket.on('typing', (conversationId) => {
       socket.to(conversationId).emit('userTyping', {
         userId,
-        userName
       });
     });
 
     socket.on('stopTyping', (conversationId) => {
       socket.to(conversationId).emit('userStoppedTyping', {
         userId,
-        userName
       });
     });
 
@@ -147,7 +142,7 @@ module.exports = function initializeSocket(io) {
           userId
         });
 
-        console.log(`[SOCKET] Messages marked read: ${conversationId} by ${userName}`);
+        console.log(`[SOCKET] Messages marked read: ${conversationId} by ${userId}`);
       } catch (error) {
         console.error('[SOCKET] Error marking as read:', error);
       }
@@ -158,7 +153,7 @@ module.exports = function initializeSocket(io) {
     // ============================================
     socket.on('disconnect', () => {
       delete activeUsers[userId];
-      console.log(`[SOCKET] User ${userName} disconnected. Active users: ${Object.keys(activeUsers).length}`);
+      console.log(`[SOCKET] User ${userId} disconnected. Active users: ${Object.keys(activeUsers).length}`);
     });
   });
 };
