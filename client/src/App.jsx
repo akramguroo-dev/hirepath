@@ -1,7 +1,7 @@
 import { lazy, Suspense } from "react";
-import { Routes, Route ,useLocation } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 
-import {Toaster} from "react-hot-toast"
+import { Toaster } from "react-hot-toast";
 import { motion } from "framer-motion";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -23,12 +23,13 @@ const FeedbackForm = lazy(() => import("./pages/FeedbackForm"));
 const EditProfile = lazy(() => import("./pages/EditProfile"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const StudentDashboard = lazy(() => import("./pages/StudentDashboard"));
+import ChatPage from "./pages/ChatPage";
 
 function App() {
   const location = useLocation();
   return (
     <>
-    <Toaster/>
+      <Toaster />
       <Navbar />
 
       <Suspense
@@ -38,97 +39,152 @@ function App() {
           </div>
         }
       >
-      
         <motion.div
           key={location.pathname} // Unique key triggers animation on route change
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3 }}
         >
-      <Routes location={location} key={location.pathname}>
-        <Route
-          path="/profile"
-          element={
-            <ErrorBoundary>
-            <ProtectedRoute>
-              <Profile />
-            </ProtectedRoute>
-            </ErrorBoundary>
-          }
-        />
-        <Route
-          path="/employer-dashboard"
-          element={
-            <ErrorBoundary>
-            <ProtectedRoute>
-              <EmployerDashboard />
-            </ProtectedRoute>
-            </ErrorBoundary>
-          }
-        />
-        <Route
-          path="/post-job"
-          element={
-            <ErrorBoundary>
-            <ProtectedRoute>
-              <PostJob />
-            </ProtectedRoute>
-            </ErrorBoundary>
-          }
-        />
-        <Route
-          path="/edit-profile"
-          element={
-            <ErrorBoundary>
-            <ProtectedRoute>
-              <EditProfile />
-            </ProtectedRoute>
-            </ErrorBoundary>
-          }
-        />
-        <Route
-          path="/my-applications"
-          element={
-            <ErrorBoundary>
-            <ProtectedRoute>
-              <ApplicationStatus />
-            </ProtectedRoute>
-            </ErrorBoundary>
-          }
-        />
-        <Route
-          path="/my-feedback"
-          element={
-            <ErrorBoundary>
-            <ProtectedRoute>
-              <FeedbackReceived />
-            </ProtectedRoute>
-            </ErrorBoundary>
-          }
-        />
-        <Route
-          path="/student-dashboard"
-          element={
-            <ErrorBoundary>
-            <ProtectedRoute>
-              <StudentDashboard />
-            </ProtectedRoute>
-            </ErrorBoundary>
-          }
-        />
-        <Route path="/" element={ <ErrorBoundary><Home /> </ErrorBoundary>} />
-        <Route path="/jobs" element={<ErrorBoundary><Jobs /> </ErrorBoundary>} />
-        <Route path="/jobs/:id" element={ <ErrorBoundary><JobDetail /> </ErrorBoundary>} />
-        <Route path="/login" element={ <ErrorBoundary><Login /> </ErrorBoundary>} />
-        <Route path="/register" element={ <ErrorBoundary><Register /> </ErrorBoundary>} />
-        <Route
-          path="/employer/jobs/:id/applicants"
-          element={<ErrorBoundary><EmployerApplicants /> </ErrorBoundary>}
-        />
-        <Route path="/feedback/:applicationId" element={ <ErrorBoundary><FeedbackForm /> </ErrorBoundary>} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-      </motion.div>
+          <Routes location={location} key={location.pathname}>
+            <Route
+              path="/profile"
+              element={
+                <ErrorBoundary>
+                  <ProtectedRoute>
+                    <Profile />
+                  </ProtectedRoute>
+                </ErrorBoundary>
+              }
+            />
+            <Route
+              path="/employer-dashboard"
+              element={
+                <ErrorBoundary>
+                  <ProtectedRoute>
+                    <EmployerDashboard />
+                  </ProtectedRoute>
+                </ErrorBoundary>
+              }
+            />
+            <Route
+              path="/messages"
+              element={
+                <ErrorBoundary>
+                  <ProtectedRoute>
+                    <ChatPage />
+                  </ProtectedRoute>
+                </ErrorBoundary>
+              }
+            />
+            <Route
+              path="/post-job"
+              element={
+                <ErrorBoundary>
+                  <ProtectedRoute>
+                    <PostJob />
+                  </ProtectedRoute>
+                </ErrorBoundary>
+              }
+            />
+            <Route
+              path="/edit-profile"
+              element={
+                <ErrorBoundary>
+                  <ProtectedRoute>
+                    <EditProfile />
+                  </ProtectedRoute>
+                </ErrorBoundary>
+              }
+            />
+            <Route
+              path="/my-applications"
+              element={
+                <ErrorBoundary>
+                  <ProtectedRoute>
+                    <ApplicationStatus />
+                  </ProtectedRoute>
+                </ErrorBoundary>
+              }
+            />
+            <Route
+              path="/my-feedback"
+              element={
+                <ErrorBoundary>
+                  <ProtectedRoute>
+                    <FeedbackReceived />
+                  </ProtectedRoute>
+                </ErrorBoundary>
+              }
+            />
+            <Route
+              path="/student-dashboard"
+              element={
+                <ErrorBoundary>
+                  <ProtectedRoute>
+                    <StudentDashboard />
+                  </ProtectedRoute>
+                </ErrorBoundary>
+              }
+            />
+            <Route
+              path="/"
+              element={
+                <ErrorBoundary>
+                  <Home />{" "}
+                </ErrorBoundary>
+              }
+            />
+            <Route
+              path="/jobs"
+              element={
+                <ErrorBoundary>
+                  <Jobs />{" "}
+                </ErrorBoundary>
+              }
+            />
+            <Route
+              path="/jobs/:id"
+              element={
+                <ErrorBoundary>
+                  <JobDetail />{" "}
+                </ErrorBoundary>
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <ErrorBoundary>
+                  <Login />{" "}
+                </ErrorBoundary>
+              }
+            />
+            <Route
+              path="/register"
+              element={
+                <ErrorBoundary>
+                  <Register />{" "}
+                </ErrorBoundary>
+              }
+            />
+            <Route
+              path="/employer/jobs/:id/applicants"
+              element={
+                <ErrorBoundary>
+                  <EmployerApplicants />{" "}
+                </ErrorBoundary>
+              }
+            />
+            <Route
+              path="/feedback/:applicationId"
+              element={
+                <ErrorBoundary>
+                  <FeedbackForm />{" "}
+                </ErrorBoundary>
+              }
+            />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </motion.div>
       </Suspense>
       <Footer />
     </>
