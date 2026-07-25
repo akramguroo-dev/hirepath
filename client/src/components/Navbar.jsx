@@ -4,7 +4,7 @@ import { useAuth } from "../context/AuthContext";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const { token, role, logout } = useAuth();
+  const { token, role, user, logout } = useAuth();
   const navigate = useNavigate();
 
   return (
@@ -38,6 +38,7 @@ export default function Navbar() {
           >
             Internships <span className="text-2xl">▾</span>
           </Link>
+
           {user && (
             <Link
               to="/messages"
@@ -47,6 +48,7 @@ export default function Navbar() {
               Messages
             </Link>
           )}
+
           {token && role === "student" && (
             <Link
               to="/profile"
