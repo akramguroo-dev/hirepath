@@ -11,6 +11,15 @@ export const setLogoutFunction = (fn) => {
   logoutFn = fn;
 };
 
+// NEW: Add token to every request automatically
+API.interceptors.request.use((config) => {
+  const token = localStorage.getItem('token');
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
 API.interceptors.response.use(
   (response) => response,
   (error) => {
