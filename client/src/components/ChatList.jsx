@@ -7,9 +7,7 @@ export default function ChatList({ conversations, onSelectConversation, selected
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (conversations.length > 0) {
-      setLoading(false);
-    }
+    setLoading(false);
   }, [conversations]);
 
   if (loading) {
