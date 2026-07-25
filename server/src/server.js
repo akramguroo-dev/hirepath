@@ -111,7 +111,7 @@ cron.schedule('0 0 * * *', async () => {
   }
 });
 
-app.listen(process.env.PORT, () => {
+server.listen(process.env.PORT, () => {
   console.log(`Server is listening on ${process.env.PORT}`);
   console.log('[SOCKET] Socket initialized');
   console.log('[CRON] Job scheduler initialized');
