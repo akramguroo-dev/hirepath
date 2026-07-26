@@ -2,7 +2,12 @@ import { useState, useEffect, useRef } from "react";
 import { useAuth } from "../context/AuthContext";
 import axios from "../api/axios";
 
-export default function ChatWindow({ conversationId, socket, onClose }) {
+export default function ChatWindow({
+  conversationId,
+  socket,
+  onClose,
+  onMessagesRead,
+}) {
   const { user } = useAuth();
   const [messages, setMessages] = useState([]);
   const [inputText, setInputText] = useState("");
@@ -45,6 +50,7 @@ export default function ChatWindow({ conversationId, socket, onClose }) {
     // Mark messages as read when opening this conversation
     axios
       .put(`/chat/${conversationId}/read`)
+      .then(() => onMessagesRead?.())
       .catch((err) => console.error("Error marking as read:", err));
 
     // Socket.io: Join conversation room
