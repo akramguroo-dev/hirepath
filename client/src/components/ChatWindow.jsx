@@ -42,6 +42,11 @@ export default function ChatWindow({ conversationId, socket, onClose }) {
 
     loadMessages();
 
+    // Mark messages as read when opening this conversation
+    axios
+      .put(`/chat/${conversationId}/read`)
+      .catch((err) => console.error("Error marking as read:", err));
+
     // Socket.io: Join conversation room
     if (socket) {
       socket.emit("joinConversation", conversationId);
