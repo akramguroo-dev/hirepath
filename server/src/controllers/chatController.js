@@ -1,6 +1,6 @@
-const Conversation = require('../models/Conversation');
-const Message = require('../models/Message');
-const User = require('../models/User');
+const Conversation = require("../models/Conversation");
+const Message = require("../models/Message");
+const User = require("../models/User");
 
 // ============================================
 // Get all conversations for logged-in user
@@ -11,22 +11,19 @@ exports.getConversations = async (req, res) => {
 
     // Find conversations where user is either student or employer
     const conversations = await Conversation.find({
-      $or: [
-        { student_id: userId },
-        { employer_id: userId }
-      ],
-      status: 'active'
+      $or: [{ student_id: userId }, { employer_id: userId }],
+      status: "active",
     })
-      .populate('student_id', 'name profilePhoto')
-      .populate('employer_id', 'name profilePhoto')
-      .populate('job_id', 'title company')
+      .populate("student_id", "name profilePhoto")
+      .populate("employer_id", "name profilePhoto")
+      .populate("job_id", "title company")
       .sort({ last_message_at: -1 })
       .limit(50);
 
     res.json(conversations);
   } catch (error) {
-    console.error('[CHAT] Error fetching conversations:', error);
-    res.status(500).json({ error: 'Failed to fetch conversations' });
+    console.error("[CHAT] Error fetching conversations:", error);
+    res.status(500).json({ error: "Failed to fetch conversations" });
   }
 };
 
@@ -40,15 +37,15 @@ exports.getOrCreateConversation = async (req, res) => {
 
     // Validate inputs
     if (!otherUserId || !jobId) {
-      return res.status(400).json({ error: 'otherUserId and jobId required' });
+      return res.status(400).json({ error: "otherUserId and jobId required" });
     }
 
     // Find existing conversation
     let conversation = await Conversation.findOne({
       $or: [
         { student_id: userId, employer_id: otherUserId, job_id: jobId },
-        { student_id: otherUserId, employer_id: userId, job_id: jobId }
-      ]
+        { student_id: otherUserId, employer_id: userId, job_id: jobId },
+      ],
     });
 
     // If doesn't exist, create it
@@ -57,28 +54,28 @@ exports.getOrCreateConversation = async (req, res) => {
       const user = await User.findById(userId);
       const otherUser = await User.findById(otherUserId);
 
-      const studentId = user.role === 'student' ? userId : otherUserId;
-      const employerId = user.role === 'employer' ? userId : otherUserId;
+      const studentId = user.role === "student" ? userId : otherUserId;
+      const employerId = user.role === "employer" ? userId : otherUserId;
 
       conversation = new Conversation({
         job_id: jobId,
         student_id: studentId,
         employer_id: employerId,
-        status: 'active'
+        status: "active",
       });
 
       await conversation.save();
     }
 
     // Populate and return
-    await conversation.populate('student_id', 'name profilePhoto');
-    await conversation.populate('employer_id', 'name profilePhoto');
-    await conversation.populate('job_id', 'title company');
+    await conversation.populate("student_id", "name profilePhoto");
+    await conversation.populate("employer_id", "name profilePhoto");
+    await conversation.populate("job_id", "title company");
 
     res.json(conversation);
   } catch (error) {
-    console.error('[CHAT] Error creating conversation:', error);
-    res.status(500).json({ error: 'Failed to create conversation' });
+    console.error("[CHAT] Error creating conversation:", error);
+    res.status(500).json({ error: "Failed to create conversation" });
   }
 };
 
@@ -94,7 +91,7 @@ exports.getMessages = async (req, res) => {
     const skip = (page - 1) * limit;
 
     const messages = await Message.find({ conversation_id: conversationId })
-      .populate('sender_id', 'name profilePhoto email')
+      .populate("sender_id", "name profilePhoto email")
       .sort({ createdAt: -1 })
       .skip(skip)
       .limit(parseInt(limit));
@@ -104,8 +101,8 @@ exports.getMessages = async (req, res) => {
 
     res.json(messages);
   } catch (error) {
-    console.error('[CHAT] Error fetching messages:', error);
-    res.status(500).json({ error: 'Failed to fetch messages' });
+    console.error("[CHAT] Error fetching messages:", error);
+    res.status(500).json({ error: "Failed to fetch messages" });
   }
 };
 
@@ -119,17 +116,17 @@ exports.markMessagesAsRead = async (req, res) => {
 
     // Mark all unread messages in this conversation as read
     await Message.updateMany(
-      { 
+      {
         conversation_id: conversationId,
-        read: false
+        read: false,
       },
-      { read: true }
+      { read: true },
     );
 
     // Reset unread count for this user
     const conversation = await Conversation.findById(conversationId);
-    
-    if (conversation.student_id.toString() === userId) {
+
+    if (conversation.student_id.toString() === userId.toString()) {
       conversation.unread_count_student = 0;
     } else {
       conversation.unread_count_employer = 0;
@@ -137,10 +134,10 @@ exports.markMessagesAsRead = async (req, res) => {
 
     await conversation.save();
 
-    res.json({ message: 'Messages marked as read' });
+    res.json({ message: "Messages marked as read" });
   } catch (error) {
-    console.error('[CHAT] Error marking messages as read:', error);
-    res.status(500).json({ error: 'Failed to mark messages as read' });
+    console.error("[CHAT] Error marking messages as read:", error);
+    res.status(500).json({ error: "Failed to mark messages as read" });
   }
 };
 
@@ -155,26 +152,23 @@ exports.saveMessage = async (conversationId, senderId, text) => {
       conversation_id: conversationId,
       sender_id: senderId,
       text: text,
-      read: false
+      read: false,
     });
 
     await message.save();
 
     // Update conversation's last_message and last_message_at
-    await Conversation.findByIdAndUpdate(
-      conversationId,
-      {
-        last_message: text,
-        last_message_at: new Date()
-      }
-    );
+    await Conversation.findByIdAndUpdate(conversationId, {
+      last_message: text,
+      last_message_at: new Date(),
+    });
 
     // Populate sender info and return
-    await message.populate('sender_id', 'name profilePhoto email');
+    await message.populate("sender_id", "name profilePhoto email");
 
     return message;
   } catch (error) {
-    console.error('[CHAT] Error saving message:', error);
+    console.error("[CHAT] Error saving message:", error);
     throw error;
   }
 };
@@ -195,7 +189,7 @@ exports.incrementUnreadCount = async (conversationId, recipientId) => {
 
     await conversation.save();
   } catch (error) {
-    console.error('[CHAT] Error incrementing unread count:', error);
+    console.error("[CHAT] Error incrementing unread count:", error);
     throw error;
   }
 };
