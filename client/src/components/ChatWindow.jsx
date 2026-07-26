@@ -1,11 +1,11 @@
-import { useState, useEffect, useRef } from 'react';
-import { useAuth } from '../context/AuthContext';
-import axios from '../api/axios';
+import { useState, useEffect, useRef } from "react";
+import { useAuth } from "../context/AuthContext";
+import axios from "../api/axios";
 
 export default function ChatWindow({ conversationId, socket, onClose }) {
   const { user } = useAuth();
   const [messages, setMessages] = useState([]);
-  const [inputText, setInputText] = useState('');
+  const [inputText, setInputText] = useState("");
   const [loading, setLoading] = useState(true);
   const [isTyping, setIsTyping] = useState(false);
   const [typingUser, setTypingUser] = useState(null);
@@ -15,7 +15,7 @@ export default function ChatWindow({ conversationId, socket, onClose }) {
 
   // Scroll to bottom when messages change
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   useEffect(() => {
@@ -30,11 +30,11 @@ export default function ChatWindow({ conversationId, socket, onClose }) {
       try {
         setLoading(true);
         const response = await axios.get(`/chat/${conversationId}/messages`, {
-          params: { limit: 50 }
+          params: { limit: 50 },
         });
         setMessages(response.data);
       } catch (error) {
-        console.error('Error loading messages:', error);
+        console.error("Error loading messages:", error);
       } finally {
         setLoading(false);
       }
@@ -44,12 +44,12 @@ export default function ChatWindow({ conversationId, socket, onClose }) {
 
     // Socket.io: Join conversation room
     if (socket) {
-      socket.emit('joinConversation', conversationId);
+      socket.emit("joinConversation", conversationId);
     }
 
     return () => {
       if (socket) {
-        socket.emit('leaveConversation', conversationId);
+        socket.emit("leaveConversation", conversationId);
       }
     };
   }, [conversationId, socket]);
@@ -58,22 +58,22 @@ export default function ChatWindow({ conversationId, socket, onClose }) {
   useEffect(() => {
     if (!socket) return;
 
-    socket.on('newMessage', (message) => {
-      setMessages(prev => [...prev, message]);
+    socket.on("newMessage", (message) => {
+      setMessages((prev) => [...prev, message]);
     });
 
-    socket.on('userTyping', (data) => {
+    socket.on("userTyping", (data) => {
       setTypingUser(data.userName);
     });
 
-    socket.on('userStoppedTyping', () => {
+    socket.on("userStoppedTyping", () => {
       setTypingUser(null);
     });
 
     return () => {
-      socket.off('newMessage');
-      socket.off('userTyping');
-      socket.off('userStoppedTyping');
+      socket.off("newMessage");
+      socket.off("userTyping");
+      socket.off("userStoppedTyping");
     };
   }, [socket]);
 
@@ -81,13 +81,13 @@ export default function ChatWindow({ conversationId, socket, onClose }) {
   const handleSendMessage = () => {
     if (!inputText.trim() || !socket) return;
 
-    socket.emit('sendMessage', {
+    socket.emit("sendMessage", {
       conversationId,
-      text: inputText
+      text: inputText,
     });
 
-    setInputText('');
-    socket.emit('stopTyping', conversationId);
+    setInputText("");
+    socket.emit("stopTyping", conversationId);
     setIsTyping(false);
   };
 
@@ -97,7 +97,7 @@ export default function ChatWindow({ conversationId, socket, onClose }) {
 
     if (!isTyping && socket) {
       setIsTyping(true);
-      socket.emit('typing', conversationId);
+      socket.emit("typing", conversationId);
     }
 
     // Clear existing timeout
@@ -106,7 +106,7 @@ export default function ChatWindow({ conversationId, socket, onClose }) {
     // Set new timeout to stop typing indicator
     typingTimeoutRef.current = setTimeout(() => {
       if (socket) {
-        socket.emit('stopTyping', conversationId);
+        socket.emit("stopTyping", conversationId);
       }
       setIsTyping(false);
     }, 3000);
@@ -114,7 +114,7 @@ export default function ChatWindow({ conversationId, socket, onClose }) {
 
   // Handle Enter key to send
   const handleKeyPress = (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
+    if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       handleSendMessage();
     }
@@ -132,8 +132,18 @@ export default function ChatWindow({ conversationId, socket, onClose }) {
     return (
       <div className="w-full h-full flex items-center justify-center">
         <div className="animate-spin">
-          <svg className="w-8 h-8 text-[#00A5EC]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+          <svg
+            className="w-8 h-8 text-[#00A5EC]"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+            />
           </svg>
         </div>
       </div>
@@ -146,14 +156,26 @@ export default function ChatWindow({ conversationId, socket, onClose }) {
       <div className="p-4 border-b border-gray-100 flex items-center justify-between">
         <div>
           <h2 className="text-lg font-bold text-gray-900">Chat</h2>
-          <p className="text-xs text-gray-400 mt-1">{messages.length} messages</p>
+          <p className="text-xs text-gray-400 mt-1">
+            {messages.length} messages
+          </p>
         </div>
         <button
           onClick={onClose}
           className="md:hidden text-gray-400 hover:text-gray-600 p-2"
         >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M6 18L18 6M6 6l12 12"
+            />
           </svg>
         </button>
       </div>
@@ -169,27 +191,34 @@ export default function ChatWindow({ conversationId, socket, onClose }) {
             <div
               key={message._id}
               className={`flex ${
-                message.sender_id?._id === user?.id ? 'justify-end' : 'justify-start'
+                message.sender_id?._id === user?._id
+                  ? "justify-end"
+                  : "justify-start"
               }`}
             >
               <div
                 className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
-                  message.sender_id?._id === user?.id
-                    ? 'bg-[#00A5EC] text-white rounded-br-none'
-                    : 'bg-gray-100 text-gray-900 rounded-bl-none'
+                  message.sender_id?._id === user?._id
+                    ? "bg-[#00A5EC] text-white rounded-br-none"
+                    : "bg-gray-100 text-gray-900 rounded-bl-none"
                 }`}
               >
+                {message.sender_id?._id !== user?._id && (
+                  <p className="text-xs font-semibold text-gray-500 mb-1">
+                    {message.sender_id?.name}
+                  </p>
+                )}
                 <p className="text-sm break-words">{message.text}</p>
                 <span
                   className={`text-xs mt-1 block ${
-                    message.sender_id?._id === user?.id
-                      ? 'text-blue-100'
-                      : 'text-gray-400'
+                    message.sender_id?._id === user?._id
+                      ? "text-blue-100"
+                      : "text-gray-400"
                   }`}
                 >
-                  {new Date(message.createdAt).toLocaleTimeString('en-US', {
-                    hour: '2-digit',
-                    minute: '2-digit'
+                  {new Date(message.createdAt).toLocaleTimeString("en-US", {
+                    hour: "2-digit",
+                    minute: "2-digit",
                   })}
                 </span>
               </div>
@@ -204,8 +233,14 @@ export default function ChatWindow({ conversationId, socket, onClose }) {
               <p className="text-sm text-gray-600">{typingUser} is typing</p>
               <div className="flex gap-1 mt-2">
                 <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.4s' }}></div>
+                <div
+                  className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
+                  style={{ animationDelay: "0.2s" }}
+                ></div>
+                <div
+                  className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
+                  style={{ animationDelay: "0.4s" }}
+                ></div>
               </div>
             </div>
           </div>

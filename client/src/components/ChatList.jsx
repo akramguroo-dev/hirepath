@@ -3,7 +3,7 @@ import { useAuth } from '../context/AuthContext';
 import axios from '../api/axios';
 
 export default function ChatList({ conversations, onSelectConversation, selectedConversationId }) {
-  const { token } = useAuth();
+  const { token, user } = useAuth();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -56,7 +56,7 @@ export default function ChatList({ conversations, onSelectConversation, selected
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2">
                   <h3 className="text-sm font-bold text-gray-900 truncate">
-                    {conversation.student_id?.name === 'You' 
+                    {conversation.student_id?._id === user?._id 
                       ? conversation.employer_id?.name 
                       : conversation.student_id?.name}
                   </h3>
