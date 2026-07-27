@@ -15,14 +15,24 @@ export default function Login() {
     e.preventDefault();
     try {
       const response = await API.post("/auth/login", { email, password });
+
+      if (response.data.role !== role) {
+        toast.error(
+          `This account is registered as ${response.data.role}, not ${role}. Please select the correct tab.`,
+        );
+        return;
+      }
+
       login(response.data.token, response.data.role);
       navigate("/");
     } catch (error) {
       console.log(error.response.data);
-      toast.error(error.response?.data?.error || "Invalid credentials. Please try again.");
+      toast.error(
+        error.response?.data?.error || "Invalid credentials. Please try again.",
+      );
     }
   };
-
+  
   return (
     <div className="flex justify-center items-center min-h-screen">
       <form
@@ -62,8 +72,8 @@ export default function Login() {
         <label htmlFor="login-email" className="block mb-4">
           Email
           <input
-          id="login-email"
-          aria-label="Enter your email address"
+            id="login-email"
+            aria-label="Enter your email address"
             className="border rounded w-full px-3 py-2 mt-2 focus:outline-none focus:border-blue-500"
             type="email"
             onChange={(e) => setEmail(e.target.value)}
@@ -73,15 +83,19 @@ export default function Login() {
         <label htmlFor="login-password" className="block mb-3">
           Password
           <input
-          id="login-password"
-          aria-label="Enter your account password"
+            id="login-password"
+            aria-label="Enter your account password"
             className="border rounded w-full px-3 py-2 mt-2 focus:outline-none focus:border-blue-500"
             type="password"
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Must be atleast 6 characters"
           />
         </label>
-        <Link to="" aria-label="Recover forgotten account credentials" className="text-[#00A5EC] flex justify-end mb-3">
+        <Link
+          to=""
+          aria-label="Recover forgotten account credentials"
+          className="text-[#00A5EC] flex justify-end mb-3"
+        >
           Forgot password?
         </Link>
         <button
@@ -93,7 +107,11 @@ export default function Login() {
         </button>
         <p className="w-full">
           Don't have an account?{" "}
-          <Link to="/register" aria-label="Navigate to account registration view" className="text-[#00A5EC] hover:underline">
+          <Link
+            to="/register"
+            aria-label="Navigate to account registration view"
+            className="text-[#00A5EC] hover:underline"
+          >
             Register
           </Link>
         </p>
