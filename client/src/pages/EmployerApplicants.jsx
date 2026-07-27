@@ -147,14 +147,14 @@ export default function EmployerApplicants() {
                       <button
                         onClick={() => setViewingApplicant(app.student_id)}
                         aria-label={`View profile for ${app.student_id.name}`}
-                        className="px-3 py-1 bg-gray-600 hover:bg-gray-700 text-white text-xs font-bold rounded"
+                        className="w-28 px-3 py-1 bg-gray-600 hover:bg-gray-700 text-white text-xs font-bold rounded"
                       >
                         View Profile
                       </button>
                       <button
                         onClick={() => handleMessage(app.student_id._id)}
                         aria-label={`Message ${app.student_id.name}`}
-                        className="px-3 py-1 bg-[#00A5EC] hover:bg-[#0095D8] text-white text-xs font-bold rounded"
+                        className="w-28 px-3 py-1 bg-[#00A5EC] hover:bg-[#0095D8] text-white text-xs font-bold rounded"
                       >
                         Message
                       </button>
@@ -163,14 +163,14 @@ export default function EmployerApplicants() {
                           <button
                             onClick={() => handleStatus(app._id, "accepted")}
                             aria-label={`Accept candidate application from ${app.student_id.name}`}
-                            className="px-3 py-1 bg-green-500 hover:bg-green-600 text-white text-xs font-bold rounded"
+                            className="w-28 px-3 py-1 bg-green-500 hover:bg-green-600 text-white text-xs font-bold rounded"
                           >
                             Accept
                           </button>
                           <button
                             onClick={() => handleStatus(app._id, "rejected")}
                             aria-label={`Reject candidate application from ${app.student_id.name}`}
-                            className="px-3 py-1 bg-red-500 hover:bg-red-600 text-white text-xs font-bold rounded"
+                            className="w-28 px-3 py-1 bg-red-500 hover:bg-red-600 text-white text-xs font-bold rounded"
                           >
                             Reject
                           </button>
@@ -180,7 +180,7 @@ export default function EmployerApplicants() {
                         <button
                           onClick={() => handleStatus(app._id, "rejected")}
                           aria-label={`Reject candidate application from ${app.student_id.name}`}
-                          className="px-3 py-1 bg-red-500 hover:bg-red-600 text-white text-xs font-bold rounded"
+                          className="w-28 px-3 py-1 bg-red-500 hover:bg-red-600 text-white text-xs font-bold rounded"
                         >
                           Reject
                         </button>
@@ -189,7 +189,7 @@ export default function EmployerApplicants() {
                         <button
                           onClick={() => handleStatus(app._id, "accepted")}
                           aria-label={`Accept candidate application from ${app.student_id.name}`}
-                          className="px-3 py-1 bg-green-500 hover:bg-green-600 text-white text-xs font-bold rounded"
+                          className="w-28 px-3 py-1 bg-green-500 hover:bg-green-600 text-white text-xs font-bold rounded"
                         >
                           Accept
                         </button>
@@ -198,7 +198,7 @@ export default function EmployerApplicants() {
                         <Link
                           to={`/feedback/${app._id}`}
                           aria-label={`Write performance feedback for ${app.student_id.name}`}
-                          className="px-3 py-1 bg-[#008BDC] hover:bg-[#0076bb] text-white text-xs font-bold rounded"
+                          className="w-28 block text-center px-3 py-1 bg-[#008BDC] hover:bg-[#0076bb] text-white text-xs font-bold rounded"
                         >
                           Feedback
                         </Link>
@@ -254,7 +254,9 @@ export default function EmployerApplicants() {
                   <h2 className="text-xl font-bold text-gray-900">
                     {viewingApplicant.name}
                   </h2>
-                  <p className="text-sm text-gray-500">{viewingApplicant.email}</p>
+                  <p className="text-sm text-gray-500">
+                    {viewingApplicant.email}
+                  </p>
                 </div>
               </div>
               <button
@@ -262,8 +264,18 @@ export default function EmployerApplicants() {
                 aria-label="Close applicant profile"
                 className="text-gray-400 hover:text-gray-600 p-1"
               >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
                 </svg>
               </button>
             </div>
@@ -274,7 +286,9 @@ export default function EmployerApplicants() {
                   <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">
                     College
                   </h3>
-                  <p className="text-sm text-gray-800">{viewingApplicant.college}</p>
+                  <p className="text-sm text-gray-800">
+                    {viewingApplicant.college}
+                  </p>
                 </div>
               )}
 
