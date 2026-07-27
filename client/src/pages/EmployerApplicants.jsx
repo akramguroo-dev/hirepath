@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import API from "../api/axios";
 
@@ -7,6 +7,7 @@ export default function EmployerApplicants() {
   const [isLoading, setIsLoading] = useState(true);
   const [jobTitle, setJobTitle] = useState("");
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchApplicants = async () => {
@@ -56,6 +57,20 @@ export default function EmployerApplicants() {
     }
   };
 
+  const handleMessage = async (studentId) => {
+    try {
+      const token = localStorage.getItem("token");
+      await API.post(
+        "/chat/conversations",
+        { otherUserId: studentId, jobId: id },
+        { headers: { Authorization: `Bearer ${token}` } },
+      );
+      navigate("/messages");
+    } catch (error) {
+      console.error("Error starting conversation:", error);
+    }
+  };
+
   if (isLoading)
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -68,7 +83,6 @@ export default function EmployerApplicants() {
       <div className="max-w-5xl mx-auto">
         <Link
           to="/employer-dashboard"
-
           aria-label="Return to the main employer dashboard panel"
           className="text-blue-600 hover:underline flex items-center mb-6 font-medium"
         >
@@ -123,6 +137,13 @@ export default function EmployerApplicants() {
                       </span>
                     </td>
                     <td className="px-6 py-4 flex gap-2 items-center">
+                      <button
+                        onClick={() => handleMessage(app.student_id._id)}
+                        aria-label={`Message ${app.student_id.name}`}
+                        className="px-3 py-1 bg-[#00A5EC] hover:bg-[#0095D8] text-white text-xs font-bold rounded"
+                      >
+                        Message
+                      </button>
                       {app.status === "pending" && (
                         <>
                           <button
