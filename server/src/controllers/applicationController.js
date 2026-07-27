@@ -27,7 +27,7 @@ const applyToJob = async (req, res) => {
       cover_letter,
     });
 
-    await Job.findByIdAndUpdate(job_id, { $inc: { applicants: 1 }});
+    await Job.findByIdAndUpdate(job_id, { $inc: { applicants: 1 } });
     res.status(201).json({ application });
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -38,7 +38,10 @@ const getMyApplications = async (req, res) => {
   try {
     const myApplications = await Application.find({
       student_id: req.user._id,
-    }).populate("job_id", "title company description location type duration");
+    }).populate(
+      "job_id",
+      "title company description location type duration posted_by",
+    );
 
     res.json({ myApplications });
   } catch (err) {
@@ -74,9 +77,11 @@ const updateApplicationStatus = async (req, res) => {
 
     const job = await Job.findById(app.job_id);
     if (job.posted_by.toString() !== req.user._id.toString()) {
-      return res.status(403).json({ error: "Not authorized to update this application" });
+      return res
+        .status(403)
+        .json({ error: "Not authorized to update this application" });
     }
-    
+
     const { status, employer_feedback, rating } = req.body;
     const updatedApp = await Application.findByIdAndUpdate(
       id,
@@ -98,7 +103,7 @@ const getEmployerApplications = async (req, res) => {
 
     // Get all jobs posted by this employer
     const employerJobs = await Job.find({ posted_by: req.user._id });
-    const jobIds = employerJobs.map(job => job._id);
+    const jobIds = employerJobs.map((job) => job._id);
 
     // Get all applications for those jobs
     const applications = await Application.find({ job_id: { $in: jobIds } })

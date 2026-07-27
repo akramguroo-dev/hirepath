@@ -37,6 +37,20 @@ export default function ApplicationStatus() {
     }
   };
 
+  const handleMessage = async (employerId, jobId) => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await API.post(
+        "/chat/conversations",
+        { otherUserId: employerId, jobId },
+        { headers: { Authorization: `Bearer ${token}` } },
+      );
+      navigate("/messages", { state: { conversationId: response.data._id } });
+    } catch (error) {
+      console.error("Error starting conversation:", error);
+    }
+  };
+
   if (isLoading)
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -69,32 +83,48 @@ export default function ApplicationStatus() {
                 <th className="px-6 py-4 font-semibold text-gray-700 text-sm uppercase tracking-wider">
                   Status
                 </th>
+                <th className="px-6 py-4 font-semibold text-gray-700 text-sm uppercase tracking-wider">
+                  Actions
+                </th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
-              {applications.filter(app => app.job_id !== null).map((app) => (
-                <tr
-                  key={app._id}
-                  className="hover:bg-gray-50 transition-colors"
-                >
-                  <td className="px-6 py-4 font-semibold text-[#008BDC] whitespace-nowrap">
-                    {app.job_id.title}
-                  </td>
-                  <td className="px-6 py-4 text-gray-700 font-medium whitespace-nowrap">
-                    {app.job_id.company}
-                  </td>
-                  <td className="px-6 py-4 text-gray-500 text-sm whitespace-nowrap">
-                    {new Date(app.createdAt).toLocaleDateString()}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <span
-                      className={`px-3 py-1 rounded-full text-xs font-bold border ${getStatusStyle(app.status)}`}
-                    >
-                      {app.status}
-                    </span>
-                  </td>
-                </tr>
-              ))}
+              {applications
+                .filter((app) => app.job_id !== null)
+                .map((app) => (
+                  <tr
+                    key={app._id}
+                    className="hover:bg-gray-50 transition-colors"
+                  >
+                    <td className="px-6 py-4 font-semibold text-[#008BDC] whitespace-nowrap">
+                      {app.job_id.title}
+                    </td>
+                    <td className="px-6 py-4 text-gray-700 font-medium whitespace-nowrap">
+                      {app.job_id.company}
+                    </td>
+                    <td className="px-6 py-4 text-gray-500 text-sm whitespace-nowrap">
+                      {new Date(app.createdAt).toLocaleDateString()}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <span
+                        className={`px-3 py-1 rounded-full text-xs font-bold border ${getStatusStyle(app.status)}`}
+                      >
+                        {app.status}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <button
+                        onClick={() =>
+                          handleMessage(app.job_id.posted_by, app.job_id._id)
+                        }
+                        aria-label={`Message employer about ${app.job_id.title}`}
+                        className="px-3 py-1 bg-[#00A5EC] hover:bg-[#0095D8] text-white text-xs font-bold rounded"
+                      >
+                        Message
+                      </button>
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </table>
           {applications.length === 0 && (
