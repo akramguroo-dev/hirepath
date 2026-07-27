@@ -7,7 +7,7 @@
 ## Tech Stack
 - Frontend: React, Tailwind, React Router, Axios, Framer Motion
 - Backend: Node.js, Express, MongoDB Atlas, JWT, Cloudinary
-- Chat: Socket.io, React Redux, TypeScript, Jest
+- Real-time: Socket.io (JWT-authenticated sockets)
 
 ---
 
@@ -175,47 +175,57 @@
 
 ---
 
-## 🚀 WEEK 5: HirePath v2 — Real-time Chat Integration (IN PROGRESS)
+## ✅ WEEK 5: HirePath v2 — Real-time Chat Integration — COMPLETE
 
-### Architecture Plan
-- Socket.io backend integration with existing HirePath
-- Real-time student ↔ employer messaging
-- Redux state management for chat
-- Message notifications
-- Typing indicators
-- Online/offline status
+### Backend
+- [x] Socket.io installed and integrated into existing Express server (`http.createServer` + `server.listen`, not `app.listen`)
+- [x] `Conversation` schema (job_id, student_id, employer_id, last_message, last_message_at, unread_count_student, unread_count_employer, status)
+- [x] `Message` schema (conversation_id, sender_id, text, read, createdAt) with indexes on conversation_id and createdAt
+- [x] `chatController.js` — REST endpoints: getConversations, getOrCreateConversation, getMessages, markMessagesAsRead
+- [x] `chat.js` routes mounted at `/api/chat`, protected by authMiddleware
+- [x] `socketHandler.js` — JWT-authenticated Socket.io middleware (verifies token on handshake, attaches user to socket)
+- [x] Socket.io events: joinConversation, leaveConversation, sendMessage, typing, stopTyping, markAsRead, disconnect
+- [x] Real-time broadcast of new messages to all sockets in a conversation room
+- [x] Unread count increment (sender side) and reset (recipient side, on markAsRead)
 
-### Backend Tasks
-- [ ] Install Socket.io on HirePath backend
-- [ ] Create Chat/Message schema (MongoDB)
-- [ ] Socket.io event handlers (sendMessage, joinRoom, etc.)
-- [ ] User presence tracking
-- [ ] Message history retrieval
-- [ ] Typing indicator events
+### Frontend
+- [x] `socket.js` utility — Socket.io client with JWT auth, auto-reconnect
+- [x] `ChatList.jsx` — conversation list with unread badges, last-message preview, relative timestamps
+- [x] `ChatWindow.jsx` — message thread with real-time updates, auto-scroll, typing indicator, Enter-to-send
+- [x] `ChatPage.jsx` — combines ChatList + ChatWindow, fetches conversations, refreshes list on new message / read
+- [x] `/messages` route added (protected, wrapped in ErrorBoundary)
+- [x] Messages link added to Navbar (desktop + mobile)
+- [x] "Message" button added to EmployerApplicants page — creates/opens conversation with an applicant directly from the applicants table
+- [x] `AuthContext` extended with `user` object (fetched from `/api/auth/me`) for sender-identity comparisons in chat UI
 
-### Frontend Tasks
-- [ ] Chat UI component (message list, input)
-- [ ] Redux slice for chat state
-- [ ] Socket.io client integration
-- [ ] Notification badges
-- [ ] Real-time message updates
-- [ ] User typing indicators
-- [ ] Online/offline status display
+### Debugging & Fixes (real production issues resolved)
+- [x] Fixed `app.listen()` → `server.listen()` so Socket.io actually attaches to the running server
+- [x] Fixed Render deploy config (Root Directory + Build/Start commands) after path-resolution failures
+- [x] Fixed JWT payload mismatch — token has `{ userId, role }`, not `{ id, name }` — corrected in socketHandler and chatController (`req.user._id`, not `req.user.id`)
+- [x] Fixed double `/api/api/` prefix bug in frontend axios calls
+- [x] Added missing request interceptor to axios.js so JWT is sent automatically on every request (chat endpoints were silently unauthenticated before this)
+- [x] Fixed `/auth/me` response shape mismatch — backend wraps in `{ user: {...} }`, frontend was storing the wrapper instead of unwrapping it
+- [x] Fixed `getMe` controller excluding `_id` from the response, which broke all sender/recipient identity checks in chat
+- [x] Fixed ObjectId vs string comparison bug in `markMessagesAsRead` (unread badge wasn't clearing for either role)
+- [x] Fixed typing indicator — socket now looks up and sends `userName`, not just `userId`
+- [x] Fixed infinite loading spinner in ChatList when a user has zero conversations
+- [x] Fixed conversation list not refreshing after messages are marked read (stale unread badge)
+- [x] Separated `VITE_API_URL` (REST, includes `/api`) from `VITE_SOCKET_URL` (socket, no `/api` suffix) to prevent local/prod env collisions
 
-### Testing & Deployment
-- [ ] Unit tests for chat reducers
-- [ ] Integration tests for chat components
-- [ ] E2E testing on production
-- [ ] Deploy to Render (backend)
-- [ ] Deploy to Vercel (frontend)
+### Tested & Verified (production)
+- [x] Real-time message send/receive between two separate logged-in accounts (student + employer)
+- [x] Correct message alignment and sender name display per user
+- [x] Typing indicator appears/disappears correctly
+- [x] Unread badge increments on new message, clears on open — verified both directions
+- [x] "Message" button on EmployerApplicants creates a real conversation and routes to /messages
 
 ---
 
 ## 📊 Current Project Status
 
-### Live Projects (3/4)
-1. **HirePath v1** — https://hirepath-eight.vercel.app ✅
-   - MERN job portal, fully functional
+### Live Projects (4/4) 🎉
+1. **HirePath v1 + v2** — https://hirepath-eight.vercel.app ✅
+   - MERN job portal + real-time student–employer chat (Socket.io)
    - Backend: https://hirepath-api.onrender.com
 
 2. **Portfolio Site** — https://portfolio-puce-six-nm8nojm82f.vercel.app ✅
@@ -229,8 +239,7 @@
    - React + Redux + TypeScript
    - 25 passing tests
 
-### HirePath v2 (Week 5)
-- Real-time chat integration (in progress)
+**5-Week Sprint Goal: ACHIEVED ✅ — 4 production projects, all live and tested.**
 
 ---
 
@@ -262,11 +271,12 @@
 - React Testing Library
 - Test-driven development
 
-### Week 5 (Current)
-- Socket.io integration in complex apps
-- Redux for real-time state
-- Production debugging
-- Full-stack real-time features
+### Week 5
+- Socket.io integration into an existing production Express app
+- JWT-authenticated WebSocket connections
+- Real-world full-stack debugging: env var collisions, Mongoose ObjectId vs string pitfalls, response-shape mismatches, stale React state, Render deployment path issues
+- Systematic bug isolation using Network tab, REST clients (Thunder Client / REST Client), and backend logs in tandem
+- Designing REST + Socket.io hybrid architecture (REST for reliable initial load, sockets for real-time updates)
 
 ---
 
@@ -274,11 +284,17 @@
 - Semantic commit messages (feat:, fix:, chore:, docs:, test:)
 - Feature branches per week
 - Professional git history
-- 50+ commits across all projects
+- 60+ commits across all projects
 
 ---
 
 ## 🎯 Post-Week 5 Plan
+- [ ] Forgot Password functionality
+- [ ] Employer Profile management page
+- [ ] Manage Jobs page (edit/delete postings)
+- [ ] Resume Upload page improvements
+- [ ] Applicant Details page
+- [ ] Employer Feedback page polish
 - [ ] Build professional resume with 4 projects + links
 - [ ] LinkedIn profile optimization
 - [ ] GitHub profile showcase
@@ -289,9 +305,9 @@
 ---
 
 ## Notes
-- **5-Week Sprint Goal:** 4 production projects + strong resume ✅ (3/4 complete, Week 5 in progress)
-- **Tech Focus:** Full-stack MERN + modern React patterns
-- **Quality:** Professional code + comprehensive testing
+- **5-Week Sprint Goal:** 4 production projects + strong resume ✅ **COMPLETE**
+- **Tech Focus:** Full-stack MERN + modern React patterns + real-time features
+- **Quality:** Professional code + comprehensive testing + production-debugged
 - **Deployment:** All projects live on production
 - Always paste updated PROGRESS.md at start of new Claude session
 
