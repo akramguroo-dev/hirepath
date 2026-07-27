@@ -60,12 +60,12 @@ export default function EmployerApplicants() {
   const handleMessage = async (studentId) => {
     try {
       const token = localStorage.getItem("token");
-      await API.post(
+      const response = await API.post(
         "/chat/conversations",
         { otherUserId: studentId, jobId: id },
         { headers: { Authorization: `Bearer ${token}` } },
       );
-      navigate("/messages");
+      navigate("/messages", { state: { conversationId: response.data._id } });
     } catch (error) {
       console.error("Error starting conversation:", error);
     }

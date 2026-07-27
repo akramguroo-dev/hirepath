@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import axios from "../api/axios";
 import socket from "../utils/socket";
@@ -10,6 +11,7 @@ export default function ChatPage() {
   const [conversations, setConversations] = useState([]);
   const [selectedConversationId, setSelectedConversationId] = useState(null);
   const [loading, setLoading] = useState(true);
+  const location = useLocation();
 
   const fetchConversations = async () => {
     try {
@@ -51,6 +53,12 @@ export default function ChatPage() {
       socket.off("newMessage");
     };
   }, []);
+
+  useEffect(() => {
+    if (location.state?.conversationId) {
+      setSelectedConversationId(location.state.conversationId);
+    }
+  }, [location.state]);
 
   if (!token) {
     return (
