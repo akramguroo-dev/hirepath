@@ -6,6 +6,7 @@ export default function EmployerApplicants() {
   const [applicants, setApplicants] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [jobTitle, setJobTitle] = useState("");
+  const [viewingApplicant, setViewingApplicant] = useState(null);
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -121,7 +122,13 @@ export default function EmployerApplicants() {
                     className="hover:bg-gray-50 transition duration-150"
                   >
                     <td className="px-6 py-4 font-medium text-gray-900 align-middle whitespace-nowrap">
-                      {app.student_id.name}
+                      <button
+                        onClick={() => setViewingApplicant(app.student_id)}
+                        aria-label={`View full profile for ${app.student_id.name}`}
+                        className="text-[#008BDC] hover:underline font-semibold"
+                      >
+                        {app.student_id.name}
+                      </button>
                     </td>
                     <td className="px-6 py-4 text-gray-600 align-middle">
                       {app.student_id.email}
@@ -136,7 +143,14 @@ export default function EmployerApplicants() {
                         {app.status}
                       </span>
                     </td>
-                    <td className="px-6 py-4 flex gap-2 items-center">
+                    <td className="px-6 py-4 flex gap-2 items-center flex-wrap">
+                      <button
+                        onClick={() => setViewingApplicant(app.student_id)}
+                        aria-label={`View profile for ${app.student_id.name}`}
+                        className="px-3 py-1 bg-gray-600 hover:bg-gray-700 text-white text-xs font-bold rounded"
+                      >
+                        View Profile
+                      </button>
                       <button
                         onClick={() => handleMessage(app.student_id._id)}
                         aria-label={`Message ${app.student_id.name}`}
@@ -210,6 +224,119 @@ export default function EmployerApplicants() {
           </div>
         </div>
       </div>
+
+      {/* Applicant Profile Modal */}
+      {viewingApplicant && (
+        <div
+          className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50"
+          onClick={() => setViewingApplicant(null)}
+        >
+          <div
+            className="bg-white rounded-lg shadow-xl w-full max-w-lg max-h-[85vh] overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="p-6 border-b border-gray-100 flex items-start justify-between">
+              <div className="flex items-center gap-4">
+                <div className="w-16 h-16 rounded-full bg-gray-100 overflow-hidden flex-shrink-0 border border-gray-200">
+                  {viewingApplicant.profilePhoto ? (
+                    <img
+                      src={viewingApplicant.profilePhoto}
+                      alt={viewingApplicant.name}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center text-gray-300 text-xs font-bold">
+                      NO PHOTO
+                    </div>
+                  )}
+                </div>
+                <div>
+                  <h2 className="text-xl font-bold text-gray-900">
+                    {viewingApplicant.name}
+                  </h2>
+                  <p className="text-sm text-gray-500">{viewingApplicant.email}</p>
+                </div>
+              </div>
+              <button
+                onClick={() => setViewingApplicant(null)}
+                aria-label="Close applicant profile"
+                className="text-gray-400 hover:text-gray-600 p-1"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            <div className="p-6 space-y-5">
+              {viewingApplicant.college && (
+                <div>
+                  <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">
+                    College
+                  </h3>
+                  <p className="text-sm text-gray-800">{viewingApplicant.college}</p>
+                </div>
+              )}
+
+              {viewingApplicant.skills?.length > 0 && (
+                <div>
+                  <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">
+                    Skills
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {viewingApplicant.skills.map((skill, idx) => (
+                      <span
+                        key={idx}
+                        className="px-3 py-1 bg-blue-50 text-[#008BDC] text-xs font-semibold rounded-full border border-blue-100"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {viewingApplicant.education?.length > 0 && (
+                <div>
+                  <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">
+                    Education
+                  </h3>
+                  <div className="space-y-2">
+                    {viewingApplicant.education.map((edu, idx) => (
+                      <div key={idx} className="text-sm text-gray-800">
+                        <p className="font-medium">{edu.degree}</p>
+                        <p className="text-gray-500">
+                          {edu.school} {edu.year && `· ${edu.year}`}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {!viewingApplicant.college &&
+                !viewingApplicant.skills?.length &&
+                !viewingApplicant.education?.length && (
+                  <p className="text-sm text-gray-400 text-center py-4">
+                    This candidate hasn't completed their profile yet.
+                  </p>
+                )}
+
+              {viewingApplicant.resume && (
+                <a
+                  href={viewingApplicant.resume}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Download resume for ${viewingApplicant.name}`}
+                  className="block w-full text-center px-4 py-2 bg-[#008BDC] hover:bg-[#0076bb] text-white text-sm font-semibold rounded"
+                >
+                  Download Resume
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
