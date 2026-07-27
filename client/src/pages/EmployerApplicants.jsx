@@ -143,7 +143,7 @@ export default function EmployerApplicants() {
                         {app.status}
                       </span>
                     </td>
-                    <td className="px-6 py-4 flex gap-2 items-center flex-wrap">
+                    <td className="px-6 py-4 flex flex-col gap-2 items-start">
                       <button
                         onClick={() => setViewingApplicant(app.student_id)}
                         aria-label={`View profile for ${app.student_id.name}`}
