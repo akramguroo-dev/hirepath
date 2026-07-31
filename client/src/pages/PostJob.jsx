@@ -13,6 +13,9 @@ export default function PostJob() {
     duration: "",
     description: "",
     companyLogo: "",
+    startDate: "",
+    applyBy: "",
+    skills: "",
   });
 
   const [isLoading, setIsLoading] = useState(false);
@@ -53,7 +56,16 @@ export default function PostJob() {
     try {
       e.preventDefault();
       const token = localStorage.getItem("token");
-      await API.post("/jobs", formData, {
+      const payload = {
+        ...formData,
+        skills: formData.skills
+          ? formData.skills
+              .split(",")
+              .map((s) => s.trim())
+              .filter(Boolean)
+          : [],
+      };
+      await API.post("/jobs", payload, {
         headers: { Authorization: `Bearer ${token}` },
       });
       toast.success("Job posted successfully!");
@@ -97,11 +109,14 @@ export default function PostJob() {
 
             {/* Job Title */}
             <div>
-              <label htmlFor="job-title" className="block text-sm font-semibold text-gray-700 mb-2">
+              <label
+                htmlFor="job-title"
+                className="block text-sm font-semibold text-gray-700 mb-2"
+              >
                 Job Title
               </label>
               <input
-              id="job-title"
+                id="job-title"
                 name="title"
                 value={formData.title}
                 onChange={handleChange}
@@ -114,11 +129,14 @@ export default function PostJob() {
 
             {/* Company Name */}
             <div>
-              <label htmlFor="company-name" className="block text-sm font-semibold text-gray-700 mb-2">
+              <label
+                htmlFor="company-name"
+                className="block text-sm font-semibold text-gray-700 mb-2"
+              >
                 Company Name
               </label>
               <input
-              id="company-name"
+                id="company-name"
                 name="company"
                 value={formData.company}
                 onChange={handleChange}
@@ -131,11 +149,14 @@ export default function PostJob() {
 
             {/* Location */}
             <div>
-              <label htmlFor="job-location" className="block text-sm font-semibold text-gray-700 mb-2">
+              <label
+                htmlFor="job-location"
+                className="block text-sm font-semibold text-gray-700 mb-2"
+              >
                 Location
               </label>
               <input
-              id="job-location"
+                id="job-location"
                 name="location"
                 value={formData.location}
                 onChange={handleChange}
@@ -148,11 +169,14 @@ export default function PostJob() {
 
             {/* Type */}
             <div>
-              <label htmlFor="job-type" className="block text-sm font-semibold text-gray-700 mb-2">
+              <label
+                htmlFor="job-type"
+                className="block text-sm font-semibold text-gray-700 mb-2"
+              >
                 Type
               </label>
               <select
-              id="job-type"
+                id="job-type"
                 name="type"
                 value={formData.type}
                 onChange={handleChange}
@@ -168,11 +192,14 @@ export default function PostJob() {
             {/* Salary & Duration */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label htmlFor="job-salary" className="block text-sm font-semibold text-gray-700 mb-2">
+                <label
+                  htmlFor="job-salary"
+                  className="block text-sm font-semibold text-gray-700 mb-2"
+                >
                   Stipend/Salary
                 </label>
                 <input
-                id="job-salary"
+                  id="job-salary"
                   name="salary"
                   value={formData.salary}
                   onChange={handleChange}
@@ -183,11 +210,14 @@ export default function PostJob() {
                 />
               </div>
               <div>
-                <label htmlFor="job-duration" className="block text-sm font-semibold text-gray-700 mb-2">
+                <label
+                  htmlFor="job-duration"
+                  className="block text-sm font-semibold text-gray-700 mb-2"
+                >
                   Duration
                 </label>
                 <input
-                id="job-duration"
+                  id="job-duration"
                   name="duration"
                   value={formData.duration}
                   onChange={handleChange}
@@ -199,13 +229,74 @@ export default function PostJob() {
               </div>
             </div>
 
+            {/* Start Date & Apply By */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label
+                  htmlFor="job-start-date"
+                  className="block text-sm font-semibold text-gray-700 mb-2"
+                >
+                  Start Date
+                </label>
+                <input
+                  id="job-start-date"
+                  name="startDate"
+                  value={formData.startDate}
+                  onChange={handleChange}
+                  type="date"
+                  aria-label="Select the expected start date for this position"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#008BDC] focus:border-transparent outline-none transition-all"
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="job-apply-by"
+                  className="block text-sm font-semibold text-gray-700 mb-2"
+                >
+                  Apply By
+                </label>
+                <input
+                  id="job-apply-by"
+                  name="applyBy"
+                  value={formData.applyBy}
+                  onChange={handleChange}
+                  type="date"
+                  aria-label="Select the application deadline for this job"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#008BDC] focus:border-transparent outline-none transition-all"
+                />
+              </div>
+            </div>
+
+            {/* Skills */}
+            <div>
+              <label
+                htmlFor="job-skills"
+                className="block text-sm font-semibold text-gray-700 mb-2"
+              >
+                Required Skills
+              </label>
+              <input
+                id="job-skills"
+                name="skills"
+                value={formData.skills}
+                onChange={handleChange}
+                type="text"
+                placeholder="e.g. React, Node.js, MongoDB (comma-separated)"
+                aria-label="Enter required skills separated by commas"
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#008BDC] focus:border-transparent outline-none transition-all"
+              />
+            </div>
+
             {/* Job Description */}
             <div>
-              <label htmlFor="job-description" className="block text-sm font-semibold text-gray-700 mb-2">
+              <label
+                htmlFor="job-description"
+                className="block text-sm font-semibold text-gray-700 mb-2"
+              >
                 Job Description
               </label>
               <textarea
-              id="job-description"
+                id="job-description"
                 name="description"
                 value={formData.description}
                 onChange={handleChange}
@@ -221,7 +312,6 @@ export default function PostJob() {
               <button
                 type="submit"
                 aria-label="Submit form to publish this new job listing"
-                className="w-full bg-[#008BDC] hover:bg-[#0076bb] text-white font-bold py-3 px-6 rounded-lg shadow-lg transform transition-transform active:scale-95"
                 disabled={isLoading}
                 className="w-full bg-[#008BDC] hover:bg-[#0076bb] disabled:bg-gray-400 text-white font-bold py-3 px-6 rounded-lg shadow-lg transform transition-transform active:scale-95"
               >
